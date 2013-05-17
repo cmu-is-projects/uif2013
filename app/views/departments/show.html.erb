@@ -1,0 +1,28 @@
+<h1>Department Details</h1>
+<p>
+  <b>Name:</b>
+  <%= @department.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @department.description %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @department.active ? "Yes" : "No" %>
+</p>
+
+<div class="form-actions">
+  <%= link_to raw("<i class='icon-backward'></i> Back to departments"),
+              departments_path, :class => 'btn'  %>
+  <%= link_to raw("<i class='icon-edit'></i> Edit this department"),
+              edit_department_path(@department), :class => 'btn' %>
+  <%= link_to raw("<i class='icon-remove'></i> Destroy this department"),
+              department_path(@department),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
+

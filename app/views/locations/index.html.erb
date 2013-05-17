@@ -1,0 +1,67 @@
+<%- model_class = Location -%>
+<script type="text/javascript">
+  // Use jQuery to hide items in the various index lists
+  $(function() {
+  	$('#query').focus().keyup(function() {
+
+  		// get rid of backspaces
+  		var txt = $(this).val().replace(/\\b/,"");
+
+  		if (txt.length == 0) {
+  			// if the txt sent is empty, show all
+  			$('.list tr').show();
+  		}
+  		else{
+  			// else show only what we want and hide the rest...
+  			$('.list tr:not(:contains("' + txt + '"))').hide();
+  			$('.list tr:contains("' + txt + '")').show();
+  		};
+	});
+  });
+
+</script>
+<br>
+<div class="row">
+  <div class="span10">
+    <div id="search">
+    	<%= form_tag('/events/search') do %>
+    		<strong>Quick Filter:</strong> <%= text_field_tag 'query' -%>
+    	<% end %>
+    </div>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+</div>
+<div class="span2">
+<%= link_to raw("<i class='icon-plus'></i> <strong>Add location</strong>"), new_location_path, :class => 'btn btn-primary' %>
+</div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:street) %></th>
+      <th><%= model_class.human_attribute_name(:city) %></th>
+      <th><%= model_class.human_attribute_name(:zip) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="list">
+    <% @locations.each do |location| %>
+      <tr>
+        <td><%= link_to location.name, location_path(location) %></td>
+        <td><%= location.street %></td>
+        <td><%= location.city %></td>
+        <td><%= location.zip %></td>
+        <td>
+          <%= link_to raw("<i class='icon-edit'></i> Edit"),
+                      edit_location_path(location), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br><br><br><br>

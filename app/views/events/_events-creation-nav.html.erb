@@ -1,0 +1,21 @@
+
+<%- model_class = Event -%>
+<div class="page-header">
+    <h1>Filter Events</h1>
+</div>
+<!-- make it like jquery ui calendar widget -->
+<!-- an actual search for events function, NOT sort function  -->
+<%= form_tag events_path, :method => 'get' do %>
+<p>
+<%= date_select :date_query, params[:date_query], :include_blank => true, :label_method => :name%>
+<%= submit_tag "Search", :name => nil, :class=>"btn" %>
+</p>
+<% end %>
+
+<div class="side-nav-grp">
+    <div class="page-header">
+        <h1>Quick Add Section</h1>
+    </div>
+    
+    <%= button_to "Create Location", new_location_path, :method => "get", :class=> "btn btn-primary"%>
+</div>

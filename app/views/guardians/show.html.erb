@@ -1,0 +1,14 @@
+<h1><%= @guardian.proper_name %></h1>
+<div class="row">
+  <div class="span5">
+    <%= render :partial => "guardian_details" %>
+    <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @guardian} %>
+  </div>
+  <div class="span5">
+    <%= render :partial => "guardian_children" %>
+    <p>&nbsp;</p>
+    <%= render :partial => "guardian_controls" %>
+  </div>
+</div>
+
+

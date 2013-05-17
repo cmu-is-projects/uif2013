@@ -1,0 +1,59 @@
+<div class="row-fluid">
+  <div class="span8">
+    <div id="search">
+    	<%= form_tag('/households/search') do %>
+    		<strong>Quick Filter:</strong> <%= text_field_tag 'query' -%>
+    	<% end %>
+    </div>
+  </div>
+  <div class="span4">
+  <%= link_to raw("<i class='icon-plus'></i> <strong>Add household</strong>"), new_household_path, :class => 'btn btn-success pull-right' %>
+  </div>
+</div>
+
+<h1>All Households</h1>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th width="200">Name</th>
+    <th width="250">Address</th>
+    <th width="200">Insurance</th>
+    <th width="200">Church</th>
+    <th width="75">Status</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody id="list">
+<% @households.each do |household| %>
+  <tr>
+    <td><%= link_to household.name, household_path(household) %></td>
+    <td>
+      <%= household.street %>
+      <% unless household.street2.blank? %>
+        <br /><%= household.street2 %>
+      <% end %>
+      <br /><%= household.city %>, <%= household.zip %>
+    </td>
+    <td>
+      <%= household.insurance_company %>
+      <br />#<%= household.insurance_number %>
+    </td>
+    <td><%= household.church %></td>
+    <td><%= household.active ? "Active" : "Inactive" %></td>
+    <td>
+      <%= link_to raw("<i class='icon-file'></i> Add note"),
+                  new_note_path(:id => household.id, :source => 'household'), :class => 'btn btn-mini' %>
+      &nbsp;
+      <%= link_to raw("<i class='icon-edit'></i> Edit"),
+                  edit_household_path(household), :class => 'btn btn-mini' %>
+    </td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+<%# will_paginate @households, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+<br />
+
+<%= link_to raw("<i class='icon-plus'></i> <strong>Add household</strong>"), new_household_path, :class => 'btn btn-primary' %>

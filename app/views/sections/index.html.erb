@@ -1,0 +1,44 @@
+<div class="row-fluid">
+  <div class="span8">
+    <div id="search">
+    	<%= form_tag('/sections/search') do %>
+    		<strong>Quick Filter:</strong> <%= text_field_tag 'query' -%>
+    	<% end %>
+    </div>
+  </div>
+  <div class="span4">
+    <%= link_to raw("<i class='icon-plus'></i> <strong>Add section</strong>"), new_section_path, :class => 'btn btn-success pull-right' %>
+  </div>
+</div>
+
+<h1>All Sections</h1>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th width="320">Program<br />name</th>
+    <th width="320">Section<br />name</th>
+    <th width="125">Current<br/>enrollment</th>
+    <th width="125">Max<br/>capacity</th>
+    <th width="80">Active</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody id="list">
+<% @sections.each do |section| %>
+  <tr>
+    <td><%= link_to section.program.name, program_path(section.program) %></td>
+    <td><%= link_to section.name, section_path(section) %></td>
+
+    <td align="center"><%= section.enrollments.size %></td>
+    <td align="center"><%= section.max_capacity %></td>
+
+    <td><%= section.active ? "Yes" : "No" %></td>
+    <td><%= link_to raw("<i class='icon-edit'></i> Edit"),
+                edit_section_path(section), :class => 'btn btn-mini' %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+<%# will_paginate @sections, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+<br />

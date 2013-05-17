@@ -1,0 +1,16 @@
+<h2>Alerts at UIF</h2>
+
+<% @alerts.each do |note| %>
+    <% if note.priority == 1 %>
+      <% alert_class = "alert high"%>
+    <% else %>
+      <% alert_class = "alert medium"%>
+    <% end %>
+    <div class="<%= alert_class %>">
+      <% if note.priority == 1 %>
+        <i class='icon-warning-sign'></i>
+      <% end %>
+      <%= link_to note.title, alerts_path %>
+      <!--<button type="button" class="close" data-dismiss="alert">&times;</button>-->
+    </div>
+<% end %>

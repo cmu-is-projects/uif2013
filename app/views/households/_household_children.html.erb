@@ -1,0 +1,12 @@
+<div class="well">
+  <h2><%= @household.name %> Children</h2>
+  
+  <% @household.students.alphabetical.all.each do |student| %>
+    <p>
+      <%= link_to student.proper_name, student_path(student) %> -- 
+          Grade <%= student.grade %> -- 
+          <%= pluralize(student.enrollments.active.size, 'program') %>
+    </p>
+  <% end %>
+  
+</div>

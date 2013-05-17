@@ -1,0 +1,10 @@
+<div class="well">
+  <h2><%= @household.name %> Guardians</h2>
+  
+  <% @household.guardians.alphabetical.all.each do |guardian| %>
+    <p>
+      <%= link_to guardian.proper_name, guardian_path(guardian) %> (<%= guardian.guardian_type %>) -- Phone: <%= number_to_phone guardian.cell_phone %>
+    </p>
+  <% end %>
+  
+</div>

@@ -1,0 +1,16 @@
+<h1><%= @household.name %> Household</h1>
+
+<div class="row-fluid">
+  <div class="span7">
+    <%= render :partial => "household_details" %>
+    <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @household} %>
+  </div>
+  <div class="span5">
+    <%= render :partial => "household_children" %>
+    <p>&nbsp;</p>
+    <%= render :partial => "household_guardians" %>
+    <p>&nbsp;</p>
+    <%= render :partial => "household_controls" %>
+  </div>
+</div>
+
