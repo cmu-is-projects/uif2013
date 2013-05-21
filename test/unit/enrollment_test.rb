@@ -21,7 +21,27 @@ class EnrollmentTest < ActiveSupport::TestCase
   should_not allow_value("four").for(:student_id)
   should_not allow_value(-4).for(:student_id)
 
-  #Test Scope 'active'
-  
-    
+ context "2 Enrollments" do
+    # create the objects I want with factories
+    setup do
+      @alex = FactoryGirl.create(:student)
+      @main_section = FactoryGirl.create(:section)
+      @inactive_section = FactoryGirl.create(:section, active: false)
+      @active = FactoryGirl.create(:enrollment, student: @alex, section: @main_section)
+      @inactive = FactoryGirl.create(:enrollment, student: @alex, section: @inactive_section)
+    end
+
+    # and provide a teardown method as well
+    teardown do
+      @active.destroy
+      @inactive.destroy
+    end
+
+    # test the scope 'active'
+    should "shows that there is one enrollment with active section" do
+      #assert_equal 1, Department.active.size
+    end
+  end
+
+
 end

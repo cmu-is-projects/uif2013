@@ -24,6 +24,11 @@ FactoryGirl.define do
     max_capacity 20
     active true
   end
+
+  factory :enrollment do
+    association :student
+    association :section
+  end
   
    factory :location do
     name "CMU"
