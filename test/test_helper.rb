@@ -26,19 +26,13 @@ class ActiveSupport::TestCase
   
  # Context for events
   def create_event_context
-    @choir_performance = FactoryGirl.create(:program, :department => @arts_department)
-    @soccer = FactoryGirl.create(:program, :name => "Soccer", :description => "Kick a ball", :department => @athletics)
-    @sat_prep = FactoryGirl.create(:program, :name => "SAT Prep", :description => "Prepare for SATs", :department => @academics)       
     @mon_class = FactoryGirl.create(:event, :location => @cmu, :program => @choir)
     @tues_class = FactoryGirl.create(:event, :location => @cmu, :program => @soccer, :date => 3.days.ago.to_date, :start_time => Time.local(2012,10,3,16,0), :end_time => Time.local(2012,10,3,17,0))
-    @wed_class = FactoryGirl.create(:event, :location => @cmu, :program => @sat_prep, :date => 4.days.from_now.to_date, :start_time => Time.local(2012,10,10,16,0), :end_time => nil)
-    @today_class = FactoryGirl.create(:event, :location => @cmu, :program => @sat_prep, :date => Date.today, :start_time => Time.local(2012,10,10,16,0), :end_time => nil)
+    @wed_class = FactoryGirl.create(:event, :location => @cmu, :program => @soupkitchen, :date => 4.days.from_now.to_date, :start_time => Time.local(2012,10,10,16,0), :end_time => nil)
+    @today_class = FactoryGirl.create(:event, :location => @cmu, :program => @soupkitchen, :date => Date.today, :start_time => Time.local(2012,10,10,16,0), :end_time => nil)
   end
   
   def remove_event_context
-    @choir_performance.destroy
-    @soccer.destroy
-    @sat_prep.destroy
     @mon_class.destroy
     @tues_class.destroy
     @wed_class.destroy
@@ -87,13 +81,13 @@ class ActiveSupport::TestCase
  # Context for programs
   def create_program_context
     @choir = FactoryGirl.create(:program, :department => @arts)
-    @basketball = FactoryGirl.create(:program, :department => @athletics, :name => "Basketball", :description => "Basketball Intramural Sports")
+    @soccer = FactoryGirl.create(:program, :department => @athletics, :name => "Soccer", :description => "Soccer Intramural Sports")
     @soupkitchen = FactoryGirl.create(:program, :department => @outreach, :name => "Soup Kitchen", :description => "Help nearby soup kitchen serve food")
   end
   
   def remove_program_context
     @choir.destroy
-    @basketball.destroy
+    @soccer.destroy
     @soupkitchen.destroy
   end
 
@@ -133,7 +127,7 @@ class ActiveSupport::TestCase
 
  # Context for student allergies
   def create_student_allergy_context
-    
+   
   end
   
   def remove_student_allergy_context

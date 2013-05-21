@@ -67,6 +67,7 @@ FactoryGirl.define do
     association :student
     exempt true
   end
+
 end
 
   
