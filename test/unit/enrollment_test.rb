@@ -24,22 +24,23 @@ class EnrollmentTest < ActiveSupport::TestCase
  context "2 Enrollments" do
     # create the objects I want with factories
     setup do
-      @alex = FactoryGirl.create(:student)
-      @main_section = FactoryGirl.create(:section)
-      @inactive_section = FactoryGirl.create(:section, active: false)
+      create_student_context
+      create_section_context
       @active = FactoryGirl.create(:enrollment, student: @alex, section: @main_section)
-      @inactive = FactoryGirl.create(:enrollment, student: @alex, section: @inactive_section)
+      @inactive = FactoryGirl.create(:enrollment, student: @sean, section: @inactive_section)
     end
 
     # and provide a teardown method as well
     teardown do
+      remove_student_context
+      remove_section_context
       @active.destroy
       @inactive.destroy
     end
 
     # test the scope 'active'
     should "shows that there is one enrollment with active section" do
-      #assert_equal 1, Department.active.size
+      assert_equal 1, Enrollment.active.size
     end
   end
 

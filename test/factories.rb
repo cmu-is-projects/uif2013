@@ -50,9 +50,11 @@ FactoryGirl.define do
   end
   
   factory :student do
+    association :household
     first_name "Alexander"
     last_name "Heimann"
     grade 20
+    date_of_birth "3/20/88"
     is_male false
     email "G3ptballer22@yahoo.com"
     household_id 123456
@@ -62,6 +64,22 @@ FactoryGirl.define do
     association :event
     association :student
     exempt true
+  end
+
+  factory :household do
+   name "Smith"
+   street "1212 Morewood Avenue"
+   city "Pittsburgh"
+   zip "15213"
+   insurance_company "United Healthcare"
+  end
+
+  factory :guardian do
+    association :household
+    first_name  "Larry"
+    last_name "Smith"
+    guardian_type 'Father'
+    active  true
   end
 end
 
