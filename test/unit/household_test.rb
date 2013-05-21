@@ -36,48 +36,42 @@ class HouseholdTest < ActiveSupport::TestCase
   context "Creating three households" do
     # Create Objects using Factories
     setup do
-      @cmu = FactoryGirl.create(:household)
-      @new_jersey = FactoryGirl.create(:household, :name => "Smith Residence", :street => "12 Somewhere Road", :city => "Someplace", :zip => '10000', :active => false)
-      @oakland = FactoryGirl.create(:location, :name => "Oakland")
+      @smith = FactoryGirl.create(:household)
+      @shroot = FactoryGirl.create(:household, :name => "Shroot", :street => "43 New Lane", :city => "New York", :zip => '10540', :active => false)
+      @scott = FactoryGirl.create(:household, :name => "Scott", :street => "123 Cool Place", :city => "Scranton", :zip => '48579', :active => true)
     end
     
     # Provide teardown method
     teardown do
-      @cmu.destroy
-      @new_jersey.destroy
-      @oakland.destroy
+      @smith.destroy
+      @shroot.destroy
+      @scott.destroy
     end
   
     # Test Scopes
 
     # test one of each factory (not really required, but not a bad idea)
     should "show that all factories are properly created" do
-      assert_equal "CMU", @cmu.name
-      assert @oakland.active
-      deny @new_jersey.active
+      assert_equal "Smith", @smith.name
+      assert @scott.active
+      deny @shroot.active
     end
 
     # test households must be listed alphabetically by name
     should "have all the households listed alphabetically by name" do
-      assert_equal ["CMU","Jocelyn's Home", "Oakland"], Location.alphabetical.map{|s| s.name}
-    end
-    
-    # test households must have unique names
-    should "force locations to have unique names" do
-      repeat_store = FactoryGirl.build(:location, :name => "CMU")
-      deny repeat_store.valid?
+      assert_equal ["Scott","Shroot", "Smith"], Household.alphabetical.map{|s| s.name}
     end
   
     # test the scope 'active'
-    should "shows that there are two active locations" do
-      assert_equal 2, Location.active.size
-      assert_equal ["CMU", "Oakland"], Location.active.alphabetical.map{|s| s.name}
+    should "shows that there are two active households" do
+      assert_equal 2, Household.active.size
+      assert_equal ["Scott", "Smith"], Household.active.alphabetical.map{|s| s.name}
     end
     
     # test the scope 'inactive'
-    should "shows that there is one inactive location" do
-      assert_equal 1, Location.inactive.size
-      assert_equal ["Jocelyn's Home"], Location.inactive.alphabetical.map{|s| s.name}
+    should "shows that there is one inactive household" do
+      assert_equal 1, Household.inactive.size
+      assert_equal ["Shroot"], Household.inactive.alphabetical.map{|s| s.name}
     end
   end
   

@@ -53,12 +53,12 @@ FactoryGirl.define do
   end
   
   factory :student do
+    association :household
     first_name "Alexander"
     last_name "Heimann"
     grade 20
     is_male false
     email "G3ptballer22@yahoo.com"
-    household_id 123456
   end
   
   factory :attendance do
