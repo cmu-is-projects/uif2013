@@ -2,8 +2,8 @@ source :rubygems
 
 gem 'rails', '3.2.13'
 gem 'gon', '4.0.1'
-gem 'mini_magick', '3.4'
-gem 'rmagick', '2.13.1'
+# gem 'mini_magick', '3.4'
+# gem 'rmagick', '2.13.1'
 gem 'time_date_helpers'
 gem 'carrierwave', '0.7.1'
 gem "paperclip", '3.3.1'

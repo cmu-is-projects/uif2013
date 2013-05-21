@@ -25,7 +25,7 @@ class DepartmentTest < ActiveSupport::TestCase
     end
 
     # test the scope 'alphabetical'
-    should "shows that there are three departments in in alphabetical order" do
+    should "shows that there are three departments in alphabetical order" do
       assert_equal ["Athletics", "Global Outreach", "Peforming Arts"], Department.alphabetical.map{|s| s.name}
     end
 

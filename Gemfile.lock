@@ -147,8 +147,6 @@ GEM
     mina (0.2.1)
       open4
       rake
-    mini_magick (3.4)
-      subexec (~> 0.2.1)
     minitest (4.3.3)
     mocha (0.10.5)
       metaclass (~> 0.0.1)
@@ -210,7 +208,6 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
-    rmagick (2.13.1)
     ruby-rc4 (0.1.5)
     rubyzip (0.9.9)
     sass (3.2.9)
@@ -243,7 +240,6 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
-    subexec (0.2.3)
     tconsole (1.2.8)
       chattyproc (~> 1.0.0)
       minitest (~> 4.3.0)
@@ -321,7 +317,6 @@ DEPENDENCIES
   launchy (= 2.2.0)
   meta_request (= 0.2.2)
   mina (= 0.2.1)
-  mini_magick (= 3.4)
   mocha (= 0.10.5)
   nested_form!
   nokogiri (= 1.5.6)
@@ -333,7 +328,6 @@ DEPENDENCIES
   quiet_assets (= 1.0.2)
   rack-cors (= 0.2.7)
   rails (= 3.2.13)
-  rmagick (= 2.13.1)
   sass-rails (= 3.2.6)
   shoulda (= 3.3.2)
   shoulda-matchers (= 1.4.2)
@@ -348,7 +342,7 @@ DEPENDENCIES
   unicorn (= 4.5.0)
   uservoice-ruby (= 0.0.10)
   validates_timeliness (= 3.0.14)
-  viewcumber
+  viewcumber (= 0.3.1)
   whenever
   will_paginate (= 3.0.4)
   wirble (= 0.1.3)
