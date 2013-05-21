@@ -116,7 +116,6 @@ class ActiveSupport::TestCase
    	@inactive_section.destroy
   end
  
- 
  # Context for students
   def create_student_context
    @alex = FactoryGirl.create(:student)
