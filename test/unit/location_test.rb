@@ -36,16 +36,12 @@ class LocationTest < ActiveSupport::TestCase
   context "Creating three locations" do
     # Create objects using Factories
     setup do
-      @cmu = FactoryGirl.create(:location)
-      @new_jersey = FactoryGirl.create(:location, :name => "Jocelyn's Home", :street => "12 Somewhere Road", :city => "Someplace", :zip => '10000', :active => false)
-      @oakland = FactoryGirl.create(:location, :name => "Oakland")
+      create_location_context
     end
     
     # Provide teardown method
     teardown do
-      @cmu.destroy
-      @new_jersey.destroy
-      @oakland.destroy
+      remove_location_context
     end
   
     # test one of each factory (not really required, but not a bad idea)

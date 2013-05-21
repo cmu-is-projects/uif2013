@@ -36,16 +36,12 @@ class HouseholdTest < ActiveSupport::TestCase
   context "Creating three households" do
     # Create Objects using Factories
     setup do
-      @smith = FactoryGirl.create(:household)
-      @shroot = FactoryGirl.create(:household, :name => "Shroot", :street => "43 New Lane", :city => "New York", :zip => '10540', :active => false)
-      @scott = FactoryGirl.create(:household, :name => "Scott", :street => "123 Cool Place", :city => "Scranton", :zip => '48579', :active => true)
+     create_household_context
     end
     
     # Provide teardown method
     teardown do
-      @smith.destroy
-      @shroot.destroy
-      @scott.destroy
+      remove_household_context
     end
   
     # Test Scopes

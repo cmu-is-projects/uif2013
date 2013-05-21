@@ -62,16 +62,14 @@ class ProgramTest < ActiveSupport::TestCase
   context "creating the context" do
      # create the objects I want with factories
      setup do
-       @arts = FactoryGirl.create(:department)
-       @choir = FactoryGirl.create(:program, :department => @arts )
-       @athletics = FactoryGirl.create(:department, :name => "Athletics", :description => "Sports")
+       context create_department
+       context create_program
      end
 
      # and provide a teardown method as well
      teardown do
-       @arts.destroy
-       @athletics.destroy
-       @choir.destroy
+       context remove_department
+       context remove_program
      end
     
     should "ensure that program end date does not precede the program start date" do
