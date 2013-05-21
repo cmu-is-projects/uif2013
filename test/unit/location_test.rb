@@ -1,24 +1,29 @@
 require 'test_helper'
 
 class LocationTest < ActiveSupport::TestCase
-#Test Relationships
+  # Test Relationships
   should have_many(:events)
   should have_many(:programs).through(:events)
   
-  #Test Validations
+  # Test Validations
   should validate_presence_of(:name)
   should validate_presence_of(:street)
   should validate_presence_of(:city)
   should validate_uniqueness_of(:name)
-  
-  # tests for zip
+
+  # Tests for Zipcode
+  should validate_format_of(:zip).with(/^\d{5}(\-\d{4})?$/)
+
   should allow_value("15213").for(:zip)
   should_not allow_value("bad").for(:zip)
   should_not allow_value("1512").for(:zip)
   should_not allow_value("152134").for(:zip)
   should allow_value("15213-0983").for(:zip)
-  
-  # tests for lat/lon
+
+ # Test for Longitude and Latitude
+  should validate_numericality_of(:lat)
+  should validate_numericality_of(:lon)
+
   should allow_value(19.23).for(:lat)
   should allow_value(-19.23).for(:lat)
   should_not allow_value("bad").for(:lat)
@@ -26,33 +31,36 @@ class LocationTest < ActiveSupport::TestCase
   should allow_value(-19.23).for(:lon)
   should_not allow_value("bad").for(:lon)
   
-  
   # Establish context
   # Testing other methods with a context
   context "Creating three locations" do
-    # create the objects I want with factories
+    # Create objects using Factories
     setup do
       @cmu = FactoryGirl.create(:location)
       @new_jersey = FactoryGirl.create(:location, :name => "Jocelyn's Home", :street => "12 Somewhere Road", :city => "Someplace", :zip => '10000', :active => false)
       @oakland = FactoryGirl.create(:location, :name => "Oakland")
     end
     
-    # and provide a teardown method as well
+    # Provide teardown method
     teardown do
       @cmu.destroy
       @new_jersey.destroy
       @oakland.destroy
     end
   
-    # now run the tests:
     # test one of each factory (not really required, but not a bad idea)
     should "show that all factories are properly created" do
       assert_equal "CMU", @cmu.name
       assert @oakland.active
       deny @new_jersey.active
     end
+
+    # test
+    should "have all the locations listed alphabetically by name" do
+      assert_equal ["CMU","Jocelyn's Home", "Oakland"], Location.alphabetical.map{|s| s.name}
+    end
     
-    # test stores must have unique names
+    # test households must have unique names
     should "force locations to have unique names" do
       repeat_store = FactoryGirl.build(:location, :name => "CMU")
       deny repeat_store.valid?
