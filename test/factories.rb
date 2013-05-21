@@ -56,7 +56,8 @@ FactoryGirl.define do
     association :household
     first_name "Alexander"
     last_name "Heimann"
-    grade 20
+    grade 5
+    date_of_birth "3/20/2004"
     is_male false
     email "G3ptballer22@yahoo.com"
   end

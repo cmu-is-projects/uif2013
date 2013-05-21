@@ -62,14 +62,14 @@ class ProgramTest < ActiveSupport::TestCase
   context "creating the context" do
      # create the objects I want with factories
      setup do
-       context create_department
-       context create_program
+       create_department_context
+       create_program_context
      end
 
      # and provide a teardown method as well
      teardown do
-       context remove_department
-       context remove_program
+        remove_department_context
+        remove_program_context
      end
     
     should "ensure that program end date does not precede the program start date" do

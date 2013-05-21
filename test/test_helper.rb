@@ -26,7 +26,7 @@ class ActiveSupport::TestCase
   
  # Context for events
   def create_event_context
-    @choir = FactoryGirl.create(:program, :department => @arts_department)
+    @choir_performance = FactoryGirl.create(:program, :department => @arts_department)
     @soccer = FactoryGirl.create(:program, :name => "Soccer", :description => "Kick a ball", :department => @athletics)
     @sat_prep = FactoryGirl.create(:program, :name => "SAT Prep", :description => "Prepare for SATs", :department => @academics)       
     @mon_class = FactoryGirl.create(:event, :location => @cmu, :program => @choir)
@@ -36,7 +36,7 @@ class ActiveSupport::TestCase
   end
   
   def remove_event_context
-    @choir.destroy
+    @choir_performance.destroy
     @soccer.destroy
     @sat_prep.destroy
     @mon_class.destroy
@@ -47,20 +47,17 @@ class ActiveSupport::TestCase
   
  # Context for guardians
   def create_guardian_context
-    @arbeit = FactoryGirl.create(:project, domain: @software, manager: @ted, start_date: 1.week.ago.to_date, end_date: nil)
-    @proverbs = FactoryGirl.create(:project, name: 'Proverbs', domain: @software, manager: @ed, start_date: 9.weeks.ago.to_date, end_date: nil)
-    @bookmanager = FactoryGirl.create(:project, name: 'BookManager', domain: @software, manager: @fred, start_date: 8.weeks.ago.to_date, end_date: nil)
-    @choretracker = FactoryGirl.create(:project, name: 'ChoreTracker', domain: @software, manager: @fred, start_date: 7.weeks.ago.to_date)
-  end
-  
-  def remove_guardian_context
-    @arbeit.destroy
-    @proverbs.destroy
-    @bookmanager.destroy
-    @choretracker.destroy
-
-  end
-  
+    @lsmith = FactoryGirl.create(:guardian, household: @smith)
+    @mshroot = FactoryGirl.create(:guardian, household: @shroot, first_name: "Mary", last_name: "Shroot", guardian_type: 'Mother')
+  	@cscott = FactoryGirl.create(:guardian, household: @scott, first_name: "Clark", last_name: "Scott", cell_phone: "412-222-2222")
+ end
+ 
+ def remove_guardian_context
+   	@lsmith.destroy
+   	@mshroot.destroy
+   	@cscott.destroy
+ end
+    
  # Context for households
   def create_household_context
     @smith = FactoryGirl.create(:household)
@@ -90,35 +87,14 @@ class ActiveSupport::TestCase
  # Context for programs
   def create_program_context
     @choir = FactoryGirl.create(:program, :department => @arts)
-    @basketball = FactoryGirl.create(:department => @athletics, :name => "Basketball", :description => "Basketball Intramural Sports")
-    @soupkitchen = FactoryGirl.create(:department => @outreach, :name => "Soup Kitchen", :description => "Help nearby soup kitchen serve food")
+    @basketball = FactoryGirl.create(:program, :department => @athletics, :name => "Basketball", :description => "Basketball Intramural Sports")
+    @soupkitchen = FactoryGirl.create(:program, :department => @outreach, :name => "Soup Kitchen", :description => "Help nearby soup kitchen serve food")
   end
   
   def remove_program_context
     @choir.destroy
-    @athletics.destroy
+    @basketball.destroy
     @soupkitchen.destroy
-  end
-
- # Context for registrations
-  def create_registration_context
-    @arbeit_t1 = FactoryGirl.create(:task, project: @arbeit, creator: @ed, completer: @ed)
-    @arbeit_t2 = FactoryGirl.create(:task, name: 'Wireframing', project: @arbeit, due_on: 1.day.from_now, due_string: "tomorrow", creator: @ted, completer: nil, completed: false)
-    @arbeit_t3 = FactoryGirl.create(:task, name: 'Create stylesheets', project: @arbeit, due_on: 3.days.from_now, due_string: "3 days ago", creator: @ted, completer: nil, completed: false)
-    @proverbs_t1 = FactoryGirl.create(:task, name: 'Unit testing', project: @proverbs, due_on: 5.days.ago, due_string: "5 days ago", creator: @ted, completer: @ted, completed: true)
-    @bookmanager_t1 = FactoryGirl.create(:task, name: 'Modify controllers', project: @bookmanager, due_on: 4.days.ago, due_string: "4 days ago", creator: @fred, completer: @fred, completed: true, priority: 2)
-    @bookmanager_t2 = FactoryGirl.create(:task, name: 'User testing', project: @bookmanager, due_on: 3.days.ago, due_string: "3 days ago", creator: @ted, completer: @fred, completed: true)
-    @bookmanager_t3 = FactoryGirl.create(:task, name: 'Security review', project: @bookmanager, due_on: 2.days.ago, due_string: "2 days ago", creator: @fred, completer: nil, completed: false)
-  end
-  
-  def remove_registration_context
-    @arbeit_t1.destroy
-    @arbeit_t2.destroy
-    @arbeit_t3.destroy
-    @proverbs_t1.destroy
-    @bookmanager_t1.destroy
-    @bookmanager_t2.destroy
-    @bookmanager_t3.destroy
   end
 
  # Context for section events
@@ -131,20 +107,29 @@ class ActiveSupport::TestCase
 
  # Context for sections
   def create_section_context
-   
+    @main_section = FactoryGirl.create(:section)
+  	@inactive_section = FactoryGirl.create(:section, active: false)
   end
-  
+ 
   def remove_section_context
-    
+  	@main_section.destroy
+   	@inactive_section.destroy
   end
-
+ 
+ 
  # Context for students
   def create_student_context
-   
+   @alex = FactoryGirl.create(:student)
+   @stephany = FactoryGirl.create(:student, first_name: => "Stephany", last_name: => "Park", grade: => 8, date_of_birth: => "11/16/2001", is_male: => true)
+   @sean = FactoryGirl.create(:student, first_name: => "Sean", last_name: => "Kumar", grade: => 4, date_of_birth: => "04/11/2005", is_male: => true)
+   @amanda = FactoryGirl.create(:student, first_name: => "Amanda", last_name: => "Works", grade: => 6, date_of_birth: => "02/23/2003"), is_male: => false)
   end
   
   def remove_student_context
-   
+   @alex.destroy
+   @stephany.destroy
+   @sean.destroy
+   @amanda.destroy
   end
 
  # Context for student allergies
