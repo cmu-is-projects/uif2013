@@ -33,11 +33,11 @@ class HouseholdTest < ActiveSupport::TestCase
   should_not allow_value("bad").for(:lon)
 
 # Establish context
-  context "Creating three locations" do
+  context "Creating three households" do
     # Create Objects using Factories
     setup do
       @cmu = FactoryGirl.create(:household)
-      @new_jersey = FactoryGirl.create(:location, :name => "Jocelyn's Home", :street => "12 Somewhere Road", :city => "Someplace", :zip => '10000', :active => false)
+      @new_jersey = FactoryGirl.create(:household, :name => "Smith Residence", :street => "12 Somewhere Road", :city => "Someplace", :zip => '10000', :active => false)
       @oakland = FactoryGirl.create(:location, :name => "Oakland")
     end
     

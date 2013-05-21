@@ -9,7 +9,7 @@ FactoryGirl.define do
   factory :program do
     association :department
     name "Choir"
-    description "Children who sing"
+    description "Children who have an interest in singing"
     start_date 1.year.ago.to_date
     end_date 1.month.ago.to_date
     max_capacity 60
@@ -31,6 +31,14 @@ FactoryGirl.define do
     city "Pittsburgh"
     zip "15213"
     active true
+  end
+
+  factory :household do
+    name "Smith"
+    street "1212 Morewood Avenue"
+    city "Pittsburgh"
+    zip "15213"
+    insurance_company "United Healthcare"
   end
   
   factory :event do
