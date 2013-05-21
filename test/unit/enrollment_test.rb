@@ -21,6 +21,7 @@ class EnrollmentTest < ActiveSupport::TestCase
   should_not allow_value("four").for(:student_id)
   should_not allow_value(-4).for(:student_id)
 
-  #Test Scope
+  #Test Scope 'active'
   
+    
 end
