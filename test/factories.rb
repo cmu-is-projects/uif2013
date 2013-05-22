@@ -80,6 +80,8 @@ FactoryGirl.define do
     first_name  "Larry"
     last_name "Smith"
     guardian_type 'Father'
+    cell_phone "222-222-2222"
+    email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
     active  true
   end
 end
