@@ -3,6 +3,8 @@ SimpleCov.start 'rails'
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require 'mocha'
+require 'mocha/integration/test_unit'
 
 class ActiveSupport::TestCase
  # Add more helper methods to be used by all tests here...
@@ -81,8 +83,8 @@ class ActiveSupport::TestCase
  # Context for programs
   def create_program_context
     @choir = FactoryGirl.create(:program, :department => @arts)
-    @soccer = FactoryGirl.create(:program, :department => @athletics, :name => "Soccer", :description => "Soccer Intramural Sports")
-    @soupkitchen = FactoryGirl.create(:program, :department => @outreach, :name => "Soup Kitchen", :description => "Help nearby soup kitchen serve food")
+    @soccer = FactoryGirl.create(:program, :department => @athletics, :name => "Soccer", :min_grade => 4, :max_grade => 8, :max_capacity => 50, :active => true, start_date: 2.months.ago.to_date, end_date: nil)
+    @soupkitchen = FactoryGirl.create(:program, :department => @outreach, :name => "Soup Kitchen", :min_grade => 5, :max_grade => 12, :max_capacity => 85, :active => false, :description => "Help nearby soup kitchen serve food", start_date: 3.months.ago.to_date, end_date: 2.weeks.ago.to_date)
   end
   
   def remove_program_context
@@ -113,9 +115,9 @@ class ActiveSupport::TestCase
  # Context for students
   def create_student_context
    @alex = FactoryGirl.create(:student)
-   @stephany = FactoryGirl.create(:student, first_name: => "Stephany", last_name: => "Park", grade: => 8, date_of_birth: => "11/16/2001", is_male: => true)
-   @sean = FactoryGirl.create(:student, first_name: => "Sean", last_name: => "Kumar", grade: => 4, date_of_birth: => "04/11/2005", is_male: => true)
-   @amanda = FactoryGirl.create(:student, first_name: => "Amanda", last_name: => "Works", grade: => 6, date_of_birth: => "02/23/2003"), is_male: => false)
+   @stephany = FactoryGirl.create(:student, first_name: "Stephany", last_name: "Park", grade: 8, date_of_birth: "11/16/2001", is_male: true)
+   @sean = FactoryGirl.create(:student, first_name: "Sean", last_name: "Kumar", grade: 4, date_of_birth: "04/11/2005", is_male: true)
+   @amanda = FactoryGirl.create(:student, first_name: "Amanda", last_name: "Works", grade: 6, date_of_birth: "02/23/2003", is_male: false)
   end
   
   def remove_student_context

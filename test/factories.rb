@@ -15,7 +15,7 @@ FactoryGirl.define do
     max_capacity 60
     max_grade 12
     min_grade 6
-    active true
+    active false
   end
   
   factory :section do
