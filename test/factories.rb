@@ -53,11 +53,12 @@ FactoryGirl.define do
     association :household
     first_name "Alexander"
     last_name "Heimann"
-    grade 20
-    date_of_birth "3/20/88"
-    is_male false
-    email "G3ptballer22@yahoo.com"
-    household_id 123456
+    grade 10
+    barcode_number {"#{rand(12**12).to_s.rjust(12, '0')}".to_i}
+    date_of_birth 16.years.ago.to_date
+    is_male true
+    email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
+    is_visitor false
   end
   
   factory :attendance do

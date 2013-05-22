@@ -24,7 +24,10 @@ class EnrollmentTest < ActiveSupport::TestCase
  context "2 Enrollments" do
     # create the objects I want with factories
     setup do
+      create_household_context
       create_student_context
+      create_department_context
+      create_program_context
       create_section_context
       @active = FactoryGirl.create(:enrollment, student: @alex, section: @main_section)
       @inactive = FactoryGirl.create(:enrollment, student: @sean, section: @inactive_section)
@@ -32,7 +35,10 @@ class EnrollmentTest < ActiveSupport::TestCase
 
     # and provide a teardown method as well
     teardown do
+      remove_household_context
       remove_student_context
+      remove_department_context
+      remove_program_context
       remove_section_context
       @active.destroy
       @inactive.destroy

@@ -100,12 +100,12 @@ class ActiveSupport::TestCase
   end
   
   def remove_section_event_context
-   
+  end 
 
  # Context for sections
   def create_section_context
-  	@main_section = FactoryGirl.create(:section)
-    @inactive_section = FactoryGirl.create(:section, active: false)
+  	@main_section = FactoryGirl.create(:section, program: @choir)
+    @inactive_section = FactoryGirl.create(:section, program: @choir, active: false)
   end
   
   def remove_section_context
@@ -115,10 +115,10 @@ class ActiveSupport::TestCase
 
  # Context for students
   def create_student_context
-   @alex = FactoryGirl.create(:student)
-   @stephany = FactoryGirl.create(:student, first_name: "Stephany", last_name: "Park", grade: 8, date_of_birth: "11/16/2001", is_male: true)
-   @sean = FactoryGirl.create(:student, first_name: "Sean", last_name: "Kumar", grade: 4, date_of_birth: "04/11/2005", is_male: true)
-   @amanda = FactoryGirl.create(:student, first_name: "Amanda", last_name: "Works", grade: 6, date_of_birth: "02/23/2003", is_male: false)
+   @alex = FactoryGirl.create(:student, household: @smith)
+   @stephany = FactoryGirl.create(:student, household: @shroot, first_name: "Stephany", last_name: "Park", grade: 8, is_male: true)
+   @sean = FactoryGirl.create(:student, household: @scott, first_name: "Sean", last_name: "Kumar", grade: 4, is_male: true)
+   @amanda = FactoryGirl.create(:student, household:@smith, first_name: "Amanda", last_name: "Works", grade: 6, is_male: false)
   end
  
   def remove_student_context
@@ -135,6 +135,5 @@ class ActiveSupport::TestCase
   
   def remove_student_allergy_context
    
-  end
   end
 end
