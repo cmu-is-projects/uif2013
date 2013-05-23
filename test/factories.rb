@@ -8,7 +8,7 @@ FactoryGirl.define do
   factory :program do
     association :department
     name "Choir"
-    description ""
+    description "Choir is for those who love to sing"
     start_date 1.year.ago.to_date
     end_date nil
     max_capacity 60
