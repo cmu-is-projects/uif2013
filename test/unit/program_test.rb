@@ -77,22 +77,22 @@ class ProgramTest < ActiveSupport::TestCase
     
     # Test Scopes
 
-  #   should "require case sensitive unique value for name" do
-  #     bad_program = FactoryGirl.build(:program, department: @arts, name: "Soccer")
-  #     deny bad_program.valid?
-  #   end
+    # should "require case sensitive unique value for name" do
+    #   bad_program = FactoryGirl.build(:program, department: @arts, name: "Soccer")
+    #   deny bad_program.valid?
+    # end
   
     # test the scope 'active'
-    should "shows that there is active program" do
-      assert_equal 1, Program.active.size
-      assert_equal "Soccer", Program.active.alphabetical.map{|s| s.name}
+    should "shows that there are two active program" do
+      assert_equal 2, Program.active.size
+      assert_equal ["Choir", "Soccer"], Program.active.alphabetical.map{|s| s.name}
     end
     
-  #   # test the scope 'inactive'
-  #   should "shows that there are two inactive programs" do
-  #     assert_equal 2, Program.inactive.size
-  #     assert_equal ["Choir, Soup Kitchen"], Program.active.alphabetical.map{|s| s.name}
-  #   end
+    #  test the scope 'inactive'
+    # should "shows that there is one inactive programs" do
+    #   assert_equal 2, Program.inactive.size
+    #   assert_equal ["Soup Kitchen"], Program.active.alphabetical.map{|s| s.name}
+    # end
 
   #   # test the scope 'past' by ensuring that the end date is not null"
   #   should "shows that there are two programs that occurred in the past" do

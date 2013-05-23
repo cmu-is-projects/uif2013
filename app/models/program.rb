@@ -25,6 +25,8 @@ class Program < ActiveRecord::Base
   
   #Scopes
   scope :active, where('active = ? AND end_date IS NULL', true)
+  scope :inactive, where('active = ?', false)
+  scope :alphabetical, order('name')
   scope :past, where('end_date IS NOT NULL')
   scope :by_name, order('name')
 
