@@ -83,22 +83,22 @@ class ProgramTest < ActiveSupport::TestCase
     # end
   
     # test the scope 'active'
-    should "shows that there are two active program" do
+    should "shows that there are two active programs" do
       assert_equal 2, Program.active.size
       assert_equal ["Choir", "Soccer"], Program.active.alphabetical.map{|s| s.name}
     end
     
-    #  test the scope 'inactive'
-    # should "shows that there is one inactive programs" do
-    #   assert_equal 2, Program.inactive.size
-    #   assert_equal ["Soup Kitchen"], Program.active.alphabetical.map{|s| s.name}
-    # end
+    # test the scope 'inactive'
+    should "shows that there is one inactive program" do
+      assert_equal 1, Program.inactive.size
+      assert_equal ["Soup Kitchen"], Program.inactive.alphabetical.map{|s| s.name}
+    end
 
-  #   # test the scope 'past' by ensuring that the end date is not null"
-  #   should "shows that there are two programs that occurred in the past" do
-  #     assert_equal 2, Program.active.size
-  #     assert_equal ["Choir, Soup Kitchen"], Program.active.alphabetical.map{|s| s.name}
-  #   end
+    # test the scope 'past' by ensuring that the end date is not null"
+    should "shows that there are two programs that occurred in the past" do
+      assert_equal 2, Program.active.size
+      assert_equal ["Choir", "Soccer"], Program.active.alphabetical.map{|s| s.name}
+    end
   
   #   should "ensure that program end date does not precede the program start date" do
   #     @soccer_bad = FactoryGirl.build(:program, :name => "Soccer", :department => @athletics, :start_date => 2.weeks.ago.to_date, :end_date => 3.weeks.ago.to_date)
