@@ -78,8 +78,9 @@ class ProgramTest < ActiveSupport::TestCase
     # Test Scopes
 
     # should "require case sensitive unique value for name" do
-    #   bad_program = FactoryGirl.build(:program, department: @arts, name: "Soccer")
-    #   deny bad_program.valid?
+    #   @repeat_soccer = FactoryGirl.build(:program, department: @athletics, name: "Soccer")
+    #   deny @repeat_soccer.valid?
+    #   assert @soccer.valid?
     # end
   
     # test the scope 'active'
@@ -106,18 +107,24 @@ class ProgramTest < ActiveSupport::TestCase
       deny @soccer_bad.valid?
       assert @soccer.valid?
     end
-     
+    
+    # test to ensure max grade cannot be less than min grade 
     should "not allow max grade to be less than min grade" do
-      # since Ed finished his last assignment a month ago, let's try to assign the lovable loser again ...
       @choir_bad = FactoryGirl.build(:program, :department => @arts, :max_grade => 4, :min_grade => 11, max_capacity: 35, active: true)
       deny @choir_bad.valid?
       assert @choir.valid?
-     end
+    end
 
-  #    # test to see whether no description returns N/A
-  #    should "ensure that if the program has no description it should return N/A" do
-  #     assert_equal ["N/A"], Program.active.alphabetical.map{|s| s.description}
-  #    end
+    # test to see whether no description returns N/A
+    should "ensure that if the program has no description it should return N/A" do
+      @choir_nodesc = FactoryGirl.build(:program, department: @arts, max_grade: 12, min_grade: 6, max_capacity: 60, active: true, description:"")
+      deny @choir_nodesc.valid?
+      assert_equal 0, @choir_nodesc.description.size
+      #assert_equal "N/A", @choir_nodesc.description
+      assert @choir.valid?
+      assert_equal 17, @choir.description.size
+      assert_equal "Children who sing", @choir.description
+    end
     
    end
 end

@@ -12,7 +12,7 @@ class Program < ActiveRecord::Base
   
   #Validations
   validates_presence_of :name, :department_id, :max_grade, :min_grade, :max_capacity
-  validates_uniqueness_of :name, :case_sensitive => false, :message => "name is already in use"
+  validates_uniqueness_of :name, :case_sensitive => true, :message => "name is already in use"
   validates_numericality_of :max_capacity, :max_grade, :min_grade, :only_integer => true, :message => "must be a whole number"
   validates_numericality_of :max_capacity, :max_grade, :min_grade, :greater_than => 0, :message => "must be greater than zero"
   validates_inclusion_of :max_grade, :min_grade, :in => 1..12, :only_integer => true, :message => "must be between 1 and 12"
@@ -52,10 +52,10 @@ class Program < ActiveRecord::Base
 	end
 	
 	def hasdescription
-    if self.description.length >0
+    if self.description.length > 0
       return self.description
     else
-      return 'N/A'
+      return "N/A"
     end
   end
 end
