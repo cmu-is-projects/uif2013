@@ -78,7 +78,7 @@ class ProgramTest < ActiveSupport::TestCase
     # Test Scopes
 
     # should "require case sensitive unique value for name" do
-       @repeat_soccer = FactoryGirl.build(:program, department: @athletics, name: "Soccer")
+      @repeat_soccer = FactoryGirl.build(:program, department: @athletics, name: "Soccer")
     #assert_equal "name is already in use", @soccer.name
     #   deny @repeat_soccer.valid?
     #   assert @soccer.valid?
@@ -125,6 +125,11 @@ class ProgramTest < ActiveSupport::TestCase
       assert @choir.valid?
       assert_equal 17, @choir.description.size
       assert_equal "Children who sing", @choir.description
+    end
+
+    # test to see if enddate format is correct and valid
+    should "ensure that enddate has the correct format" do
+      assert_equal "Mar 23, 2013", @soupkitchen.end_date.strftime("%b %d, %Y")
     end
 
     # test to see whether grade range works correctly
