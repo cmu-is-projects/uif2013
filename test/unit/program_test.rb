@@ -12,7 +12,7 @@ class ProgramTest < ActiveSupport::TestCase
   should validate_presence_of(:max_grade)
   should validate_presence_of(:min_grade)
   should validate_presence_of(:max_capacity)
-  #should validate_uniqueness_of(:name)
+  should validate_uniqueness_of(:name)
   
   # Test for max/min capacity
   should allow_value(1).for(:max_grade)
@@ -77,12 +77,10 @@ class ProgramTest < ActiveSupport::TestCase
     
     # Test Scopes
 
-    # should "require case sensitive unique value for name" do
+    should "require case sensitive unique value for name" do
       @repeat_soccer = FactoryGirl.build(:program, department: @athletics, name: "Soccer")
-    #assert_equal "name is already in use", @soccer.name
-    #   deny @repeat_soccer.valid?
-    #   assert @soccer.valid?
-    # end
+      deny @repeat_soccer.valid?
+    end
   
     # test the scope 'active'
     should "shows that there are two active programs" do
@@ -97,9 +95,8 @@ class ProgramTest < ActiveSupport::TestCase
     end
 
     # test the scope 'past' by ensuring that the end date is not null"
-    should "shows that there are two programs that occurred in the past" do
-      assert_equal 2, Program.active.size
-      assert_equal ["Choir", "Soccer"], Program.active.alphabetical.map{|s| s.name}
+    should "shows that there is one program that occurred in the past" do
+      assert_equal ["Soup Kitchen"], Program.past.alphabetical.map{|s| s.name}
     end
     
     # test the scope that start date cannot be after end date
@@ -112,29 +109,27 @@ class ProgramTest < ActiveSupport::TestCase
     # test to ensure max grade cannot be less than min grade 
     should "not allow max grade to be less than min grade" do
       @choir_bad = FactoryGirl.build(:program, :department => @arts, :max_grade => 4, :min_grade => 11, max_capacity: 35, active: true)
-      deny @choir_bad.valid?
-      assert @choir.valid?
+      assert_equal "must be greater than min grade", @choir_bad.max_grade_greater_than_min_grade
+      #deny @choir_bad.valid?
+      #assert @choir.valid?
     end
 
     # test to see whether no description returns N/A
     should "ensure that if the program has no description it should return N/A" do
-      @choir_nodesc = FactoryGirl.build(:program, department: @arts, max_grade: 12, min_grade: 6, max_capacity: 60, active: true, description:"")
+      @choir_nodesc = FactoryGirl.build(:program, department: @arts, max_grade: 12, min_grade: 6, max_capacity: 60, active: true)
       deny @choir_nodesc.valid?
       assert_equal 0, @choir_nodesc.description.size
-      #assert_equal "N/A", @choir_nodesc.description
-      assert @choir.valid?
-      assert_equal 17, @choir.description.size
-      assert_equal "Children who sing", @choir.description
+      assert_equal "N/A", @choir_nodesc.hasdescription
     end
 
     # test to see if enddate format is correct and valid
     should "ensure that enddate has the correct format" do
-      assert_equal "Mar 23, 2013", @soupkitchen.end_date.strftime("%b %d, %Y")
+      assert_equal "Mar 23, 2013", @soupkitchen.enddateformat
     end
 
     # test to see whether grade range works correctly
     should "ensure that grade range returns the correct value" do
-      assert_equal 6, @choir.max_grade - @choir.min_grade
+      assert_equal "6 - 12", @choir.grade_range
     end
     
    end

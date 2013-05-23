@@ -28,7 +28,6 @@ class Program < ActiveRecord::Base
   scope :inactive, where('active = ?', false)
   scope :alphabetical, order('name')
   scope :past, where('end_date IS NOT NULL')
-  scope :by_name, order('name')
 
   #Methods
   # def name=(s)
@@ -36,11 +35,13 @@ class Program < ActiveRecord::Base
   # end
   
   def max_grade_greater_than_min_grade
-    errors.add(:max_grade, "must be greater than min grade") unless self.max_grade.to_i > self.min_grade.to_i
+    if(self.max_grade.to_i < self.min_grade.to_i)
+      return "must be greater than min grade"
+    end
   end
   
   def grade_range
-    "#{max_grade} - #{min_grade}"
+    "#{min_grade} - #{max_grade}"
   end
   
   def enddateformat
@@ -58,4 +59,5 @@ class Program < ActiveRecord::Base
       return "N/A"
     end
   end
+ 
 end
