@@ -99,19 +99,20 @@ class ProgramTest < ActiveSupport::TestCase
       assert_equal 2, Program.active.size
       assert_equal ["Choir", "Soccer"], Program.active.alphabetical.map{|s| s.name}
     end
-  
-  #   should "ensure that program end date does not precede the program start date" do
-  #     @soccer_bad = FactoryGirl.build(:program, :name => "Soccer", :department => @athletics, :start_date => 2.weeks.ago.to_date, :end_date => 3.weeks.ago.to_date)
-  #     deny @soccer_bad.valid?
-  #     @soccer_good = FactoryGirl.build(:program, :name => "Soccer", :department => @athletics, :start_date => 4.months.ago.to_date,  :end_date => 2.weeks.ago.to_date)
-  #     assert @soccer_good.valid?
-  #   end
+    
+    # test the scope that start date cannot be after end date
+    should "ensure that program end date does not precede the program start date" do
+      @soccer_bad = FactoryGirl.build(:program, :name => "SoccerBad", :department => @athletics, :start_date => 2.weeks.ago.to_date, :end_date => 3.weeks.ago.to_date, active: false, max_grade: 7, min_grade: 4, max_capacity: 40)
+      deny @soccer_bad.valid?
+      assert @soccer.valid?
+    end
      
-  #    should "not allow max grade to be less than min grade" do
-  #      # since Ed finished his last assignment a month ago, let's try to assign the lovable loser again ...
-  #      @program = FactoryGirl.build(:program, :department => @athletics, :max_grade => 4, :min_grade => 11)
-  #      deny @program.valid?
-  #    end
+    should "not allow max grade to be less than min grade" do
+      # since Ed finished his last assignment a month ago, let's try to assign the lovable loser again ...
+      @choir_bad = FactoryGirl.build(:program, :department => @arts, :max_grade => 4, :min_grade => 11, max_capacity: 35, active: true)
+      deny @choir_bad.valid?
+      assert @choir.valid?
+     end
 
   #    # test to see whether no description returns N/A
   #    should "ensure that if the program has no description it should return N/A" do
