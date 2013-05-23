@@ -125,6 +125,11 @@ class ProgramTest < ActiveSupport::TestCase
       assert_equal 17, @choir.description.size
       assert_equal "Children who sing", @choir.description
     end
+
+    # test to see whether grade range works correctly
+    should "ensure that grade range returns the correct value" do
+      assert_equal 6, @choir.max_grade - @choir.min_grade
+    end
     
    end
 end

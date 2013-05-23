@@ -40,7 +40,7 @@ class Program < ActiveRecord::Base
   end
   
   def grade_range
-    "#{min_grade} - #{max_grade}"
+    "#{max_grade} - #{min_grade}"
   end
   
   def enddateformat
