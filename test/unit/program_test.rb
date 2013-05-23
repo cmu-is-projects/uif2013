@@ -78,7 +78,8 @@ class ProgramTest < ActiveSupport::TestCase
     # Test Scopes
 
     # should "require case sensitive unique value for name" do
-    #   @repeat_soccer = FactoryGirl.build(:program, department: @athletics, name: "Soccer")
+       @repeat_soccer = FactoryGirl.build(:program, department: @athletics, name: "Soccer")
+    #assert_equal "name is already in use", @soccer.name
     #   deny @repeat_soccer.valid?
     #   assert @soccer.valid?
     # end
