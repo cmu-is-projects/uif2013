@@ -13,7 +13,7 @@ class ActiveSupport::TestCase
 
  # Context for departments
   def create_department_context
-   	@arts = FactoryGirl.create(:department)
+    @arts = FactoryGirl.create(:department)
     @athletics = FactoryGirl.create(:department, :name => "Athletics", :description => "Sports")
     @outreach = FactoryGirl.create(:department, :name => "Global Outreach", :description => "Reaching Out", :active => false)
   end
@@ -83,9 +83,9 @@ class ActiveSupport::TestCase
 
  # Context for programs
   def create_program_context
-    @choir = FactoryGirl.create(:program, :department => @arts)
-    @soccor = FactoryGirl.create(:program, :department => @athletics, :name => "Soccor", :description => "Soccor Intramural Sports")
-    @soupkitchen = FactoryGirl.create(:program, :department => @outreach, :name => "Soup Kitchen", :description => "Help nearby soup kitchen serve food")
+    @choir = FactoryGirl.create(:program, department: @arts)
+    @soccer = FactoryGirl.create(:program, department: @athletics, name: "Soccer", description: "Soccer Intramural Sports", max_grade: 9, min_grade: 6, max_capacity: 75, active: true, start_date: 4.months.ago.to_date, end_date: nil)
+    @soupkitchen = FactoryGirl.create(:program, department: @outreach, name: "Soup Kitchen", description: "Help nearby soup kitchen serve food", max_grade: 12, min_grade: 4, max_capacity: 50, active: false, start_date: 7.months.ago.to_date, end_date: 2.months.ago.to_date)
   end
   
   def remove_program_context

@@ -12,7 +12,7 @@ class Program < ActiveRecord::Base
   
   #Validations
   validates_presence_of :name, :department_id, :max_grade, :min_grade, :max_capacity
-  validates_uniqueness_of :name, :message => "name is already in use"
+  validates_uniqueness_of :name, :case_sensitive => false, :message => "name is already in use"
   validates_numericality_of :max_capacity, :max_grade, :min_grade, :only_integer => true, :message => "must be a whole number"
   validates_numericality_of :max_capacity, :max_grade, :min_grade, :greater_than => 0, :message => "must be greater than zero"
   validates_inclusion_of :max_grade, :min_grade, :in => 1..12, :only_integer => true, :message => "must be between 1 and 12"
@@ -25,15 +25,19 @@ class Program < ActiveRecord::Base
   
   #Scopes
   scope :active, where('active = ? AND end_date IS NULL', true)
+  scope :inactive, where('active = ?', false)
+  scope :alphabetical, order('name')
   scope :past, where('end_date IS NOT NULL')
-  scope :by_name, order('name')
+
   #Methods
   # def name=(s)
   #   write_attribute(:name, s.to_s.titleize)
   # end
   
   def max_grade_greater_than_min_grade
-    errors.add(:max_grade, "must be greater than min grade") unless self.max_grade.to_i > self.min_grade.to_i
+    if(self.max_grade.to_i < self.min_grade.to_i)
+      return "must be greater than min grade"
+    end
   end
   
   def grade_range
@@ -49,10 +53,11 @@ class Program < ActiveRecord::Base
 	end
 	
 	def hasdescription
-    if self.description.length >0
+    if self.description.length > 0
       return self.description
     else
-      return 'N/A'
+      return "N/A"
     end
   end
+ 
 end

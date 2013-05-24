@@ -1,4 +1,3 @@
-
 FactoryGirl.define do
   factory :department do
     name "Peforming Arts"
@@ -9,9 +8,9 @@ FactoryGirl.define do
   factory :program do
     association :department
     name "Choir"
-    description "Children who sing"
+    description "Choir is for those who love to sing"
     start_date 1.year.ago.to_date
-    end_date 1.month.ago.to_date
+    end_date nil
     max_capacity 60
     max_grade 12
     min_grade 6
@@ -73,6 +72,7 @@ FactoryGirl.define do
    city "Pittsburgh"
    zip "15213"
    insurance_company "United Healthcare"
+   active true
   end
 
   factory :guardian do

@@ -21,6 +21,7 @@ class EnrollmentTest < ActiveSupport::TestCase
   should_not allow_value("four").for(:student_id)
   should_not allow_value(-4).for(:student_id)
 
+
  context "2 Enrollments" do
     # create the objects I want with factories
     setup do
@@ -49,6 +50,5 @@ class EnrollmentTest < ActiveSupport::TestCase
       assert_equal 1, Enrollment.active.size
     end
   end
-
 
 end
