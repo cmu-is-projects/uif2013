@@ -122,7 +122,7 @@ class ProgramTest < ActiveSupport::TestCase
 
     # test to see if enddate format is correct and valid
     should "ensure that enddate has the correct format" do
-      assert_equal "Mar 23, 2013", @soupkitchen.enddateformat
+      assert_equal "#{2.months.ago.to_date.strftime('%b %d, %Y')}", @soupkitchen.enddateformat
       assert_equal "N/A", @choir.enddateformat
     end
 
