@@ -24,6 +24,11 @@ FactoryGirl.define do
     max_capacity 20
     active true
   end
+
+  factory :enrollment do
+    association :student
+    association :section
+  end
   
    factory :location do
     name "CMU"
@@ -45,18 +50,39 @@ FactoryGirl.define do
   end
   
   factory :student do
+    association :household
     first_name "Alexander"
     last_name "Heimann"
-    grade 20
-    is_male false
-    email "G3ptballer22@yahoo.com"
-    household_id 123456
+    grade 10
+    barcode_number {"#{rand(12**12).to_s.rjust(12, '0')}".to_i}
+    date_of_birth 16.years.ago.to_date
+    is_male true
+    email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
+    is_visitor false
   end
   
   factory :attendance do
     association :event
     association :student
     exempt true
+  end
+
+  factory :household do
+   name "Smith"
+   street "1212 Morewood Avenue"
+   city "Pittsburgh"
+   zip "15213"
+   insurance_company "United Healthcare"
+  end
+
+  factory :guardian do
+    association :household
+    first_name  "Larry"
+    last_name "Smith"
+    guardian_type 'Father'
+    cell_phone "222-222-2222"
+    email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
+    active  true
   end
 end
 
