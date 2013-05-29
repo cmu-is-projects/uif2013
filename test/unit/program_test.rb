@@ -1,20 +1,20 @@
 require 'test_helper'
 
 class ProgramTest < ActiveSupport::TestCase
-  #Test relationships
+  # Test relationships
   should belong_to(:department)
   should have_many(:events)
   should have_many(:enrollments).through(:sections)
   should have_many(:locations).through(:events)
   
-  #Test validations
+  # Test validations
   should validate_presence_of(:name)
   should validate_presence_of(:max_grade)
   should validate_presence_of(:min_grade)
   should validate_presence_of(:max_capacity)
-  should validate_uniqueness_of(:name)
+  should validate_presence_of(:department_id)
   
-  # for max/min capacity
+  # Test for max/min capacity
   should allow_value(1).for(:max_grade)
   should allow_value(2).for(:max_grade)
   should allow_value(3).for(:max_grade)
@@ -27,6 +27,8 @@ class ProgramTest < ActiveSupport::TestCase
   should allow_value(10).for(:max_grade)
   should allow_value(11).for(:max_grade)
   should allow_value(12).for(:max_grade)
+  should_not allow_value(13).for(:max_grade)
+  should_not allow_value(0).for(:min_grade)
   should allow_value(1).for(:min_grade)
   should allow_value(2).for(:min_grade)
   should allow_value(3).for(:min_grade)
@@ -53,40 +55,81 @@ class ProgramTest < ActiveSupport::TestCase
   should_not allow_value(-2).for(:max_capacity)
   should_not allow_value(2.5).for(:max_capacity)
   
-  # for start date
+  # Test for start date
   should allow_value(7.weeks.ago.to_date).for(:start_date)
   should allow_value(2.years.ago.to_date).for(:start_date)
   should_not allow_value("bad").for(:start_date)
   should_not allow_value(nil).for(:start_date)
+  should allow_value(nil).for(:end_date)
   
   context "creating the context" do
-     # create the objects I want with factories
+     # Create objects for factories
      setup do
-       @arts = FactoryGirl.create(:department)
-       @choir = FactoryGirl.create(:program, :department => @arts )
-       @athletics = FactoryGirl.create(:department, :name => "Athletics", :description => "Sports")
+       create_department_context
+       create_program_context
      end
 
-     # and provide a teardown method as well
+     # Provide teardown method
      teardown do
-       @arts.destroy
-       @athletics.destroy
-       @choir.destroy
+        remove_department_context
+        remove_program_context
      end
     
-    should "ensure that program end date does not precede the program start date" do
-      @soccer_bad = FactoryGirl.build(:program, :name => "Soccer", :department => @athletics, :start_date => 2.weeks.ago.to_date, :end_date => 3.weeks.ago.to_date)
-      deny @soccer_bad.valid?
-      @soccer_good = FactoryGirl.build(:program, :name => "Soccer", :department => @athletics, :start_date => 4.months.ago.to_date,  :end_date => 2.weeks.ago.to_date)
-      assert @soccer_good.valid?
+    # Test Scopes
+
+    should "require case sensitive unique value for name" do
+      @repeat_soccer = FactoryGirl.build(:program, department: @athletics, name: "Soccer")
+      deny @repeat_soccer.valid?
     end
-     
-     should "not max grade to be less than min grade" do
-       # since Ed finished his last assignment a month ago, let's try to assign the lovable loser again ...
-       @program = FactoryGirl.build(:program, :department => @athletics, :max_grade => 4, :min_grade => 11)
-       deny @program.valid?
-     end
-     
-     
-  end
+  
+    # test the scope 'active'
+    should "shows that there are two active programs" do
+      assert_equal 2, Program.active.size
+      assert_equal ["Choir", "Soccer"], Program.active.alphabetical.map{|s| s.name}
+    end
+    
+    # test the scope 'inactive'
+    should "shows that there is one inactive program" do
+      assert_equal 1, Program.inactive.size
+      assert_equal ["Soup Kitchen"], Program.inactive.alphabetical.map{|s| s.name}
+    end
+
+    # test the scope 'past' by ensuring that the end date is not null"
+    should "shows that there is one program that occurred in the past" do
+      assert_equal ["Soup Kitchen"], Program.past.alphabetical.map{|s| s.name}
+    end
+    
+    # test the scope that start date cannot be after end date
+    should "ensure that program end date does not precede the program start date" do
+      @soccer_bad = FactoryGirl.build(:program, :name => "SoccerBad", :department => @athletics, :start_date => 2.weeks.ago.to_date, :end_date => 3.weeks.ago.to_date, active: false, max_grade: 7, min_grade: 4, max_capacity: 40)
+      deny @soccer_bad.valid?
+      assert @soccer.valid?
+    end
+    
+    # test to ensure max grade cannot be less than min grade 
+    should "not allow max grade to be less than min grade" do
+      @choir_bad = FactoryGirl.build(:program, :department => @arts, :max_grade => 4, :min_grade => 11, max_capacity: 35, active: true)
+      assert_equal "must be greater than min grade", @choir_bad.max_grade_greater_than_min_grade
+    end
+
+    # test to see whether no description returns N/A
+    should "ensure that if the program has no description it should return N/A" do
+      @choir_nodesc = FactoryGirl.build(:program, department: @arts, max_grade: 12, min_grade: 6, max_capacity: 60, active: true, description:"")
+      assert_equal 0, @choir_nodesc.description.size
+      assert_equal "N/A", @choir_nodesc.hasdescription
+      assert_equal "Choir is for those who love to sing", @choir.hasdescription
+    end
+
+    # test to see if enddate format is correct and valid
+    should "ensure that enddate has the correct format" do
+      assert_equal "#{2.months.ago.to_date.strftime('%b %d, %Y')}", @soupkitchen.enddateformat
+      assert_equal "N/A", @choir.enddateformat
+    end
+
+    # test to see whether grade range works correctly
+    should "ensure that grade range returns the correct value" do
+      assert_equal "6 - 12", @choir.grade_range
+    end
+    
+   end
 end

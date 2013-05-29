@@ -12,21 +12,16 @@ class DepartmentTest < ActiveSupport::TestCase
   context "3 Departments" do
     # create the objects I want with factories
     setup do
-      @arts = FactoryGirl.create(:department)
-      @athletics = FactoryGirl.create(:department, :name => "Athletics", :description => "Sports")
-      @outreach = FactoryGirl.create(:department, :name => "Global Outreach", :description => "Reaching Out", :active => false)
-
+      create_department_context
     end
 
     # and provide a teardown method as well
     teardown do
-      @arts.destroy
-      @athletics.destroy
-      @outreach.destroy
+      remove_department_context
     end
 
     # test the scope 'alphabetical'
-    should "shows that there are three departments in in alphabetical order" do
+    should "shows that there are three departments in alphabetical order" do
       assert_equal ["Athletics", "Global Outreach", "Peforming Arts"], Department.alphabetical.map{|s| s.name}
     end
 

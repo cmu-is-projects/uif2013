@@ -3,7 +3,7 @@ source :rubygems
 gem 'rails', '3.2.13'
 gem 'gon', '4.0.1'
 gem 'mini_magick', '3.4'
-gem 'rmagick', '2.13.1'
+gem 'rmagick', '2.13.2'
 gem 'time_date_helpers'
 gem 'carrierwave', '0.7.1'
 gem "paperclip", '3.3.1'
@@ -50,9 +50,9 @@ end
 group :test do
 	gem 'sqlite3', '1.3.7'
 	gem 'shoulda', '3.3.2'
-	gem 'shoulda-matchers', '1.4.2'
+	gem 'shoulda-matchers'
 	gem 'factory_girl_rails', '4.2.1'
-	gem 'mocha', '0.10.5'
+	# gem 'mocha', '0.10.5'
 	gem 'cucumber-rails', '1.3.0', :require => false
 	gem 'gherkin', '2.11.6'
 	gem 'capybara', '2.0.2'

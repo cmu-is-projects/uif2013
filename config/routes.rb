@@ -70,7 +70,7 @@ Uif2013::Application.routes.draw do
   root :to => 'home#index'
   
   # Authentication routes
-  resources :users
+  # resources :users
   devise_for :users
   # resources :sessions
   # match 'register' => 'users#new', :as => :register
