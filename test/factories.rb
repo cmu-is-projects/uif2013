@@ -1,4 +1,3 @@
-
 FactoryGirl.define do
   factory :department do
     name "Peforming Arts"
@@ -9,9 +8,9 @@ FactoryGirl.define do
   factory :program do
     association :department
     name "Choir"
-    description "Children who sing"
+    description "Choir is for those who love to sing"
     start_date 1.year.ago.to_date
-    end_date 1.month.ago.to_date
+    end_date nil
     max_capacity 60
     max_grade 12
     min_grade 6
@@ -23,6 +22,11 @@ FactoryGirl.define do
     name "HS Choir"
     max_capacity 20
     active true
+  end
+
+  factory :enrollment do
+    association :student
+    association :section
   end
   
    factory :location do
@@ -45,12 +49,15 @@ FactoryGirl.define do
   end
   
   factory :student do
+    association :household
     first_name "Alexander"
     last_name "Heimann"
-    grade 20
-    is_male false
-    email "G3ptballer22@yahoo.com"
-    household_id 123456
+    grade 10
+    barcode_number {"#{rand(12**12).to_s.rjust(12, '0')}".to_i}
+    date_of_birth 16.years.ago.to_date
+    is_male true
+    email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
+    is_visitor false
   end
   
     factory :volunteer do
@@ -73,6 +80,25 @@ FactoryGirl.define do
     association :event
     association :student
     exempt true
+  end
+
+  factory :household do
+   name "Smith"
+   street "1212 Morewood Avenue"
+   city "Pittsburgh"
+   zip "15213"
+   insurance_company "United Healthcare"
+   active true
+  end
+
+  factory :guardian do
+    association :household
+    first_name  "Larry"
+    last_name "Smith"
+    guardian_type 'Father'
+    cell_phone "222-222-2222"
+    email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
+    active  true
   end
 end
 
