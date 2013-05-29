@@ -8,7 +8,7 @@ Background:
 
 		
 	Scenario: Name field is missing
-	    And I fill in "Name" with ""
+	    When I fill in "Name" with ""
 	    And I select "Athletics" under the "Department" field
 		And I select "4" under the "Min grade" field
 		And I select "9" under the "Max grade" field
@@ -17,7 +17,7 @@ Background:
 		Then I should see "can't be blank" next to the "Name" field
 
 	Scenario: Department field is missing
-	    And I fill in "Name" with "Basketball"
+	    When I fill in "Name" with "Basketball"
 	    And I select "" under the "Department" field
 		And I select "4" under the "Min grade" field
 		And I select "9" under the "Max grade" field
@@ -26,7 +26,7 @@ Background:
 		Then I should see "can't be blank" next to the "Department" field
 
 	Scenario: Min grade field is missing
-	    And I fill in "Name" with "Basketball"
+	    When I fill in "Name" with "Basketball"
 	    And I select "Athletics" under the "Department" field
 		And I select "" under the "Min grade" field
 		And I select "9" under the "Max grade" field
@@ -35,7 +35,7 @@ Background:
 		Then I should see "can't be blank" next to the "Min grade" field
 
 	Scenario: Max grade field is missing
-	    And I fill in "Name" with "Basketball"
+	    When I fill in "Name" with "Basketball"
 	    And I select "Athletics" under the "Department" field
 		And I select "4" under the "Min grade" field
 		And I select "" under the "Max grade" field
@@ -44,7 +44,7 @@ Background:
 		Then I should see "can't be blank" next to the "Max grade" field
 
 	Scenario: Max capacity field is missing
-	    And I fill in "Name" with "Basketball"
+	    When I fill in "Name" with "Basketball"
 	    And I select "Athletics" under the "Department" field
 		And I select "4" under the "Min grade" field
 		And I select "9" under the "Max grade" field

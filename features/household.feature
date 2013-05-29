@@ -8,7 +8,7 @@ Background:
 
 		
 	Scenario: Name field is missing
-	    And I fill in "Name" with ""
+	    When I fill in "Name" with ""
 	    And I fill in "Street" with "1212 Here Street"
 		And I fill in "City" with "Pittsburgh"
 		And I fill in "Zip" with "15271"
@@ -17,7 +17,7 @@ Background:
 		Then I should see "can't be blank" next to the "Name" field
 
 	Scenario: Street field is missing
-		And I fill in "Name" with "Turner"
+		When I fill in "Name" with "Turner"
 	    And I fill in "Street" with ""
 		And I fill in "City" with "Pittsburgh"
 		And I fill in "Zip" with "15271"
@@ -26,7 +26,7 @@ Background:
 		Then I should see "can't be blank" next to the "Street" field
 
 	Scenario: City field is missing
-		And I fill in "Name" with "Turner"
+		When I fill in "Name" with "Turner"
 	    And I fill in "Street" with "1212 Here Street"
 		And I fill in "City" with ""
 		And I fill in "Zip" with "15271"
@@ -35,7 +35,7 @@ Background:
 		Then I should see "can't be blank" next to the "City" field
 
 	Scenario: Zip code field is missing
-	 	And I fill in "Name" with "Turner"
+	 	When I fill in "Name" with "Turner"
 	    And I fill in "Street" with "1212 Here Street"
 		And I fill in "City" with "Pittsburgh"
 		And I fill in "Zip" with ""
@@ -44,7 +44,7 @@ Background:
 		Then I should see "should be five digits long" next to the "Zip Code" field 
 
 	Scenario: Zip code number is too short
-		And I fill in "Name" with "Turner"
+		When I fill in "Name" with "Turner"
 		And I fill in "Street" with "1212 Here Street"
 		And I fill in "City" with "Pittsburgh"
 		And I fill in "Zip" with "1527"
@@ -53,7 +53,7 @@ Background:
 		Then I should see "should be five digits long" next to the "Zip Code" field 
 
 	Scenario: Longitude value is not an integer
-	 	And I fill in "Name" with "Turner"
+	 	When I fill in "Name" with "Turner"
 	    And I fill in "Street" with "1212 Here Street"
 		And I fill in "City" with "Pittsburgh"
 		And I fill in "Zip" with "15271"
@@ -63,7 +63,7 @@ Background:
 		Then I should see "Latitude should be an integer"
 
 	Scenario: Longitude value is not an integer
-	 	And I fill in "Name" with "Turner"
+	 	When I fill in "Name" with "Turner"
 	    And I fill in "Street" with "1212 Here Street"
 		And I fill in "City" with "Pittsburgh"
 		And I fill in "Zip" with "15271"
