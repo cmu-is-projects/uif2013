@@ -64,23 +64,23 @@ Background:
 		And I click the button "Create Program" 
 		Then I should see "is not a valid format" next to the "Email" field
 
-	Scenario: Sees barcode when it is a visitor
+	Scenario: Does not see barcode when it is a visitor
 		When I fill in "First name" with "George"
-	    And I fill in "First name" with ""
 	    And I fill in "Last name" with "Washington"
 		And I fill in "Barcode number" with "38674854"
-		And I select "" under the "Grade" field
-		And I click the button "Create Program" 
-		Then I should see "can't be blank" next to the "Grade" field
+		And I select "3" under the "Grade" field
+		And I select the checkbox "Is visitor" 
+		Then I should not see the "Barcode number" field
+		But I should see "Visitor Information"
+		And "Family name"
+		And "Street"
+		And "Street2"
+		And "Zip"
 
-	Scenario: Does not generate barcode
-		When I fill in "First name" with "George"
-	    And I fill in "First name" with ""
-	    And I fill in "Last name" with "Washington"
-		And I fill in "Barcode number" with "38674854"
-		And I select "" under the "Grade" field
-		And I click the button "Create Program" 
-		Then I should see "can't be blank" next to the "Grade" field
+	Scenario: Generate barcode
+		When I click on the student link "Heimann, Alex"
+		And I select the button "Generate barcode (PDF)"
+		Then I should see a downloaded file called "#{Barcode number}.pdf"
 
 # There is no option to delete a student
 	#Scenario: Delete a student
@@ -94,11 +94,11 @@ Background:
 	#	Then I should see a list of students without "Heimann, Alex"
 
 	Scenario: Edit existing student
-		When I am on the "Soccer" program page
+		When I am on the "Heimann, Alex" student page
 		And I want to edit a detail
-		Then I click on the button "Edit this program"
-		And after making the change I click the button "Update this program"
-		Then I should the "Soccer" program page with the updated changes
+		Then I click on the button "Edit this student"
+		And after making the change I click the button "Update this student"
+		Then I should the "Heimann, Alex" student page with the updated changes
 
 	Scenario: Return to regular students page
 		When I am on the "Alex Heimann" student page
