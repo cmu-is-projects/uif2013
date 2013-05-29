@@ -52,8 +52,6 @@ Background:
 		And I click the button "Create Location" 
 		Then I should see "Location already exists"
 
-	Scenario: Cancel new location
-
 	Scenario: Delete old location
 		When I am on on the locations page
 		Then I should see a list of current locations
@@ -63,6 +61,12 @@ Background:
 		Then I should see a javascript message "Are you sure?"
 		And I click "OK"
 		Then I should see a list of locations without "CMU"
+
+	Scenario: Return to locations page
+		When I am on the Location page
+		Then I should see a button "Back to locations"
+		When I click the button "Back to locations"
+		Then I should see a list of locations
 
 
 
