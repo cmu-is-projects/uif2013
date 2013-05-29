@@ -348,7 +348,7 @@ DEPENDENCIES
   unicorn (= 4.5.0)
   uservoice-ruby (= 0.0.10)
   validates_timeliness (= 3.0.14)
-  viewcumber
+  viewcumber (= 0.3.1)
   whenever
   will_paginate (= 3.0.4)
   wirble (= 0.1.3)
