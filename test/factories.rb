@@ -53,6 +53,22 @@ FactoryGirl.define do
     household_id 123456
   end
   
+    factory :volunteer do
+    first_name "Brian"
+    last_name "Smith"
+    date_of_birth 1.year.ago.to_date
+    role "choir"
+    status "active"
+    barcode_number "123123999888"
+    name_displayed "brian"
+    is_male true
+    email "bball1990@gmail.com"
+    app_approved true
+    cell_phone "4125559889"
+    can_text true
+    app_submit_date 1.month.ago.to_date
+  end
+  
   factory :attendance do
     association :event
     association :student
