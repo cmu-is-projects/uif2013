@@ -9,6 +9,7 @@ class LocationTest < ActiveSupport::TestCase
   should validate_presence_of(:name)
   should validate_presence_of(:street)
   should validate_presence_of(:city)
+  should validate_presence_of(:zip)
   should validate_uniqueness_of(:name)
 
   # Tests for Zipcode
