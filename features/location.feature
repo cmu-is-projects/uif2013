@@ -55,14 +55,14 @@ Background:
 	Scenario: Cancel new location
 
 	Scenario: Delete old location
-	When I am on on the locations page
-	Then I should see a list of current locations
-	When I click on the location link 'CMU'
-	Then I should see a button "Destroy this location"
-	When I click the button "Destroy this location"
-	Then I should see a javascripte message "Are you sure?"
-	And I click "OK"
-	Then I should see a list of locations without "CMU"
+		When I am on on the locations page
+		Then I should see a list of current locations
+		When I click on the location link 'CMU'
+		Then I should see a button "Destroy this location"
+		When I click the button "Destroy this location"
+		Then I should see a javascript message "Are you sure?"
+		And I click "OK"
+		Then I should see a list of locations without "CMU"
 
 
 
