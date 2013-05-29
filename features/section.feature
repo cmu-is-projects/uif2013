@@ -12,7 +12,7 @@ Background:
 		 And I fill in "Max capacity" with "11"
 		 And I click the checkbox "Active" 
 		 And I click the "Create Section" button
-		 Then I should see "Program is missing"
+		 Then I should see "Program is missing" next to the "Program" field
 
 	Scenario: Name is missing
 		 When I select "Performing Arts Academy" under the "Program field"
