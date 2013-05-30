@@ -3,6 +3,7 @@ class Department < ActiveRecord::Base
 
   #Relationships
   has_many :programs, :dependent => :delete_all
+  has_many :department_trainings, :dependent => :delete_all
   validates_presence_of :name
   validates_uniqueness_of :name
   
