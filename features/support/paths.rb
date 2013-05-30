@@ -29,9 +29,24 @@ module NavigationHelpers
       
     when /the program index page/
       programs_path
-      
+
     when /the Choir page/
       program_path(@choir)
+      
+    when /the edit Choir page/
+      edit_program_path(@choir)
+      
+    when /the Soccer page/
+      program_path(@soccer)
+      
+    when /the edit Soccer page/
+      edit_program_path(@soccer)
+      
+    when /the Soup Kitchen page/
+      program_path(@soupkitchen)
+      
+    when /the edit Soup Kitchen page/
+      edit_program_path(@soupkitchen)
       
     #### SECTIONS
     

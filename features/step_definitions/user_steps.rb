@@ -80,9 +80,11 @@ end
 Given /^an initial setup$/ do
   create_locations
   create_departments
-  
-  # TODO: use contexts to create initial setup
-  # TODO: consider adding additional setups depending on tests
 end
 
+Given /^some programs and events$/ do
+  create_arts_programs_and_events
+  create_athletic_programs_and_events
+  create_outreach_programs_and_events
+end
 
