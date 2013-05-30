@@ -84,6 +84,15 @@ FactoryGirl.define do
     email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
     active  true
   end
+
+  factory :drug do
+    name "Motrin"
+    description nil
+    active true
+    otc true
+  end
+
+  
 end
 
   
