@@ -13,7 +13,7 @@ namespace :db do
     require 'faker'
     
     # Step 0: clear any old data in the db
-    [Department, Program, Event, Section, SectionEvent, Attendance, Guardian, Household, Location, Enrollment, Student, StudentAllergy].each(&:delete_all)
+    [Department, Program, Event, Section, SectionEvent, Attendance, Guardian, Household, Location, Enrollment, Student].each(&:delete_all)
    
     # Step 1: Add Departments
     pa = Department.new
@@ -215,19 +215,19 @@ namespace :db do
         end
     end
     
-    #Step 6 Create Allergies
-    Allergy.populate 20 do |allergy|
-        allergy.name = Populator.words(1..3).titleize
-        allergy.warning_text = Populator.sentences(1..3)
-        allergy.active = true
-    end
-    
-    allergy_ids = Allergy.all.map(&:id)
-    student_ids = Student.all.map(&:id)
-    StudentAllergy.populate 100 do |studentallergy|
-        studentallergy.allergy_id = allergy_ids.sample
-        studentallergy.student_id = student_ids.sample
-    end
+    # #Step 6 Create Allergies
+    # Allergy.populate 20 do |allergy|
+    #     allergy.name = Populator.words(1..3).titleize
+    #     allergy.warning_text = Populator.sentences(1..3)
+    #     allergy.active = true
+    # end
+    # 
+    # allergy_ids = Allergy.all.map(&:id)
+    # student_ids = Student.all.map(&:id)
+    # StudentAllergy.populate 100 do |studentallergy|
+    #     studentallergy.allergy_id = allergy_ids.sample
+    #     studentallergy.student_id = student_ids.sample
+    # end
     
     #Step 7 Create Guardians
     household_ids = Household.all.to_a.each_with_object({}){ |household,h| h[household.id] = household.name }

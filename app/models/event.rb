@@ -11,6 +11,8 @@ class Event < ActiveRecord::Base
   has_many :notes, :as => :notable, :dependent => :destroy
    
   #Validations
+  validates_presence_of :location_id, :message => "must enter location"
+  validates_presence_of :program_id, :message => "must enter program"
   validates_date :date
   validates_time :start_time, :message => "must enter a start time"
   validates_time :end_time, :after => :start_time, :after_message => "must be after the start of the event", :allow_blank => true
