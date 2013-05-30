@@ -75,7 +75,7 @@ FactoryGirl.define do
     date_of_birth 19.years.ago.to_date
     role "choir"
     status "active"
-    barcode_number "1230001230#{rand(9)}#{rand(9)}"
+    barcode_number {rand(000000000000..999999999999).to_s}
     name_displayed "brian"
     is_male true
     email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}

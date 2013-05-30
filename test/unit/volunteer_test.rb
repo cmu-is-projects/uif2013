@@ -8,9 +8,6 @@ class VolunteerTest < ActiveSupport::TestCase
   should validate_presence_of(:role)  
   should validate_presence_of(:status)
   should validate_presence_of(:name_displayed)
-  should validate_presence_of(:can_text)
-  should validate_presence_of(:is_male)
-  should validate_presence_of(:app_approved)
 
   
   #Test values
@@ -38,7 +35,17 @@ class VolunteerTest < ActiveSupport::TestCase
       #assert_equal ["Smith"], Volunteer.alphabetical.all.map(&:last_name)
       assert_equal ["Humphrey","Peters","Smith"], Volunteer.alphabetical.all.map(&:last_name)
     end
-  
+
+    should "have scope for approved applications" do
+      #assert_equal ["Smith"], Volunteer.alphabetical.all.map(&:last_name)
+      assert_equal ["Peters","Smith"], Volunteer.application_approved.alphabetical.all.map(&:last_name)
+    end
+
+    should "have scope for can text" do
+      #assert_equal ["Smith"], Volunteer.alphabetical.all.map(&:last_name)
+      assert_equal ["Humphrey","Smith"], Volunteer.text.alphabetical.all.map(&:last_name)
+    end
+    
   end
   
 end
