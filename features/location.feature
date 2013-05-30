@@ -8,8 +8,8 @@ Background:
 
 	
 	Scenario: Name field is missing
-	    When I fill in "Name" with ""
-	    And I fill in "Street" with "4614 Fifth Avenue"
+	  When I fill in "Name" with ""
+	  And I fill in "Street" with "4614 Fifth Avenue"
 		And I fill in "City" with "Pittsburgh"
 		And I fill in "Zip" with "15271"
 		And I click the checkbox "Active"
@@ -18,7 +18,7 @@ Background:
 
 	Scenario: Street field is missing
 	 	When I fill in "Name" with "Fairfax Apartments"
-	    And I fill in "Street" with ""
+	  And I fill in "Street" with ""
 		And I fill in "City" with "Pittsburgh"
 		And I fill in "Zip" with "15271"
 		And I click the checkbox "Active"
@@ -27,7 +27,7 @@ Background:
 
 	Scenario: City field is missing
 		When I fill in "Name" with "Fairfax Apartments"
-	    And I fill in "Street" with "4614 Fifth Avenue"
+	  And I fill in "Street" with "4614 Fifth Avenue"
 		And I fill in "City" with ""
 		And I fill in "Zip" with "15271"
 		And I click the checkbox "Active"
@@ -83,7 +83,4 @@ Background:
 		Then I should see a button "Back to locations"
 		When I click the button "Back to locations"
 		Then I should see a list of locations
-
-
-
 
