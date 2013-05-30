@@ -12,6 +12,9 @@ module NavigationHelpers
     when /the home\s?page/
       '/'  
       
+    when /the Dashboard/
+      '/'
+      
     #### USERS
     when /the login page/
       new_user_session_path
@@ -21,7 +24,15 @@ module NavigationHelpers
     #### LOCATIONS
     
     #### PROGRAMS
-    
+    when /the new program page/
+      new_program_path
+      
+    when /the program index page/
+      programs_path
+      
+    when /the Choir page/
+      program_path(@choir)
+      
     #### SECTIONS
     
     #### EVENTS
