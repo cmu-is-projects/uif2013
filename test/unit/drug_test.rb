@@ -38,6 +38,36 @@ class DrugTest < ActiveSupport::TestCase
 
   # Scopes
 
+context "creating the context" do
+     # Create objects for factories
+     setup do
+       create_drug_context
+     end
+
+     # Provide teardown method
+     teardown do
+        remove_department_context
+        remove_program_context
+     end
+    
+    # Test Scopes
+
+    should "require case sensitive unique value for name" do
+      @repeat_soccer = FactoryGirl.build(:program, department: @athletics, name: "Soccer")
+      deny @repeat_soccer.valid?
+    end
+  
+    # test the scope 'active'
+    should "shows that there are two active programs" do
+      assert_equal 2, Program.active.size
+      assert_equal ["Choir", "Soccer"], Program.active.alphabetical.map{|s| s.name}
+    end
+    
+    # test the scope 'inactive'
+    should "shows that there is one inactive program" do
+      assert_equal 1, Program.inactive.size
+      assert_equal ["Soup Kitchen"], Program.inactive.alphabetical.map{|s| s.name}
+    end
 
 
 
