@@ -6,7 +6,7 @@ class StudentDrugTest < ActiveSupport::TestCase
   should belong_to(:student)
 
   #Test values
-  should validate_presence_of(:studeny_id)
+  should validate_presence_of(:student_id)
   should validate_presence_of(:drug_id)
 
   should allow_value(1).for(:student_id)
