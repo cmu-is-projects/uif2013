@@ -12,6 +12,14 @@ class Drug < ActiveRecord::Base
     scope :alphabetical, order(:name)
 	scope :active, where('active = ?', true)
 	scope :inactive, where('active = ?', false)
-	scope :by_studentdrug, joins(:student_drug)
 
+  # Methods
+	def hasdescription
+    	if self.description.length > 0
+      		return self.description
+    	else
+      		return "N/A"
+    	end
+  	end
+  	
 end

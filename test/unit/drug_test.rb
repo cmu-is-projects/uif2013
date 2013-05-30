@@ -46,14 +46,13 @@ context "creating the context" do
 
      # Provide teardown method
      teardown do
-        remove_department_context
-        remove_program_context
+        remove_drug_context
      end
     
     # Test Scopes
 
     should "require case sensitive unique value for name" do
-      @repeat_soccer = FactoryGirl.build(:program, department: @athletics, name: "Soccer")
+      @repeat_ibuprofen = FactoryGirl.build(:drug, name: "Ibuprofen")
       deny @repeat_soccer.valid?
     end
   
@@ -68,6 +67,13 @@ context "creating the context" do
       assert_equal 1, Program.inactive.size
       assert_equal ["Soup Kitchen"], Program.inactive.alphabetical.map{|s| s.name}
     end
+
+    # test to see whether no description returns N/A
+    should "ensure that if the program has no description it should return N/A" do
+      @choir_nodesc = FactoryGirl.build(:program, department: @arts, max_grade: 12, min_grade: 6, max_capacity: 60, active: true, description:"")
+      assert_equal 0, @choir_nodesc.description.size
+      assert_equal "N/A", @choir_nodesc.hasdescription
+      assert_equal "Choir is for those who love to sing", @choir.hasdescription
 
 
 
