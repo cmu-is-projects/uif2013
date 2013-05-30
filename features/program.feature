@@ -72,6 +72,8 @@ Background:
 		And I click the button "Create Program" 
 		Then I should see "must be after the start of the program" next to the "End date" field
 
+	#Scenario: There are no departments
+
 	Scenario: Delete a program
 		When I am on on the programs page
 		Then I should see a list of current and past programs
