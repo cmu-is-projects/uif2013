@@ -130,16 +130,17 @@ class ActiveSupport::TestCase
   
  # Context for medical conditions
   def create_drug_context
+    @motrin = FactoryGirl.create(:drug, name: "Motrin", active: true, otc: true, description: "Helps alleviate fever and menstrual cramps")
     @ibuprofen = FactoryGirl.create(:drug, name: "Ibuprofen", active: true, otc: true, description: "Used for headaches")
-    @advil = FactoryGirl.create(:drug, name: "Advil", active: true, otc: true, description: "Used for fevers and cramps")
-    @antihistamine = FactoryGirl.create(:drug, name: "Antihistamine", active: true, otc: false, description: "Used for allergies and sinuses")
+    @advil = FactoryGirl.create(:drug, name: "Advil", active: true, otc: true)
+    @antihistamine = FactoryGirl.create(:drug, name: "Antihistamine", active: false, otc: false, description: "Used for allergies and sinuses")
   end
 
   def remove_drug_context
+    @motrin.destroy
     @ibuprofen.destroy
     @advil.destroy
     @antihistamine.destroy
   end
   
- 
 end

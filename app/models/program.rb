@@ -52,7 +52,7 @@ class Program < ActiveRecord::Base
     end
 	end
 	
-	def hasdescription
+	def has_description
     if self.description.length > 0
       return self.description
     else
