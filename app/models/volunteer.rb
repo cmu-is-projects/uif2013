@@ -7,7 +7,8 @@ class Volunteer < ActiveRecord::Base
   has_many :checks, :through => :volunteer_checks
   has_many :volunteer_meals
   has_many :events, :through => :attendances
-  
+  has_many :notes, :as => :notable, :dependent => :destroy
+    
   #Validations
   validates_presence_of :first_name, :last_name, :date_of_birth, :barcode_number, :role, :status, :name_displayed
   validates :date_of_birth, :app_submit_date, :timeliness => {:on_or_before => lambda { Date.current }, :type => :date}
@@ -21,6 +22,7 @@ class Volunteer < ActiveRecord::Base
   #Scopes
   scope :alphabetical, order('last_name, first_name')
   scope :application_approved, where('app_approved = ?', true)
+  scope :pending_applications, where('app_approved = ?', false)
   scope :text, where('can_text = ?', true)
 
   

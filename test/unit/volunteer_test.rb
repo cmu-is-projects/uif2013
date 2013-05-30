@@ -41,6 +41,11 @@ class VolunteerTest < ActiveSupport::TestCase
       assert_equal ["Peters","Smith"], Volunteer.application_approved.alphabetical.all.map(&:last_name)
     end
 
+    should "have scope for pending applications" do
+      #assert_equal ["Smith"], Volunteer.alphabetical.all.map(&:last_name)
+      assert_equal ["Humphrey"], Volunteer.pending_applications.alphabetical.all.map(&:last_name)
+    end
+    
     should "have scope for can text" do
       #assert_equal ["Smith"], Volunteer.alphabetical.all.map(&:last_name)
       assert_equal ["Humphrey","Smith"], Volunteer.text.alphabetical.all.map(&:last_name)
