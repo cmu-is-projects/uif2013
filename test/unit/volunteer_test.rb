@@ -35,8 +35,8 @@ class VolunteerTest < ActiveSupport::TestCase
     end
     
     should "have scope for ordering by last name" do
-      assert_equal ["Smith"], Volunteer.alphabetical.all.map(&:last_name)
-      #assert_equal ["Humphrey","Peters","Smith"], Volunteer.alphabetical.all.map(&:last_name)
+      #assert_equal ["Smith"], Volunteer.alphabetical.all.map(&:last_name)
+      assert_equal ["Humphrey","Peters","Smith"], Volunteer.alphabetical.all.map(&:last_name)
     end
   
   end

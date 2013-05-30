@@ -14,14 +14,14 @@ class ActiveSupport::TestCase
   # Context for volunteers
   def create_volunteer_contex
     @brian = FactoryGirl.create(:volunteer)
-    @james = FactoryGirl.create(:volunteer, first_name: "James", last_name: "Peters", barcode_number: "111000999888")
-    #@dan = FactoryGirl.create(:volunteer, first_name: "Dan", last_name: "Humphrey", barcode_number: "123098123567",app_approved: false)
+    @james = FactoryGirl.create(:volunteer, first_name: "James", last_name: "Peters", barcode_number: "098098123123")
+    @dan = FactoryGirl.create(:volunteer, first_name: "Dan", last_name: "Humphrey", barcode_number: "890890123999",app_approved: false)
   end
   
   def remove_volunteer_context
-    @brian.delete
-    @james.delete
-    #@dan.delete
+    @brian.destroy
+    @james.destroy
+    @dan.destroy
   end
   
 
