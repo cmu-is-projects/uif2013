@@ -1,6 +1,19 @@
-Scenario: Edit old household
-#     When I am on the "Smith" household page
-#     And I want to edit a detail
-#     Then I click on the button "Edit this household"
-#     And after making the change I click the button "Update this household"
-#     Then I should the "Smith" household page with the updated changes
+Feature: Updating a household
+
+As an administrator, I want to edit an existing household in order to make changes on the household.
+
+Background:
+  Given I am logged in as administrator
+  Given an initial setup
+  Given some households
+
+    Scenario: Edit insurance company of a household
+		When I go to "the edit Smith page"
+	    And I fill in "Insurance company" with "Blue Shield"
+	    And I click the button "Update Household"
+	    Then I should see "Household was successfully updated"
+	    Then I should see "Company: Blue Shield"
+	    
+	#click the button "Edit" from household index
+
+	#click the button "Edit this household" from household page

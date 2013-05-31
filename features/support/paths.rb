@@ -53,7 +53,18 @@ module NavigationHelpers
     #### EVENTS
     
     #### HOUSEHOLDS
-    
+    when /the new household page/
+      new_household_path
+
+    when /the household index page/
+      households_path
+
+    when /the Smith page/
+      household_path(@smith)
+
+    when /the edit Smith page/
+      edit_household_path(@smith)
+
     #### STUDENTS
     
     #### GUARDIANS
