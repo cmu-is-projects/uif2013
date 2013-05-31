@@ -88,3 +88,8 @@ Given /^some programs and events$/ do
   create_outreach_programs_and_events
 end
 
+Given /^some households$/ do
+  create_households
+end
+
+

@@ -149,6 +149,16 @@ ActiveRecord::Schema.define(:version => 20130529160045) do
     t.datetime "updated_at",                     :null => false
   end
 
+  create_table "shifts", :force => true do |t|
+    t.integer  "volunteer_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "shiftable_type"
+    t.integer  "shiftable_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "student_drugs", :force => true do |t|
     t.integer  "student_id"
     t.integer  "drug_id"

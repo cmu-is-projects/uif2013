@@ -127,15 +127,6 @@ class ActiveSupport::TestCase
    @sean.destroy
    @amanda.destroy
   end 
-  
- # Context for student allergies
-  def create_student_allergy_context
-    
-  end
-  
-  def remove_student_allergy_context
-   
-  end
 
   # Context for volunteers
   def create_volunteer_context
