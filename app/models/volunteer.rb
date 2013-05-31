@@ -1,11 +1,18 @@
+require 'carrierwave/orm/activerecord'
+require 'prawn'
+
 class Volunteer < ActiveRecord::Base
   attr_accessible :app_approved, :app_submit_date, :barcode_number, :can_text, :cell_phone, :date_of_birth, :email, :first_name, :household_id, :is_male, :last_name, :name_displayed, :role, :status
+  before_save :reformat_phone, :avatar
+  attr_accessible :avatar
+  has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "100x100>" }
   
   #Relationships
+  belongs_to :household
   has_many :shifts, :as => :shiftable
   has_many :trainings, :through => :volunteer_trainings
   has_many :checks, :through => :volunteer_checks
-  has_many :volunteer_meals
+  #has_many :volunteer_meals
   has_many :events, :through => :attendances
   has_many :notes, :as => :notable, :dependent => :destroy
     

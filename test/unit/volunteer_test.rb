@@ -1,6 +1,14 @@
 require 'test_helper'
 
 class VolunteerTest < ActiveSupport::TestCase
+  
+  # test Relationships
+  should have_many(:shifts)
+  should have_many(:trainings)
+  should have_many(:checks)
+  #should have_many(:volunteer_meals)
+  should have_many(:events)
+  
   #test Presences
   should validate_presence_of(:first_name)
   should validate_presence_of(:last_name)
