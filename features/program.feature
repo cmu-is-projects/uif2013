@@ -3,6 +3,7 @@ Feature: Creating a new program
 Background:
 	Given I am logged in as administrator
 	Given an initial setup
+  # Given some programs and events 
 	When I go to the new program page
   # And I am able to enter my program details
 
@@ -15,7 +16,7 @@ Background:
     And I select "9" from "program_max_grade"
     And I fill in "Max capacity" with "60"
     And I click the button "Create Program"
-    # Then I should see "Program was successfully created"
+    Then I should see "Program was successfully created"
     Then I should see "Add a Note"
 		
   # Scenario: Name field is missing
