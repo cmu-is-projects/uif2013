@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  volunteer_id: 1
+  start_time: 2013-05-28 11:10:10
+  end_time: 2013-05-28 11:10:10
+  shiftable_type: MyString
+  shiftable_id: 1
+
+two:
+  volunteer_id: 1
+  start_time: 2013-05-28 11:10:10
+  end_time: 2013-05-28 11:10:10
+  shiftable_type: MyString
+  shiftable_id: 1

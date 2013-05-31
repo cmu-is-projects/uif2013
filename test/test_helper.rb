@@ -10,7 +10,7 @@ class ActiveSupport::TestCase
     # a simple transformation to increase readability IMO
     assert !condition
   end
-
+  
  # Context for departments
   def create_department_context
     @arts = FactoryGirl.create(:department)
@@ -136,4 +136,18 @@ class ActiveSupport::TestCase
   def remove_student_allergy_context
    
   end
+
+  # Context for volunteers
+  def create_volunteer_context
+    @brian = FactoryGirl.create(:volunteer)
+    @james = FactoryGirl.create(:volunteer, first_name: "James", last_name: "Peters", can_text: false)
+    @dan = FactoryGirl.create(:volunteer, first_name: "Dan", last_name: "Humphrey", app_approved: false)
+  end
+  
+  def remove_volunteer_context
+    @brian.destroy
+    @james.destroy
+    @dan.destroy
+  end
+  
 end

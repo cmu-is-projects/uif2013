@@ -21,6 +21,21 @@ ActiveRecord::Schema.define(:version => 20130529160045) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "checks", :force => true do |t|
+    t.string   "name"
+    t.time     "duration"
+    t.decimal  "cost"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "department_trainings", :force => true do |t|
+    t.integer  "training_id"
+    t.integer  "department_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -163,6 +178,16 @@ ActiveRecord::Schema.define(:version => 20130529160045) do
     t.datetime "avatar_updated_at"
   end
 
+  create_table "trainings", :force => true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.string   "description"
+    t.string   "level"
+    t.date     "next_offered"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -187,5 +212,48 @@ ActiveRecord::Schema.define(:version => 20130529160045) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "volunteer_checks", :force => true do |t|
+    t.date     "date_submitted"
+    t.date     "date_completed"
+    t.boolean  "approved"
+    t.string   "notes"
+    t.integer  "volunteer_id"
+    t.integer  "check_id"
+    t.boolean  "paid"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "volunteer_trainings", :force => true do |t|
+    t.integer  "volunteer_id"
+    t.integer  "training_id"
+    t.date     "date"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "volunteers", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "barcode_number"
+    t.integer  "household_id"
+    t.boolean  "is_male"
+    t.date     "date_of_birth"
+    t.string   "cell_phone"
+    t.boolean  "can_text"
+    t.string   "email"
+    t.string   "status"
+    t.string   "avatar_file_name"
+    t.integer  "avatar_file_size"
+    t.string   "avatar_file_content_type"
+    t.datetime "avatar_updated_at"
+    t.date     "app_submit_date"
+    t.boolean  "app_approved"
+    t.string   "role"
+    t.string   "name_displayed"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
 
 end
