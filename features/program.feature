@@ -1,23 +1,23 @@
-Feature: Creating a new program
+#Feature: Creating a new program
 
-Background:
-	Given I am logged in as administrator
-	Given an initial setup
+#Background:
+#	Given I am logged in as administrator
+#	Given an initial setup
   # Given some programs and events 
-	When I go to the new program page
+#	When I go to the new program page
   # And I am able to enter my program details
 
 		
-	Scenario: Adding a new program works
-	  When I fill in "Name" with "Chess"
+#	Scenario: Adding a new program works
+#	  When I fill in "Name" with "Chess"
     # Then show me the page
-    And I select "Athletics" from "program_department_id"
-    And I select "4" from "program_min_grade"
-    And I select "9" from "program_max_grade"
-    And I fill in "Max capacity" with "60"
-    And I click the button "Create Program"
-    Then I should see "Program was successfully created"
-    Then I should see "Add a Note"
+ #   And I select "Athletics" from "program_department_id"
+ #   And I select "4" from "program_min_grade"
+ #   And I select "9" from "program_max_grade"
+ #   And I fill in "Max capacity" with "60"
+ #   And I click the button "Create Program"
+ #   Then I should see "Program was successfully created"
+ #   Then I should see "Add a Note"
 		
   # Scenario: Name field is missing
   #   When I fill in "Name" with ""
