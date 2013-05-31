@@ -230,7 +230,6 @@ ActiveRecord::Schema.define(:version => 20130529040437) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
-<<<<<<< HEAD
   create_table "volunteer_checks", :force => true do |t|
     t.date     "date_submitted"
     t.date     "date_completed"
@@ -249,6 +248,7 @@ ActiveRecord::Schema.define(:version => 20130529040437) do
     t.date     "date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
 
   create_table "volunteers", :force => true do |t|
     t.string   "first_name"
@@ -271,7 +271,6 @@ ActiveRecord::Schema.define(:version => 20130529040437) do
     t.string   "name_displayed"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
-
   end
 
 end
