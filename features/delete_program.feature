@@ -1,11 +1,10 @@
-Feature: Creating a new program
+Feature: Deleting a program
 
 Background:
 	Given I am logged in as administrator
 	Given an initial setup
     Given some programs and events 
 	When I go to the new program page
-    And I am able to enter program details
 
 		
 	Scenario: Delete a program
