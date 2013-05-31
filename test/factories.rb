@@ -69,16 +69,16 @@ FactoryGirl.define do
     is_visitor false
   end
   
-    factory :volunteer do
+  factory :volunteer do
     first_name "Brian"
     last_name "Smith"
-    date_of_birth 1.year.ago.to_date
+    date_of_birth 19.years.ago.to_date
     role "choir"
     status "active"
-    barcode_number "123123999888"
+    barcode_number {rand(100000000000..999999999999).to_s}
     name_displayed "brian"
     is_male true
-    email "bball1990@gmail.com"
+    email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
     app_approved true
     cell_phone "4125559889"
     can_text true

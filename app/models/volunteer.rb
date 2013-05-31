@@ -3,13 +3,14 @@ class Volunteer < ActiveRecord::Base
   
   #Relationships
   has_many :shifts, :as => :shiftable
-  #has_many :trainings, :through => :volunteer_trainings
-  #has_many :checks, :through => :volunteer_checks
-  #has_many :volunteer_meals
-  #has_many :events, :through => :attendances
-  
+  has_many :trainings, :through => :volunteer_trainings
+  has_many :checks, :through => :volunteer_checks
+  has_many :volunteer_meals
+  has_many :events, :through => :attendances
+  has_many :notes, :as => :notable, :dependent => :destroy
+    
   #Validations
-  validates_presence_of :first_name, :last_name, :date_of_birth, :barcode_number, :role, :status, :name_displayed, :can_text, :is_male, :app_approved
+  validates_presence_of :first_name, :last_name, :date_of_birth, :barcode_number, :role, :status, :name_displayed
   validates :date_of_birth, :app_submit_date, :timeliness => {:on_or_before => lambda { Date.current }, :type => :date}
   validates_format_of :cell_phone, :with => /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/, :allow_blank => true, :message => "should be 10 digits (area code needed) and delimited with dashes or spaces only"
   validates_format_of :email, :with => /^[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))$/i, :allow_blank => true, :message => "is not a valid format"
@@ -21,6 +22,7 @@ class Volunteer < ActiveRecord::Base
   #Scopes
   scope :alphabetical, order('last_name, first_name')
   scope :application_approved, where('app_approved = ?', true)
+  scope :pending_applications, where('app_approved = ?', false)
   scope :text, where('can_text = ?', true)
 
   

@@ -6,7 +6,8 @@ class Shift < ActiveRecord::Base
   
   #Other relationship
   belongs_to :volunteer
-
+  has_many :notes, :as => :notable, :dependent => :destroy
+  
   #validation
   validates_presence_of :start_time
   validates_time :start_time, :message => "must enter a start time"
