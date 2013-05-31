@@ -3,6 +3,7 @@ require 'test_helper'
 class DepartmentTest < ActiveSupport::TestCase
   #Test relationships
   should have_many(:programs)
+  should have_many(:department_trainings)
 
   #Test validations
   should validate_presence_of(:name)

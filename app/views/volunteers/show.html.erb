@@ -1,0 +1,95 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First name:</b>
+  <%= @volunteer.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @volunteer.last_name %>
+</p>
+
+<p>
+  <b>Barcode number:</b>
+  <%= @volunteer.barcode_number %>
+</p>
+
+<p>
+  <b>Household:</b>
+  <%= @volunteer.household_id %>
+</p>
+
+<p>
+  <b>Is male:</b>
+  <%= @volunteer.is_male %>
+</p>
+
+<p>
+  <b>Date of birth:</b>
+  <%= @volunteer.date_of_birth %>
+</p>
+
+<p>
+  <b>Cell phone:</b>
+  <%= @volunteer.cell_phone %>
+</p>
+
+<p>
+  <b>Can text:</b>
+  <%= @volunteer.can_text %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @volunteer.email %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @volunteer.status %>
+</p>
+
+<p>
+  <b>Avatar file name:</b>
+  <%= @volunteer.avatar_file_name %>
+</p>
+
+<p>
+  <b>Avatar file size:</b>
+  <%= @volunteer.avatar_file_size %>
+</p>
+
+<p>
+  <b>Avatar file content type:</b>
+  <%= @volunteer.avatar_file_content_type %>
+</p>
+
+<p>
+  <b>Avatar updated at:</b>
+  <%= @volunteer.avatar_updated_at %>
+</p>
+
+<p>
+  <b>App submit date:</b>
+  <%= @volunteer.app_submit_date %>
+</p>
+
+<p>
+  <b>App approved:</b>
+  <%= @volunteer.app_approved %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%= @volunteer.role %>
+</p>
+
+<p>
+  <b>Name displayed:</b>
+  <%= @volunteer.name_displayed %>
+</p>
+
+
+<%= link_to 'Edit', edit_volunteer_path(@volunteer) %> |
+<%= link_to 'Back', volunteers_path %>

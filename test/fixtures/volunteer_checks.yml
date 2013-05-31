@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date_submitted: 2013-05-28
+  date_completed: 2013-05-28
+  approved: false
+  notes: MyString
+  volunteer_id: 1
+  check_id: 1
+  paid: false
+
+two:
+  date_submitted: 2013-05-28
+  date_completed: 2013-05-28
+  approved: false
+  notes: MyString
+  volunteer_id: 1
+  check_id: 1
+  paid: false
