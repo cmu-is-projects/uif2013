@@ -1,34 +1,27 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <a class="brand" href="/"><%= image_tag("uif-logo.gif", :class => "logo") %></a>
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </a>
-      <div class="nav-collapse">
       <ul class="nav">
-	<li><a href="home">Dashboard</a></li>
+	<li><a href=<%= home_path %>>Dashboard</a></li>
 	<li class="dropdown">
 	  <a href="students" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret" valign="bottom"></b></a>
 	  <ul class="dropdown-menu">
-	    <li><a href="students">Student List</a></li>
-	    <li><a href="allergies">Allergies</a></li>
-	    <li><a href="households">Households</a></li>
-	    <li><a href="guardians">Guardians</a></li>
+	    <li><a href=<%= students_path %>>Student List</a></li>
+	    <li><a href=<%= allergies_path %>>Allergies</a></li>
+	    <li><a href=<%= households_path %>>Households</a></li>
+	    <li><a href=<%= guardians_path %>>Guardians</a></li>
 	  </ul></li>
 	<li class="dropdown">
 	  <a href="volunteers" class="dropdown-toggle" data-toggle="dropdown">Volunteers <b class="caret" id="nav-bar"></b></a>
 	  <ul class="dropdown-menu">
-	    <li><a href="volunteers">Volunteer List</a></li>
-	    <li><a href="checks">Checks</a></li>
-	    <li><a href="shifts">Shifts</a></li>
-	    <li><a href="trainings">Trainings</a></li>
+	    <li><a href=<%= volunteers_path %>>Volunteer List</a></li>
+	    <li><a href="#">Checks</a></li>
+	    <li><a href=<%= shifts_path %>>Shifts</a></li>
+	    <li><a href="#">Trainings</a></li>
 	  </ul></li>
-	<li><a href="programs">Programs</a></li>
-	<li><a href="events">Events</a></li>
-	<li><a href="statistics">Statistics</a></li>
-    </div>
+	<li><a href=<%= programs_path %>>Programs</a></li>
+	<li><a href=<%= events_path %>>Events</a></li>
+	<li><a href=<%= statistics_path %>>Statistics</a></li></ul>
     <!-- <form class="navbar-search">
       <input type="text" class="search-query" placeholder="Search">
     </form> -->
