@@ -82,5 +82,18 @@ Background:
         And I click the button "Create Program" 
         Then I should see "must be after the start of the program" 
 
+   Scenario: Cancel creating a program
+      # When I am on "the Soccer page"
+      # And I should see "Add a Note"
+      # Then I click on the button "Edit this program"
+        When I fill in "Name" with "Chess"
+        And I select "Athletics" from "program_department_id" 
+        And I select "4" from "program_min_grade"
+        And I select "9" from "program_max_grade"
+        And I fill in "Max capacity" with "60"
+        When I click on the link "Cancel"
+        Then I should see "Current Programs"
+      # And I should see "Past Programs"
+
 
 

@@ -8,18 +8,19 @@ Background:
 		
 	Scenario: Reading an existing program
         When I go to "the Soccer page"
-        Then show me the page
         Then I should see "Add a Note"
         And I should see "Soccer"
-        And I should see "Velit labore ea deleniti sit ipsa aut error eveniet quasi beatae accusamus et voluptates reprehenderit. Adipisci vel corporis repudiandae est. Reprehenderit enim aperiam autem exercitationem aut perferendis dolor eum vel quis rem magnam delectus aliquid alias rerum molestiae debitis"
-        # And I should see the button "Back to programs"
-        # And I should see the button "Edit this page"
-        # And I should see the button "Destroy this program"
+        And I should see "Soccer Intramural Sports"
+        And I should see "Athletics"
+        And I should see "6 - 9"
+        And I should see "75"
+        And I should see "February 02, 2013"
+        And I should see "N/A"
+        And I should see "false"
     
     Scenario: Return to program page
-        When I go to "the Soccer Page"
+        When I go to "the Soccer page"
         Then I should see "Add a Note"
-        # Then I should see a button "Back to programs"
-        # When I click the button "Back to programs"
-        # Then I should see "Current Programs"
-        # And I should see "Past Programs"
+      # When I click on the button "icon-backward  Back to programs"
+      # Then I should see "Current Programs"
+      # And I should see "Past Programs"

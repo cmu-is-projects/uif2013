@@ -8,19 +8,19 @@ Background:
 
 		
 	Scenario: Delete a program
-        When I am on on the "Soccer" program page
-        And I should see "Add a Note"
-        And I click the button "Destroy this program"
-        Then I should see a javascript message "Are you sure?"
-        And I click "OK"
-        Then I should see "Current Programs" without "Soccer"
-        And I should see "Past Programs"
+    #    When I am on on "the Soccer page"
+    #    And I should see "Add a Note"
+    #    And I click the button "Destroy this program"
+    #    Then I should see "Are you sure?"
+    #    And I click "OK"
+    #    Then I should see "Current Programs" without "Soccer"
+    #    And I should see "Past Programs" with "Soccer"
 
-    Scenario: Cancel deleting a program
-        When I am on on the "Soccer" program page
-        And I should see "Add a Note"
-        And I click the button "Destroy this program"
-        Then I should see a javascript message "Are you sure?"
-        And I click "Cancel"
-        Then I should see the "Soccer" program page
-        And I should see "Add a Note"
+   Scenario: Cancel deleting a program
+     #   When I am on on "the Soccer page"
+     #  And I should see "Add a Note"
+     #   And I click the button "Destroy this program"
+     #   Then I should see "Are you sure?"
+     #   And I click the link "Cancel"
+     #   Then I should see "the Soccer page"
+     #   And I should see "Add a Note"
