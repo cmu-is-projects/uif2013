@@ -49,6 +49,13 @@ table {
 .table tr td:last-child {
   white-space: nowrap; }
 
+ul.nav li.dropdown:hover > ul.dropdown-menu{
+    display: block;    
+}
+
+a.menu:after, .dropdown-toggle:after {
+    content: none;
+}
 /*========================================
   NAVBAR
   ========================================*/
@@ -58,7 +65,7 @@ table {
   border-style: solid;
   border-color: #b6f23d;
   border-width: 0 0 10px;
-  height: 65px;
+  height: 55px;
   padding: 0 60px; }
 
 .navbar .brand {
@@ -68,10 +75,11 @@ table {
     height: 115px; }
 
 .navbar .nav li a {
-  background: #ffb432;
+  background: #ff930c;
   color: #8d1f12;
-  line-height: 65px;
+  line-height: 55px;
   margin-right: 1px;
+  margin-bottom: 1px;
   padding: 0 20px;
   text-shadow: none; }
   .navbar .nav li a:hover {
@@ -84,17 +92,17 @@ table {
   box-shadow: none;
   color: #8d1f12;
   position: relative; }
-  .navbar .nav li.active a:after, .navbar .nav li.active a:hover:after {
-    content: '';
-    height: 0;
-    width: 0;
-    position: absolute;
-    left: 42.5%;
-    top: 65px;
-    border-style: solid;
-    border-width: 10px;
-    border-color: transparent;
-    border-top-color: #ffeb00; }
+.navbar .nav li.active a:after, .navbar .nav li.active a:hover:after {
+  content: '';
+  height: 0;
+  width: 0;
+  position: absolute;
+  left: 42.5%;
+  top: 65px;
+  border-style: solid;
+  border-width: 10px;
+  border-color: transparent;
+  border-top-color: #ffeb00; }
 
 #login {
   display: inline-block;

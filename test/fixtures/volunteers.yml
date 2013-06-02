@@ -6,7 +6,7 @@ one:
   barcode_number: MyString
   household_id: 1
   is_male: false
-  date_of_birth: 2013-05-28
+  date_of_birth: 2013-05-31
   cell_phone: MyString
   can_text: false
   email: MyString
@@ -14,11 +14,13 @@ one:
   avatar_file_name: MyString
   avatar_file_size: 1
   avatar_file_content_type: MyString
-  avatar_updated_at: 2013-05-28 11:09:59
-  app_submit_date: 2013-05-28
+  avatar_updated_at: 2013-05-31 18:26:38
+  app_submit_date: 2013-05-31
   app_approved: false
   role: MyString
   name_displayed: MyString
+  spouse_id: 1
+  student_id: 1
 
 two:
   first_name: MyString
@@ -26,7 +28,7 @@ two:
   barcode_number: MyString
   household_id: 1
   is_male: false
-  date_of_birth: 2013-05-28
+  date_of_birth: 2013-05-31
   cell_phone: MyString
   can_text: false
   email: MyString
@@ -34,8 +36,10 @@ two:
   avatar_file_name: MyString
   avatar_file_size: 1
   avatar_file_content_type: MyString
-  avatar_updated_at: 2013-05-28 11:09:59
-  app_submit_date: 2013-05-28
+  avatar_updated_at: 2013-05-31 18:26:38
+  app_submit_date: 2013-05-31
   app_approved: false
   role: MyString
   name_displayed: MyString
+  spouse_id: 1
+  student_id: 1

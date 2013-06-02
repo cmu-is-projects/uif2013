@@ -1,8 +1,8 @@
 Uif2013::Application.routes.draw do
-  resources :shifts
-
-
   resources :volunteers
+
+
+  resources :shifts
 
 
   resources :notes
