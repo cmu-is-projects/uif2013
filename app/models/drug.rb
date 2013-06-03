@@ -2,7 +2,7 @@ class Drug < ActiveRecord::Base
   attr_accessible :active, :drug_id, :name, :otc, :description
 
   # Relationships
-    has_many :student_drugs, :dependent => :delete_all
+   # has_many :student_drugs, :dependent => :delete_all
     has_many :notes, :as => :notable, :dependent => :destroy
 
   # Validations

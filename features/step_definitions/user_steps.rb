@@ -61,6 +61,13 @@ def create_guardians
   @cscott = FactoryGirl.create(:guardian, household: @scott, first_name: "Clark", last_name: "Scott", cell_phone: "412-222-2222")
 end
 
+def create_drugs
+    @motrin = FactoryGirl.create(:drug, name: "Motrin", active: true, otc: true, description: "Helps alleviate fever and menstrual cramps")
+    @ibuprofen = FactoryGirl.create(:drug, name: "Ibuprofen", active: true, otc: true, description: "Used for headaches")
+    @advil = FactoryGirl.create(:drug, name: "Advil", active: true, otc: true)
+    @antihistamine = FactoryGirl.create(:drug, name: "Antihistamine", active: false, otc: false, description: "Used for allergies and sinuses")
+end
+
 
 
 #### GIVENS
