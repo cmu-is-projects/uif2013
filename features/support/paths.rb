@@ -51,7 +51,20 @@ module NavigationHelpers
     #### SECTIONS
     
     #### EVENTS
-    
+    when /the new event page/
+      new_event_path
+
+    when /the event index page/
+      events_path
+
+    when /the Monday class page/
+      event_path(@mon_class)
+      
+    when /the edit Monday class page/
+      edit_event_path(@mon_class)
+
+
+
     #### HOUSEHOLDS
     when /the new household page/
       new_household_path
