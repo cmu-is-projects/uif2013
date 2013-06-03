@@ -19,7 +19,7 @@ Background:
 
    Scenario: Cancel deleting a program
      #   When I am on on "the Soccer page"
-     #  And I should see "Add a Note"
+     #   And I should see "Add a Note"
      #   And I click the button "Destroy this program"
      #   Then I should see "Are you sure?"
      #   And I click the link "Cancel"

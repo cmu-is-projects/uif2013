@@ -9,7 +9,7 @@ class Drug < ActiveRecord::Base
   	validates_uniqueness_of :name
 
   # Scopes
-    scope :alphabetical, order(:name)
+  scope :alphabetical, order(:name)
 	scope :active, where('active = ?', true)
 	scope :inactive, where('active = ?', false)
 	scope :is_otc, where('otc = ?', true)

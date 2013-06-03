@@ -12,8 +12,6 @@ class Student < ActiveRecord::Base
   belongs_to :household
   has_many :attendances, :dependent => :delete_all
   has_many :enrollments, :dependent => :delete_all
-  has_many :student_allergies, :dependent => :delete_all
-  has_many :allergies, :through => :student_allergies
   has_many :events, :through => :attendances
   has_many :notes, :as => :notable, :dependent => :destroy
   

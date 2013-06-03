@@ -10,8 +10,7 @@ Background:
             And I fill in "Last name" with "Scott"
             And I fill in "Barcode number" with "586749685712"
             And I select "Scott (123 Cool Place)" from "student_household_id"
-          # When I check "student_is_male_false"
-          # When I check "Female" from "student[is_male]"
+            When I choose "student_is_male_false"
             And I select "9" from "student_grade"
             And I select "February" from "student_date_of_birth_2i"
             And I select "12" from "student_date_of_birth_3i"
@@ -30,6 +29,7 @@ Background:
             And I fill in "Last name" with "Scott"
             And I select "Scott (123 Cool Place)" from "student_household_id"
             When I check "student_is_visitor"
+            When I choose "student_is_male_false"
             And I fill in "Scott" for "household_name"
             And I fill in "123 Awesome Street" for "household_street"
             And I fill in "should this be required" for "household_street2"
@@ -166,8 +166,9 @@ Background:
             And I select "February" from "student_date_of_birth_2i"
             And I select "12" from "student_date_of_birth_3i"
             And I select "1998" from "student_date_of_birth_1i" 
-          # And I click the button "Create Student" (does not understand why this doesn't work)
-          # Then I should see "can't be blank"
+            # And I click the button "Create Student" 
+            # Then show me the page
+            # Then I should see "can't be blank"
 
         Scenario: As a visitor, street is missing
             When I fill in "First name" with "Taylor"
@@ -183,7 +184,7 @@ Background:
             And I select "February" from "student_date_of_birth_2i"
             And I select "12" from "student_date_of_birth_3i"
             And I select "1998" from "student_date_of_birth_1i" 
-          # And I click the button "Create Student" (does not understand why this doesn't work)
+          # And I click the button "Create Student" 
           # Then I should see "can't be blank"
 
         # Don't believe that Street 2 needs to be required
@@ -201,7 +202,7 @@ Background:
             And I select "February" from "student_date_of_birth_2i"
             And I select "12" from "student_date_of_birth_3i"
             And I select "1998" from "student_date_of_birth_1i" 
-          # And I click the button "Create Student" (does not understand why this doesn't work)
+          # And I click the button "Create Student" 
           # Then I should see "can't be blank"
 
         Scenario: As a visitor, city is missing
@@ -218,7 +219,7 @@ Background:
             And I select "February" from "student_date_of_birth_2i"
             And I select "12" from "student_date_of_birth_3i"
             And I select "1998" from "student_date_of_birth_1i" 
-          # And I click the button "Create Student" (does not understand why this doesn't work)
+          # And I click the button "Create Student" 
           # Then I should see "can't be blank"
 
         Scenario: As a visitor, zip code is missing
@@ -235,7 +236,7 @@ Background:
             And I select "February" from "student_date_of_birth_2i"
             And I select "12" from "student_date_of_birth_3i"
             And I select "1998" from "student_date_of_birth_1i" 
-          # And I click the button "Create Student" (does not understand why this doesn't work)
+          # And I click the button "Create Student" 
           # Then I should see "can't be blank"
 
 
