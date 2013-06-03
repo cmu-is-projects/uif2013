@@ -11,7 +11,10 @@ class Section < ActiveRecord::Base
 
   scope :active, where('active = ?', true) 
   scope :alphabetical, joins(:program).order('programs.name, sections.name')
+  scope :maxed_out, joins(:enrollments).select('sections.id').group('sections.id').having('count(enrollments.id) = sections.max_capacity')
+  scope :empty_sections, joins('left outer join enrollments on sections.id=enrollments.section_id').select('sections.id').group('sections.id').having('count(enrollments.id) = 0')
 
+  
   #Validations
   validates_presence_of :name
   validates_numericality_of :max_capacity, :greater_than => 1, :message => "must be greater than 1", :allow_nil => true

@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130531212743) do
 
+    
   create_table "allergies", :force => true do |t|
     t.string   "name"
     t.text     "warning_text"
@@ -276,6 +277,8 @@ ActiveRecord::Schema.define(:version => 20130531212743) do
     t.boolean  "app_approved"
     t.string   "role"
     t.string   "name_displayed"
+    t.integer  "spouse_id"
+    t.integer  "student_id"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end

@@ -1,7 +1,14 @@
+require 'carrierwave/orm/activerecord'
+require 'prawn'
+
 class Volunteer < ActiveRecord::Base
-  attr_accessible :app_approved, :app_submit_date, :barcode_number, :can_text, :cell_phone, :date_of_birth, :email, :first_name, :household_id, :is_male, :last_name, :name_displayed, :role, :status
+  attr_accessible :app_approved, :app_submit_date, :barcode_number, :can_text, :cell_phone, :date_of_birth, :email, :first_name, :household_id, :is_male, :last_name, :name_displayed, :role, :spouse_id, :status, :student_id
+  before_save :reformat_phone, :avatar
+  attr_accessible :avatar
+  has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "100x100>" }
   
   #Relationships
+  belongs_to :household
   has_many :shifts, :as => :shiftable
   has_many :trainings, :through => :volunteer_trainings
   has_many :checks, :through => :volunteer_checks
@@ -24,7 +31,7 @@ class Volunteer < ActiveRecord::Base
   scope :application_approved, where('app_approved = ?', true)
   scope :pending_applications, where('app_approved = ?', false)
   scope :text, where('can_text = ?', true)
-
+  scope :new_volunteer, where('created_at > ? ', 1.week.ago)
   
   #Other methods
   
