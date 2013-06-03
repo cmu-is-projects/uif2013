@@ -55,6 +55,30 @@ module NavigationHelpers
     #### HOUSEHOLDS
     
     #### STUDENTS
+
+    when /the new student page/
+      new_student_path
+      
+    when /the student index page/
+      students_path
+
+    when /the Alex Heimann page/
+      program_path(@alex)
+      
+    when /the edit Alex Heimann page/
+      edit_program_path(@alex)
+      
+    when /the Stephany Park page/
+      program_path(@stephany)
+      
+    when /the edit Stephany Park page/
+      edit_program_path(@stephany)
+      
+    when /the Sean Scott page/
+      program_path(@sean)
+      
+    when /the edit Sean Scott page/
+      edit_program_path(@sean)
     
     #### GUARDIANS
     

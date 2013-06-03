@@ -14,7 +14,7 @@ Background:
         And I should see "Athletics"
         And I should see "6 - 9"
         And I should see "75"
-        And I should see "February 02, 2013"
+        And I should see "February 03, 2013"
         And I should see "N/A"
         And I should see "false"
     

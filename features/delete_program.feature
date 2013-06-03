@@ -13,6 +13,7 @@ Background:
     #    And I click the button "Destroy this program"
     #    Then I should see "Are you sure?"
     #    And I click "OK"
+    #    And I should be on "the program index page"
     #    Then I should see "Current Programs" without "Soccer"
     #    And I should see "Past Programs" with "Soccer"
 

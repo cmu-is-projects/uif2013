@@ -92,6 +92,7 @@ Background:
         And I select "9" from "program_max_grade"
         And I fill in "Max capacity" with "60"
         When I click on the link "Cancel"
+        And I should be on "the program index page"
         Then I should see "Current Programs"
       # And I should see "Past Programs"
 

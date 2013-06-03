@@ -51,7 +51,7 @@ end
 def create_students
  @alex = FactoryGirl.create(:student, household: @smith)
  @stephany = FactoryGirl.create(:student, household: @shroot, first_name: "Stephany", last_name: "Park", grade: 8, is_male: true)
- @sean = FactoryGirl.create(:student, household: @scott, first_name: "Sean", last_name: "Kumar", grade: 4, is_male: true)
+ @sean = FactoryGirl.create(:student, household: @scott, first_name: "Sean", last_name: "Scott", grade: 4, is_male: true)
  @amanda = FactoryGirl.create(:student, household:@smith, first_name: "Amanda", last_name: "Works", grade: 6, is_male: false)
 end
 
@@ -80,6 +80,7 @@ end
 Given /^an initial setup$/ do
   create_locations
   create_departments
+  create_households
 end
 
 Given /^some programs and events$/ do
@@ -88,8 +89,7 @@ Given /^some programs and events$/ do
   create_outreach_programs_and_events
 end
 
-Given /^some students and households$/ do
+Given /^some students$/ do
   create_students
-  create_households
 end
 
