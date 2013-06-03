@@ -49,6 +49,9 @@ Uif2013::Application.routes.draw do
     resources :notes
     get 'id', :on => :member
   end
+ # resources :drugs do
+  #  resources :notes
+  #end
   resources :sections
   resources :attendances
   resources :locations do
