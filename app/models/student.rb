@@ -37,6 +37,8 @@ class Student < ActiveRecord::Base
   scope :alphabetical, order('last_name, first_name')
   scope :is_visitor, where('is_visitor =?', true)
   scope :not_visitor, where('is_visitor = ? ', false)
+  scope :new_student, where('created_at > ? ', 1.week.ago)
+  
   #Misc constants
   STATUS_LIST = [['Active', 'Active'],['Inactive', 'Inactive'],['College', 'College'], ['Graduated', 'Graduated'], ['Missing', 'Missing']]
   

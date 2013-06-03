@@ -16,5 +16,6 @@ class Household < ActiveRecord::Base
   scope :alphabetical,   order("name")
   scope :active, where('active = ?', true)
   scope :inactive, where('active = ?', false)
+  scope :missing_info, where('insurance_number = ?', "")
   
 end

@@ -31,7 +31,7 @@ class Volunteer < ActiveRecord::Base
   scope :application_approved, where('app_approved = ?', true)
   scope :pending_applications, where('app_approved = ?', false)
   scope :text, where('can_text = ?', true)
-
+  scope :new_volunteer, where('created_at > ? ', 1.week.ago)
   
   #Other methods
   
