@@ -1,4 +1,6 @@
 Uif2013::Application.routes.draw do
+  get "drug/index"
+
   resources :notes
 
   #require 'api_constraints' 
