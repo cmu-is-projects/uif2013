@@ -63,22 +63,22 @@ module NavigationHelpers
       students_path
 
     when /the Alex Heimann page/
-      program_path(@alex)
+      student_path(@alex)
       
     when /the edit Alex Heimann page/
-      edit_program_path(@alex)
+      edit_student_path(@alex)
       
     when /the Stephany Park page/
-      program_path(@stephany)
+      student_path(@stephany)
       
     when /the edit Stephany Park page/
-      edit_program_path(@stephany)
+      edit_student_path(@stephany)
       
     when /the Sean Scott page/
-      program_path(@sean)
+      student_path(@sean)
       
     when /the edit Sean Scott page/
-      edit_program_path(@sean)
+      edit_student_path(@sean)
     
     #### GUARDIANS
     
