@@ -37,7 +37,8 @@ table {
     padding: 4px 8px; }
 
 .container-fluid {
-  padding: 0 60px 0 230px; }
+  padding: 0 40px 0 180px;
+  }
 
 .pagination ul li.active a {
   background-color: #ffeb00;
@@ -46,6 +47,37 @@ table {
 #search #query {
   margin: 0 0 0 8px; }
 
+#visitor {
+  background: #FF7722;
+}
+#student {
+  background: #FBA16C;
+}
+#volunteer {
+  background: #FA9A50;
+}
+#event {
+  background: #ff930c;
+}
+#program {
+  background: #FBA16C;
+}
+#household {
+  background: #FA9A50;
+}
+#guardian {
+  background: #ff930c;
+}
+.dashboard {
+  width: 840px;
+}
+.dashboard table {
+  font-size: 10px;
+}
+.tile-content ul {
+  list-style-type: none;
+  list-style: none;
+}
 .table tr td:last-child {
   white-space: nowrap; }
 
@@ -71,8 +103,8 @@ a.menu:after, .dropdown-toggle:after {
 .navbar .brand {
   padding: 3px 20px; }
   .navbar .brand .logo {
-    width: 150px;
-    height: 115px; }
+    width: 100px;
+    height: 77px; }
 
 .navbar .nav li a {
   background: #ff930c;

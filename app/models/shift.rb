@@ -1,6 +1,7 @@
 class Shift < ActiveRecord::Base
-  attr_accessible :end_time, :shiftable_id, :shiftable_type, :start_time, :volunteer_id
-
+  attr_accessible :end_time, :shiftable_id, :shiftable_type, :start_time, :volunteer_id, :hidden_id, :hidden_klass
+  attr_accessor :hidden_id, :hidden_klass
+  
   # Set up shifts as polymorphic
   belongs_to :shiftable_type, :polymorphic => true
   
