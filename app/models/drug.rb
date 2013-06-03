@@ -3,6 +3,7 @@ class Drug < ActiveRecord::Base
 
   # Relationships
     has_many :student_drugs, :dependent => :delete_all
+    has_many :notes, :as => :notable, :dependent => :destroy
 
   # Validations
     validates_presence_of :name
