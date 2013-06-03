@@ -73,13 +73,13 @@ class EventsController < ApplicationController
             @section.save
           end 
         if request.xhr?
-          flash[:notice] = "Event was successfully created."
+          flash[:notice] = "#{@event.program.name} Event was successfully created."
           format.html #{ redirect_to events_url, notice: 'Event was successfully created.' }
           # format.json { render json: @event, status: :created, location: @event }
           format.js
           @events = Event.by_date(params[:date_query])
         else
-          flash[:notice] = "Event was successfully created."
+          flash[:notice] = "#{@event.program.name} Event was successfully created."
           format.html { redirect_to events_url, notice: 'Event was successfully created.' }
           format.json { render json: @event, status: :created, location: @event }
           format.js

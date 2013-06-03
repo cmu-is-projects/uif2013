@@ -13,6 +13,5 @@ Background:
 	    Then I should see #javascript box "Are you sure you want to permanently destroy this event?"
 	    And I click the button "OK"
 	    Then I should be on "the event index page"
-		And I should see "" # I should see a message
 
 	    

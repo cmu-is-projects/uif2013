@@ -9,7 +9,7 @@ Background:
 
     Scenario: Edit number of meals served
 		When I go to "the edit Monday class page"
-	    And I fill in "Meals served" with "20"
+	    And I fill in "event_meals_served" with "20"
 	    And I click the button "Update Event"
 	    Then I should see "Event was successfully updated"
 	    

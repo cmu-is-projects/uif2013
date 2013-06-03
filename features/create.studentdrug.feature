@@ -11,8 +11,7 @@
 
 # 	Scenario: Drug is missing
 # 		 When I fill in "Name" with "Stephany Park"
-# 		 And I select "" from "student_drug_id"
-# 		 And I fill in "Dosage" with "2"
+# 		 Then I fill in "Dosage" with "2"
 # 		 And I click the "Create" button
 # 		 Then I should see "drug is required"
 
