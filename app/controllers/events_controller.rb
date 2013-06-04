@@ -62,10 +62,10 @@ class EventsController < ApplicationController
     sections = params[:event][:sections]
     event_id = params[:event][:id]
     params[:event].delete "sections"
-
     
     @event = Event.new(params[:event])
-    
+    @event.end_time = nil if (params[:event][:end_time].nil? || params[:event][:end_time].hour.zero? )
+
     respond_to do |format|
        if @event.save
           sections.each do |section_id|
@@ -80,7 +80,7 @@ class EventsController < ApplicationController
           @events = Event.by_date(params[:date_query])
         else
           flash[:notice] = "#{@event.program.name} Event was successfully created."
-          format.html { redirect_to events_url, notice: 'Event was successfully created.' }
+          format.html { redirect_to events_url, notice: "#{@event.program.name} Event was successfully created." }
           format.json { render json: @event, status: :created, location: @event }
           format.js
         end
@@ -144,7 +144,7 @@ class EventsController < ApplicationController
             count3 += 1
           end
         end
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: "#{@event.program.name} Event was successfully updated." }
         format.json { head :no_content }
         format.js
       else
@@ -167,7 +167,7 @@ class EventsController < ApplicationController
         format.json { head :no_content }
         format.js
       else
-        format.html { redirect_to events_url }
+        format.html { redirect_to events_url, notice: "#{@event.program.name} Event was successfully deleted." }
         format.json { head :no_content }
         format.js
       end
