@@ -11,7 +11,7 @@ Background:
 		When I go to "the edit Smith page"
 	    And I fill in "household_insurance_company" with "Blue Shield"
 	    And I click the button "Update Household"
-	    Then I should see "Smith was successfully updated"
+	    Then I should see "Smith household was successfully updated"
 	    Then I should see "Company: Blue Shield"
 	    
 	#click the button "Edit" from household index

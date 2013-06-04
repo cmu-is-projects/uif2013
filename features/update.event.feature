@@ -11,7 +11,7 @@ Background:
 		When I go to "the edit Monday class page"
 	    And I fill in "event_meals_served" with "20"
 	    And I click the button "Update Event"
-	    Then I should see "Event was successfully updated"
+	    Then I should see "Choir Event was successfully updated"
 	    
 	#click the button "Edit" from event index
 

@@ -15,7 +15,7 @@ Background:
 		And I fill in "household_zip" with "15271"
 		And I check "household_active"
 		And I click the button "Create Household" 
-		Then I should see "Turner was sucessfully created"
+		Then I should see "Turner household was sucessfully created"
 
  	Scenario: Adding a new household that works from household index page
 	  	Given I go to "the household index page"
@@ -26,7 +26,7 @@ Background:
 		And I fill in "household_zip" with "15271"
 		And I check "household_active"
 	    And I click the button "Create Household" 
-	    Then I should see "Turner was sucessfully created"
+	    Then I should see "Turner household was sucessfully created"
 
 	Scenario: Name field is missing
 	 	Given I go to "the new household page"

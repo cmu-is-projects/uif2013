@@ -12,7 +12,7 @@
 # 	    And I click the button "Destroy this event"
 # 	    Then I should see #javascript box "Are you sure you want to permanently destroy this event?"
 # 	    And I click the button "OK"
-#		Then I should see " Event was successfully deleted"
+#		Then I should see "Choir Event was successfully deleted"
 # 	    And I should be on "the event index page"
 
 	    

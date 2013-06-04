@@ -12,5 +12,5 @@
 # 	    And I click the button "Destroy Household"
 # 	    Then I should see #javascript box "Are you sure?"
 # 	    And I click the button "OK"
-# 	    Then I should see "Smith was successfully deleted." # I should see a message
+# 	    Then I should see "Smith household was successfully deleted." # I should see a message
 	    

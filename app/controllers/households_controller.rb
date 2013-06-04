@@ -48,7 +48,7 @@ class HouseholdsController < ApplicationController
 
     respond_to do |format|
       if @household.save
-        format.html { redirect_to @household, notice: "#{@household.name} was successfully created." }
+        format.html { redirect_to @household, notice: "#{@household.name} household was successfully created." }
         format.json { render json: @household, status: :created, location: @household }
       else
         format.html { render action: "new" }
@@ -64,7 +64,7 @@ class HouseholdsController < ApplicationController
 
     respond_to do |format|
       if @household.update_attributes(params[:household])
-        format.html { redirect_to @household, notice: "#{@household.name} was successfully updated." }
+        format.html { redirect_to @household, notice: "#{@household.name} household was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
