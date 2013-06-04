@@ -3,7 +3,7 @@ require 'test_helper'
 class DrugTest < ActiveSupport::TestCase
 
   # Relationships
-  should have_many(:student_drugs)
+  # should have_many(:student_drugs)
   
   # Validations
   should validate_presence_of(:name)

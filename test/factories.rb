@@ -87,7 +87,7 @@ FactoryGirl.define do
 
   factory :drug do
     name "Motrin"
-    description nil
+    description 
     active true
     otc true
   end

@@ -100,3 +100,7 @@ Given /^some students$/ do
   create_students
 end
 
+Given /^some drugs$/ do
+  create_drugs
+end
+

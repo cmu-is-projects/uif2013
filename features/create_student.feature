@@ -132,11 +132,12 @@ Background:
             And I fill in "Barcode number" with "586749685712"
             And I select "Scott (123 Cool Place)" from "student_household_id"
             And I select "9" from "student_grade"
-            And I select "September" from "student_date_of_birth_2i"
+            And I select "December" from "student_date_of_birth_2i"
             And I select "3" from "student_date_of_birth_3i"
             And I select "2013" from "student_date_of_birth_1i" 
             And I click the button "Create Student"
-            Then I should see "translation missing: en.activerecord.errors.models.student.attributes.date_of_birth.on_or_before"
+            Then I should see "must be on or before 2013-06-03"
+            #Then I should see "must be on or before #{0.months.ago.to_date.strftime('%Y-%b-%d')}"
             # we should add an error to this missing translation
 
         Scenario: Email is not properly formatted
