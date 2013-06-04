@@ -29,7 +29,8 @@ Background:
         And I check "drug_active"
         And I check "drug_otc"
         And I click the button "Create Drug" 
-        Then I should see "name is already in use" 
+        # name is already in use is for program - should we keep it consistent?
+        Then I should see "has already been taken" 
    
    Scenario: Cancel creating a program
         When I fill in "Name" with "Pepto Bismol"

@@ -87,7 +87,7 @@ FactoryGirl.define do
 
   factory :drug do
     name "Motrin"
-    description 
+    description "Helps alleviate fever and menstrual cramps"
     active true
     otc true
   end

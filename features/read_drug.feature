@@ -10,7 +10,7 @@ Background:
         When I go to "the Motrin page"
         Then I should see "Add a Note"
         And I should see "Motrin"
-        And I should see "Soccer Intramural Sports"
+        And I should see "Helps alleviate fever and menstrual cramps"
         And I should see "true"
         And I should see "true"
     
