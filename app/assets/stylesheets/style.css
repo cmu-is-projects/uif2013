@@ -48,25 +48,25 @@ table {
   margin: 0 0 0 8px; }
 
 #visitor {
-  background: #FF7722;
+  background: #ff8c00;
 }
 #student {
-  background: #FBA16C;
+  background: #cc8829;
 }
 #volunteer {
-  background: #FA9A50;
+  background: #e58f17;
 }
 #event {
-  background: #ff930c;
+  background: #ff9500;
 }
 #program {
-  background: #FBA16C;
+  background: #cc7a29;
 }
 #household {
-  background: #FA9A50;
+  background: #e57e17;
 }
 #guardian {
-  background: #ff930c;
+  background: #ff8000;
 }
 .dashboard {
   width: 840px;

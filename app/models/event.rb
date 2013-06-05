@@ -9,7 +9,8 @@ class Event < ActiveRecord::Base
   has_many :students, :through => :attendances
   has_many :sections, :through => :section_events
   has_many :notes, :as => :notable, :dependent => :destroy
-   
+  has_many :shifts, :as => :shiftable, :dependent => :destroy
+  
   #Validations
   validates_presence_of :location_id, :message => "must enter location"
   validates_presence_of :program_id, :message => "must enter program"

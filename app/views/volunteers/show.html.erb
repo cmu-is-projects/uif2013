@@ -67,6 +67,12 @@
       <%= link_to raw("<i class='icon-barcode'></i>&nbsp;&nbsp;&nbsp;Generate barcode (PDF)"), volunteer_path(@volunteer.id, :format => 'pdf'), :class => 'btn' %></p>          
 
     </div>
+    <div class="well">
+          <p><%= @volunteer.shifts.size.zero? ? "No shifts yet" : pluralize(@volunteer.shifts.size, 'shift') %> for this <%= "#{@volunteer.class.to_s.downcase}" %></p>
+          <% unless @shifts.nil?||  @shifts.empty? %>
+              <%= render :partial => "partials/shift_list" %>
+          <% end %>
+    </div>
     <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @volunteer} %>
   </div>
   

@@ -62,15 +62,24 @@ Uif2013::Application.routes.draw do
   end
   resources :events do
     resources :notes
+    resources :shifts
     get 'meals_served', :on => :member
     get 'barcodes', :on => :member
   end
   resources :programs do
     resources :notes
+    resources :shifts
   end
   resources :departments
   resources :enrollments
   resources :section_events
+  resources :volunteers do
+    resources :notes
+  end
+  resources :trainings do
+    resources:notes
+  end
+  resources :checks
   
   # Default URL
   root :to => 'home#index'

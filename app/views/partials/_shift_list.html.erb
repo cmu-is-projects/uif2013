@@ -1,0 +1,3 @@
+<% for shift in @shifts %>
+<li><%=link_to shift.volunteer.proper_name, volunteer_path(shift.volunteer) %></li>
+<% end %>

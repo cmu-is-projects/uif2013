@@ -1,18 +1,21 @@
-<%= simple_form_for(@shift) do |f| %>
+<%= simple_form_for @shift do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
   <div class="field">
-    <%= f.label :volunteer %><br />
-    <%= f.collection_select :volunteer, Volunteer.all, :id, :name, :prompt => "Choose a Volunteer" %>  
+    <%= f.input :volunteer_id %><br />  
   </div>
     <%= f.input :start_time %>
     <%= f.input :end_time %>
-    <%= f.input :shiftable_type %>
-    <%= f.input :shiftable_id %>
+    <% unless @klass.nil? || @klass_id.nil? %>
+      <%= f.input :hidden_klass, :as => :hidden, :input_html => { :value => @klass } %>
+      <%= f.input :hidden_id, :as => :hidden, :input_html => { :value => @klass_id } %>
+    <% end %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn-success' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), shifts_path, :class => 'btn' %>
   </div>
 <% end %>
+

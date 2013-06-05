@@ -2,7 +2,7 @@ class ShiftsController < ApplicationController
   # GET /shifts
   # GET /shifts.json
   def index
-    @shifts = Shift.all
+    @shifts = Shift.by_date_desc
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,11 +28,11 @@ class ShiftsController < ApplicationController
     unless params[:id].nil? || params[:source].nil?
       @klass = params[:source]
       @klass_id = params[:id]
-      if params[:source] == 'volunteer'
-        volunteer = Volunteer.find(params[:id])
-        @note_focus = volunteer.proper_name
+      if params[:source] == 'event'
+        event = Event.find(params[:id])
+        @name = event.program.name
       else
-        @note_focus = 'Event'
+        @name = 'Event'
       end
     end
     respond_to do |format|
@@ -52,7 +52,7 @@ class ShiftsController < ApplicationController
     @shiftable = find_shiftable
     @shift = @shiftable.shifts.build(params[:shift])
     if @shift.save
-      flash[:notice] = "Successfully created note."
+      flash[:notice] = "Successfully created shift."
       noting_on = @shift.shiftable_type.pluralize
       id = @shift.shiftable_id
       # b/c of asset pipeline we will simply use the following eval hack (quick and painless):
@@ -60,15 +60,6 @@ class ShiftsController < ApplicationController
     else
       render :action => 'new'
     end
-    #respond_to do |format|
-    #  if @shift.save
-    #    format.html { redirect_to @shift, notice: 'Shift was successfully created.' }
-    #    format.json { render json: @shift, status: :created, location: @shift }
-    #  else
-    #    format.html { render action: "new" }
-    #    format.json { render json: @shift.errors, status: :unprocessable_entity }
-    #  end
-    #end
   end
 
   # PUT /shifts/1
@@ -98,7 +89,6 @@ class ShiftsController < ApplicationController
       format.json { head :no_content }
     end
   end
-end
   
   private
   def find_shiftable
@@ -113,3 +103,4 @@ end
     end
     nil
   end
+end

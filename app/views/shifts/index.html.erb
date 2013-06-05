@@ -1,12 +1,11 @@
 <h1>Listing shifts</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Volunteer</th>
+    <th>Date</th>
     <th>Start time</th>
     <th>End time</th>
-    <th>Shiftable type</th>
-    <th>Shiftable</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,18 +13,15 @@
 
 <% @shifts.each do |shift| %>
   <tr>
-    <td><%= shift.volunteer_id %></td>
-    <td><%= shift.start_time %></td>
-    <td><%= shift.end_time %></td>
-    <td><%= shift.shiftable_type %></td>
-    <td><%= shift.shiftable_id %></td>
-    <td><%= link_to 'Show', shift %></td>
+    <td><%= shift.volunteer.proper_name %></td>
+    <td><%= shift.start_time.strftime("%b %d, %Y") %></td>
+    <td><%= shift.start_time.strftime("%I:%M %P") %></td>
+    <td><%= shift.end_time.strftime("%I:%M %P") %></td>
+    <td><%= link_to 'View Shift', shift %></td>
     <td><%= link_to 'Edit', edit_shift_path(shift) %></td>
-    <td><%= link_to 'Destroy', shift, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Shift', new_shift_path %>

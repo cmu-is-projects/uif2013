@@ -3,7 +3,7 @@ class Shift < ActiveRecord::Base
   attr_accessor :hidden_id, :hidden_klass
   
   # Set up shifts as polymorphic
-  belongs_to :shiftable_type, :polymorphic => true
+  belongs_to :shiftable, :polymorphic => true
   
   #Other relationship
   belongs_to :volunteer
@@ -16,6 +16,7 @@ class Shift < ActiveRecord::Base
 
   #Scopes
   scope :chronological, order(:start_time)
+  scope :by_date_desc, order('start_time DESC')
   scope :shifts_today, lambda { WHERE("start_time BETWEEN '#{DateTime.now.beginning_of_day}' AND '#{DateTime.now.end_of_day}'") }
   scope :past, where('start_time < ?', DateTime.now)
   scope :upcoming, where('start_time >= ?', DateTime.now)

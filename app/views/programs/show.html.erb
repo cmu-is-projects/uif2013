@@ -31,5 +31,16 @@
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
 </div>
-
+    <!-- add shifts functionality -->
+    <div class="well">
+          <p><%= @program.shifts.size.zero? ? "No shifts yet" : pluralize(@program.shifts.size, 'volunteer shift') %> on this <%= "#{@program.class.to_s.downcase}" %></p>
+          <% unless @shifts.nil?||  @shifts.empty? %>
+              <%= render :partial => "partials/shift_list" %>
+          <% end %>
+    </div>
+    <div class="notes">
+      <div class="note_form">
+        <%= render :partial => "shifts/shift_form_program" %>
+      </div>
+    </div>
 <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @program} %>
