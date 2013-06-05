@@ -14,7 +14,9 @@ class VolunteersController < ApplicationController
   # GET /volunteers/1.json
   def show
     @volunteer = Volunteer.find(params[:id])
-
+    @notes = @volunteer.notes.by_priority
+    @notable = @volunteer
+    @shifts = @volunteer.shifts
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @volunteer }

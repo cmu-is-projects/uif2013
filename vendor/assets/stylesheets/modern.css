@@ -5304,13 +5304,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss #big-tile {
   display: block;
   float: left;
-  background-color: #525252;
+  background-color: #ffffff;
   width: 620px;
   height: 200px;
-  cursor: pointer;
-  box-shadow: inset 0px 0px 1px #FFFFCC;
-  text-decoration: none;
-  color: #ffffff;
+  color: #ff930c;
   position: relative;
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
@@ -5320,9 +5317,38 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-smooth: always;
   margin: 0 10px 10px 0;
   overflow: hidden;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #ff930c;
+}
+.metrouicss #tall-tile {
+  display: block;
+  float: left;
+  background-color: #ff930c;
+  width: 200px;
+  height: 410px;
+  float: right;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 1px #FFFFCC;
+  text-decoration: none;
+  color: #000000;
+  position: relative;
+  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 11pt;
+  letter-spacing: 0.02em;
+  line-height: 14pt;
+  font-smooth: always;
+  margin: 0 10px 10px 0;
+  overflow: hidden;
+  border-width: 5px;
+  border-color: #ff930c;
 }
 .metrouicss .tile * {
   color: #ffffff;
+}
+.metrouicss #big-tile * {
+  color: #000000;
 }
 .metrouicss .tile .tile-content {
   width: 100%;
@@ -5336,10 +5362,9 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   position: relative;
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 12pt;
+  font-size: 10pt;
   font-smooth: always;
   line-height: 11pt;
-  color: #000000;
   color: #ffffff;
   line-height: 16px;
 }
@@ -5348,9 +5373,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 }
 .metrouicss .tile .tile-content:active {
   color: rgba(0, 0, 0, 0.4);
-}
-.metrouicss .tile .tile-content:hover {
-  color: #ffffff;
 }
 .metrouicss .tile .tile-content h1,
 .metrouicss .tile .tile-content h2,
@@ -5379,7 +5401,6 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   font-size: 9pt;
   font-smooth: always;
   line-height: 11pt;
-  color: #000000;
   color: #ffffff;
   line-height: 16px;
   overflow: hidden;
