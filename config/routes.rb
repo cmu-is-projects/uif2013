@@ -71,6 +71,7 @@ Uif2013::Application.routes.draw do
   resources :departments
   resources :enrollments
   resources :section_events
+  resources :conditions
   
   # Default URL
   root :to => 'home#index'
