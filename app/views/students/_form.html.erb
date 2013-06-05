@@ -1,37 +1,44 @@
 <%= simple_nested_form_for @student, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
 <%= f.input :first_name %>
 <%= f.input :last_name %>
-<%= f.input :barcode_number %>
-
-<%= f.input :household_id, :collection => get_households, :prompt => 'Choose Household' %>
-<%= f.input :is_male, :label => "Gender", :as => :radio_buttons, :collection => [["Male ",true], ["Female ",false]], :item_wrapper_class => 'inline' %> 
 <%= f.input :is_visitor %>
 <div id="visitor_households">
     <p>Visitor Information</p>
     <%= simple_fields_for :household do |h| %>
-
-    <%= h.label :family_name %>
-    <%= h.text_field :name %>
-
+    <div class="field">
+        <%= h.label :family_name %>
+        <%= h.text_field :name %>
+    </div>
+</br>
     <div class="field">   
         <%= h.label :street %>
         <%= h.text_field :street %>
     </div>
+</br>
     <div class="field">   
         <%= h.label :street2 %>
         <%= h.text_field :street2 %>
     </div>
+</br>
     <div class="field">   
         <%= h.label :city %>
         <%= h.text_field :city %>
     </div>
+</br>
     <div class="field">   
         <%= h.label :zip %>
         <%= h.text_field :zip %>
     </div>
-    <% end %>
 </div>
-<%= f.input :grade, :collection => (1..12).to_a, :prompt => 'Choose Grade' %>
+
+<%= f.input :barcode_number %>
+
+<%= f.input :household_id, :collection => get_households, :prompt => 'Choose Household' %>
+</br>
+<%= f.input :is_male, :label => "Gender", :as => :radio_buttons, :collection => [["Male ",true], ["Female ",false]], :item_wrapper_class => 'inline' %> 
+<% end %>
+
+<%= f.input :grade, :collection => Student::GRADE_LIST, :prompt => 'Choose Grade' %>
 <%= f.input :date_of_birth, :order => [:month, :day, :year], :start_year => Date.today.year, :end_year => Date.today.year - 20 %>
 <%= f.input :cell_phone %>
 <%= f.input :can_text %>

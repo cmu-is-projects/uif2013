@@ -37,7 +37,9 @@ class Student < ActiveRecord::Base
   scope :not_visitor, where('is_visitor = ? ', false)
   #Misc constants
   STATUS_LIST = [['Active', 'Active'],['Inactive', 'Inactive'],['College', 'College'], ['Graduated', 'Graduated'], ['Missing', 'Missing']]
-  
+  GRADE_LIST = [['1', '1'], ['2' ,'2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9 (Freshman)', '9'], 
+  ['10 (Sophomore)', '10'], ['11 (Junior)','11'], ['12 (Senior)', '12']]
+
   #Other methods
   
   def name

@@ -10,7 +10,7 @@ Background:
         When I go to "the Alex Heimann page"
         Then I should see "Add a Note"
         And I should see "Alexander Heimann"
-        And I should see "June 03, 1997"
+        And I should see "June 05, 1997"
         And I should see "N/A"
         And I should see "alexander.heimann@yahoo.com"
       # And I should see "5406898984616"

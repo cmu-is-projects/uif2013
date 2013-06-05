@@ -136,7 +136,7 @@ Background:
             And I select "3" from "student_date_of_birth_3i"
             And I select "2013" from "student_date_of_birth_1i" 
             And I click the button "Create Student"
-            Then I should see "must be on or before 2013-06-03"
+            Then I should see "must be on or before 2013-06-05"
             #Then I should see "must be on or before #{0.months.ago.to_date.strftime('%Y-%b-%d')}"
             # we should add an error to this missing translation
 
