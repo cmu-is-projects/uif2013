@@ -14,6 +14,16 @@
   <%= @department.active ? "Yes" : "No" %>
 </p>
 
+<p>
+  <b>Trainings:</b>
+
+	<p>	<%= render :partial => "current_trainings" %></p>
+		<%= link_to raw("<i class='icon-plus icon-white'></i> Assign Training"), new_department_training_path(:id => @department.id, :from => 'department'), :class => 'btn btn-primary' %>
+
+
+</p>
+
+
 <div class="form-actions">
   <%= link_to raw("<i class='icon-backward'></i> Back to departments"),
               departments_path, :class => 'btn'  %>

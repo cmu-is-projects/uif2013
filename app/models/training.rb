@@ -1,6 +1,6 @@
 
 class Training < ActiveRecord::Base
-  attr_accessible :description, :level, :name, :next_offered, :type
+  attr_accessible :description, :level, :name, :next_offered
 
     #Relationships
     has_many :volunteer_trainings, :dependent => :delete_all

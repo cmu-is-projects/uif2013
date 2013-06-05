@@ -11,9 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130531212743) do
+ActiveRecord::Schema.define(:version => 20130605015547) do
 
-    
   create_table "allergies", :force => true do |t|
     t.string   "name"
     t.text     "warning_text"
@@ -198,7 +197,6 @@ ActiveRecord::Schema.define(:version => 20130531212743) do
 
   create_table "trainings", :force => true do |t|
     t.string   "name"
-    t.string   "type"
     t.string   "description"
     t.string   "level"
     t.date     "next_offered"
