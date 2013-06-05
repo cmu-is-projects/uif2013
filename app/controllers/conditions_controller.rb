@@ -1,5 +1,9 @@
 class ConditionsController < ApplicationController
 
+require 'will_paginate/array' 
+skip_before_filter :verify_authencity_token
+before_filter :authenticate_user!
+
 	def index
     @conditions = Condition.alphabetical.all #paginate(:page => params[:page]).per_page(10)
 
@@ -26,12 +30,14 @@ class ConditionsController < ApplicationController
   # GET /conditions/new.json
   def new
     @condition = Condition.new
+    @data = params[:data]
 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @condition }
     end
   end
+
 
   # GET /conditions/1/edit
   def edit
@@ -45,7 +51,8 @@ class ConditionsController < ApplicationController
 
     respond_to do |format|
       if @condition.save
-        format.html { redirect_to @condition, notice: "#{@condition.name} was successfully created." }
+      	flash[:notice] = "#{@condition.name} was successfully created."
+        format.html { redirect_to @condition }
         format.json { render json: @condition, status: :created, location: @condition }
       else
         format.html { render action: "new" }
@@ -61,7 +68,8 @@ class ConditionsController < ApplicationController
 
     respond_to do |format|
       if @condition.update_attributes(params[:condition])
-        format.html { redirect_to @condition, notice: "#{@condition.name} was successfully updated." }
+      	flash[:notice] = "#{@condition.name} was successfully updated."
+        format.html { redirect_to @condition }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -77,7 +85,8 @@ class ConditionsController < ApplicationController
     @condition.destroy
 
     respond_to do |format|
-      format.html { redirect_to conditions_url, notice: "#{@condition.name} was successfully deleted." }
+      flash[:notice] = "#{@condition.name} was successfully deleted."
+      format.html { redirect_to conditions_url }
       format.json { head :no_content }
     end
   end	

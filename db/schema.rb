@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605151125) do
+ActiveRecord::Schema.define(:version => 20130605164612) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "student_id"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20130605151125) do
 
   create_table "conditions", :force => true do |t|
     t.string   "name"
-    t.string   "warning_text"
+    t.text     "warning_text"
     t.boolean  "active"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false

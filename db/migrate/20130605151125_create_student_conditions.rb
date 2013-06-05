@@ -1,3 +1,4 @@
+
 class CreateStudentConditions < ActiveRecord::Migration
   def change
     create_table :student_conditions do |t|
