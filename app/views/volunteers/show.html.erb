@@ -76,8 +76,7 @@
               <%= render :partial => "partials/shift_list" %>
 		
           <% end %>
-	  <%= link_to 'Add Shift', new_shift_path %>
-
+	  
     </div>
     <div class="well">
           <p><%= @volunteer.trainings.size.zero? ? "No trainings yet" : pluralize(@volunteer.trainings.size, 'training') %> for this <%= "#{@volunteer.class.to_s.downcase}" %></p>
@@ -125,9 +124,9 @@
 
 	      </div>
 
-          <% end %>
+
     </div></div><div class="span5 pull-right">
-    <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @volunteer} %>
+    <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @volunteer} %>           
   </div></div>
   
 </div>

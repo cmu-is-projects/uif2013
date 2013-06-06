@@ -14,6 +14,10 @@ class TrainingsController < ApplicationController
   # GET /trainings/1.json
   def show
     @training = Training.find(params[:id])
+      # get all the departments for this training
+      @departments = @training.departments.alphabetical.paginate(:page => params[:page]).per_page(8)
+      # get all the volunteers for this training
+      @volunteers = @training.volunteers.alphabetical.paginate(:page => params[:page]).per_page(8)
 
     respond_to do |format|
       format.html # show.html.erb
