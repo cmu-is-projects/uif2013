@@ -1,14 +1,19 @@
 <%= simple_nested_form_for @student, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
+
 <%= f.input :first_name %>
-<%= f.input :last_name %>
+<!--<%= f.input :last_name %> -->
+<p>Last Name <input type="text"id="last_name" name="Last Name" value="" > </p>
+
 <%= f.input :is_visitor %>
+<!--<fieldset style="text-align:center;"> -->
 <div id="visitor_households">
     <p>Visitor Information</p>
     <%= simple_fields_for :household do |h| %>
-    <div class="field">
+   <!--  <div class="field">
         <%= h.label :family_name %>
         <%= h.text_field :name %>
-    </div>
+    </div> -->
+    <p> Family Name <input type="text" id="name" name="Family Name" value=""> </p>
 </br>
     <div class="field">   
         <%= h.label :street %>
@@ -17,12 +22,12 @@
 </br>
     <div class="field">   
         <%= h.label :street2 %>
-        <%= h.text_field :street2 %>
+        <%= h.text_field :street2, :required => false %>
     </div>
 </br>
     <div class="field">   
         <%= h.label :city %>
-        <%= h.text_field :city %>
+        <%= h.text_field :city, :required => false %>
     </div>
 </br>
     <div class="field">   
@@ -30,7 +35,12 @@
         <%= h.text_field :zip %>
     </div>
 </div>
-
+<!--</fieldset> -->
+<script>
+$("#last_name").keyup(function(){
+    $("#name").val(this.value);
+});
+</script>
 <%= f.input :barcode_number %>
 
 <%= f.input :household_id, :collection => get_households, :prompt => 'Choose Household' %>
@@ -38,13 +48,14 @@
 <%= f.input :is_male, :label => "Gender", :as => :radio_buttons, :collection => [["Male ",true], ["Female ",false]], :item_wrapper_class => 'inline' %> 
 <% end %>
 
-<%= f.input :grade, :collection => Student::GRADE_LIST, :prompt => 'Choose Grade' %>
+<%= f.input :grade, :collection => Student::GRADE_LIST, :prompt => 'Choose Grade', :required => true %>
 <%= f.input :date_of_birth, :order => [:month, :day, :year], :start_year => Date.today.year, :end_year => Date.today.year - 20 %>
 <%= f.input :cell_phone %>
 <%= f.input :can_text %>
 <%= f.input :email %>
 <%= f.input :status, :collection => Student::STATUS_LIST, :prompt => 'Choose Status' %>
 <%= f.input :avatar, :label => 'Your photo please' %>
+
 <div id="enrollment_nested_form">
     <%= f.fields_for :enrollments do |enrollment_form| %>
       <%= render 'enrollment_fields', f: enrollment_form %>
@@ -63,4 +74,5 @@
     <%end%>
 </div>
 <% end %>
+
 
