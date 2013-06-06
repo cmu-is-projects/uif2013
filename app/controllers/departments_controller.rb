@@ -82,4 +82,13 @@ class DepartmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+    
+     
+    def unassign
+        department_training = DepartmentTraining.find_by_department_id_and_training_id(params[:id],params[:training_id])
+        if department_training.destroy
+                redirect_to department_path(params[:id])
+        end
+    end
+
 end
