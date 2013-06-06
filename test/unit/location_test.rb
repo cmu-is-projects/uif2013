@@ -4,6 +4,7 @@ class LocationTest < ActiveSupport::TestCase
   # Test Relationships
   should have_many(:events)
   should have_many(:programs).through(:events)
+  should have_one(:school)
   
   # Test Validations
   should validate_presence_of(:name)

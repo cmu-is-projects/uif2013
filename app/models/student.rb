@@ -8,7 +8,7 @@ class Student < ActiveRecord::Base
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "100x100>" }
   
-  #Relationships
+  # Relationships
   belongs_to :household
   has_many :attendances, :dependent => :delete_all
   has_many :enrollments, :dependent => :delete_all
@@ -16,11 +16,12 @@ class Student < ActiveRecord::Base
   has_many :allergies, :through => :student_allergies
   has_many :events, :through => :attendances
   has_many :notes, :as => :notable, :dependent => :destroy
+  belongs_to :school
   
-  #Nested Attributes
+  # Nested Attributes
   accepts_nested_attributes_for :enrollments, :allow_destroy => true
   
-  #Validations
+  # Validations
   validates_presence_of :first_name, :last_name
   validates_presence_of :grade, :date_of_birth, :barcode_number, unless: Proc.new { |s| s.is_visitor}
   validates :date_of_birth, :timeliness => {:on_or_before => lambda { Date.current }, :type => :date}, unless: Proc.new { |s| s.is_visitor}
@@ -31,7 +32,7 @@ class Student < ActiveRecord::Base
   validates_inclusion_of :grade, :in => 1..12, :message => "grades are between 1 and 12"
   validates_format_of :barcode_number, :with => /^\d{12}$/, :message => 'should be 12 digits', :allow_blank => true, :if => :is_visitor
   validates_uniqueness_of :barcode_number
-  #Scopes
+  # Scopes
   scope :active, where('active = ?', true)
   scope :inactive, where('active = ?', false)
   scope :alphabetical, order('last_name, first_name')
@@ -40,7 +41,7 @@ class Student < ActiveRecord::Base
   #Misc constants
   STATUS_LIST = [['Active', 'Active'],['Inactive', 'Inactive'],['College', 'College'], ['Graduated', 'Graduated'], ['Missing', 'Missing']]
   
-  #Other methods
+  # Other methods
   
   def name
     "#{last_name}, #{first_name}"
@@ -126,7 +127,7 @@ class Student < ActiveRecord::Base
     end
   end
   
-  #CRON job
+  # CRON job
   
   def self.change_grade
     graduated_students = Student.where('grade = ? AND status = ?',12, 'Active')
