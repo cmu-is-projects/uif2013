@@ -1,27 +1,37 @@
-<%= simple_form_for(@volunteer) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
+<%= simple_nested_form_for @volunteer, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
-    <%= f.input :barcode_number %>
     <%= f.input :household_id, :collection => get_households, :prompt => 'Choose Household' %>
+    <a href="#" onclick="toggle_visibility('household_form');">Add new household</a>
+    <div id="household_form">
+    <%= f.fields_for :household, Household.new do |builder| %>
+      <%= render 'household_form', :f => builder %>
+    <% end %>      
+    </div>
     <%= f.input :is_male, :label => "Gender", :as => :radio_buttons, :collection => [["Male ",true], ["Female ",false]], :item_wrapper_class => 'inline' %> 
     <%= f.input :date_of_birth, :order => [:month, :day, :year], :start_year => Date.today.year, :end_year => Date.today.year - 90 %>
     <%= f.input :cell_phone %>
     <%= f.input :can_text %>
     <%= f.input :email %>
-    <%= f.input :status %>
+    <%= f.input :status, :collection => Volunteer::STATUS_LIST, :prompt => 'Choose Status' %>
     <%= f.input :avatar, :label => 'Your photo please' %>
     <%= f.input :app_submit_date %>
     <%= f.input :app_approved %>
-    <%= f.input :role %>
+    <%= f.input :role, :collection => Volunteer::ROLE_LIST, :prompt => 'Choose Role' %>
     <%= f.input :name_displayed %>
-    <%= f.input :spouse_id %>
+    <%= f.input :spouse_id, :collection => get_volunteers, :prompt => 'Choose Spouse' %>
     <%= f.input :student_id %>
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <div class="form-actions">
+      <%= f.button :submit, :class => 'btn-success' %>
+        <% if @data.blank? %> 
+          <%= link_to t('.cancel', :default => t("helpers.links.cancel")),volunteers_path, :class => 'btn' %>
+        <%else%>
+          <%= link_to t('.cancel', :default => t("helpers.links.cancel")),home_path, :class => 'btn' %>
+        <%end%>
+    </div>
 <% end %>
+
+
+
+

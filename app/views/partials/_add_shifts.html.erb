@@ -1,6 +1,5 @@
 
   <div class="well">
-        <p><%= obj.shifts.size.zero? ? "No shifts yet" : pluralize(obj.shifts.size, 'shift') %> on this <%= "#{obj.class.to_s.downcase}" %></p>
   	<% unless @shifts.nil?||  @shifts.empty? %>
   		<%= render :partial => "partials/shift_list" %>
   	<% end %>

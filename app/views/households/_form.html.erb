@@ -15,11 +15,9 @@
     <%= f.button :submit, :class => 'btn-success' %>
 
     <% if @data.blank? %> 
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                  households_path, :class => 'btn' %>
+      <%= f.label :_destroy, "Remove" %>
     <%else%>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                  home_path, :class => 'btn' %>
+      <%= f.label :_destroy, "Remove" %>
     <%end%>
   </div> 
 <% end %>

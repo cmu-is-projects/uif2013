@@ -13,7 +13,7 @@
 	      <div id="my-tab-content" class="tab-content">
 		  <div class="tab-pane active" id="red">
 		      <% if @events.current.empty? %> No events today
-		      <% else %>Today - <%= @events.current.count %><% end %>
+		      <% else %><%= render :partial => "./admin-partials/upcoming-events" %><% end %>
 		  </div>
 		  <div class="tab-pane" id="orange">
 		      <%= render :partial => "./admin-partials/past-events" %>
@@ -50,12 +50,12 @@
 	  <li>#1290 volunteer hours</li>
 	  <li>New students - <%= @students.new_student.count %>, New volunteers - <%= @volunteers.new_volunteer.count %></li>
       </div></div>
-      <div class="tile" id="program"><a href="programs.html">
-	<div class="tile-content"><h1>Program</h1>
+      <div class="tile" id="program"><a href="sections">
+	<div class="tile-content"><h1>Program Sections</h1>
 	  <li><% if @sections.maxed_out.empty? %> Sections are available
 	  <% else %>Maxed out sections - <%= @sections.maxed_out.length %><% end %></li>
-	  <li><% unless @sections.empty_sections.empty? %>
-	    Empty sections - <%= @sections.empty_sections.length %><% end %></li>
+	  <% unless @sections.empty_sections.empty? %><li>
+	    Empty sections - <%= @sections.empty_sections.length %></li><% end %>
 	</div></div>
       <div class="tile" id="household"><a href="households.html">
 	<div class="tile-content"><h1>Household</h1>
