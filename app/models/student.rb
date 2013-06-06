@@ -17,7 +17,8 @@ class Student < ActiveRecord::Base
   
   #Nested Attributes
   accepts_nested_attributes_for :enrollments, :allow_destroy => true
-  
+  # accepts_nested_attributes_for :household
+
   #Validations
   validates_presence_of :first_name, :last_name
   validates_presence_of :grade, :date_of_birth, :barcode_number, unless: Proc.new { |s| s.is_visitor}
@@ -29,6 +30,9 @@ class Student < ActiveRecord::Base
   validates_inclusion_of :grade, :in => 1..12, :message => "grades are between 1 and 12"
   validates_format_of :barcode_number, :with => /^\d{12}$/, :message => 'should be 12 digits', :allow_blank => true, :if => :is_visitor
   validates_uniqueness_of :barcode_number
+  # validates_associated :household
+  # validate_associated :enrollments
+
   #Scopes
   scope :active, where('active = ?', true)
   scope :inactive, where('active = ?', false)
