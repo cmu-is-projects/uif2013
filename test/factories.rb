@@ -107,8 +107,20 @@ FactoryGirl.define do
     guardian_type 'Father'
     cell_phone "222-222-2222"
     email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
-    active  true
+    active true
   end
+  
+  factory :school do
+    association :location
+    name  "Klingon Language Institute"
+    min_grade 6
+    max_grade 12
+    category 'charter'
+    phone "412-268-2323"
+    contact_person 'Worf, Son of Mogh'
+    active false
+  end
+  
 end
 
   
