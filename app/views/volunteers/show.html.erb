@@ -71,8 +71,20 @@
           <p><%= @volunteer.shifts.size.zero? ? "No shifts yet" : pluralize(@volunteer.shifts.size, 'shift') %> for this <%= "#{@volunteer.class.to_s.downcase}" %></p>
           <% unless @shifts.nil?||  @shifts.empty? %>
               <%= render :partial => "partials/shift_list" %>
+		
           <% end %>
+	  <%= link_to 'Add Shift', new_shift_path %>
+
     </div>
+    <div class="well">
+          <p><%= @volunteer.trainings.size.zero? ? "No trainings yet" : pluralize(@volunteer.trainings.size, 'training') %> for this <%= "#{@volunteer.class.to_s.downcase}" %></p>
+          <% unless @trainings.nil?||  @trainings.empty? %>
+              <%= render :partial => "partials/training_list" %>
+          <% end %>
+	  <%= link_to 'Add Training to this Volunteer', new_volunteer_training_path(:id => @volunteer.id, :from => 'volunteer', :class => 'btn btn-primary') %>
+
+    </div>
+
     <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @volunteer} %>
   </div>
   

@@ -3,6 +3,6 @@ class DepartmentTraining < ActiveRecord::Base
 
     belongs_to :department
     belongs_to :training
-    
+    validates_uniqueness_of :department_id, :scope => :training_id
     
 end

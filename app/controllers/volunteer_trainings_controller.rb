@@ -44,10 +44,12 @@ class VolunteerTrainingsController < ApplicationController
     def create
 
         @volunteer_training = VolunteerTraining.new(params[:volunteer_training])
+        @volunteer = @volunteer_training.volunteer
+
         if @volunteer_training.save
             # if saved to database
             flash[:notice] = "Successfully created Volunteer Training."
-            redirect_to @volunteer_training # go to show volunteer page
+            redirect_to @volunteer # go to show volunteer page
             else
             # return to the 'new' form
             render :action => 'new'

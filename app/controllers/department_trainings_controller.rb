@@ -44,10 +44,12 @@ class DepartmentTrainingsController < ApplicationController
     def create
 
         @department_training = DepartmentTraining.new(params[:department_training])
+        @department = @department_training.department
+
         if @department_training.save
             # if saved to database
             flash[:notice] = "Successfully created Department Training."
-            redirect_to @department_training # go to show department page
+            redirect_to @department # go to show department page
             else
             # return to the 'new' form
             render :action => 'new'

@@ -4,6 +4,7 @@ class Training < ActiveRecord::Base
 
     #Relationships
     has_many :volunteer_trainings, :dependent => :delete_all
+    has_many :volunteers, :through => :volunteer_trainings
     has_many :department_trainings, :dependent => :delete_all
     has_many :notes, :as => :notable, :dependent => :destroy
     

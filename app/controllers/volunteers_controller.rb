@@ -17,6 +17,7 @@ class VolunteersController < ApplicationController
     @notes = @volunteer.notes.by_priority
     @notable = @volunteer
     @shifts = @volunteer.shifts
+    @trainings = @volunteer.trainings.alphabetical
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @volunteer }
