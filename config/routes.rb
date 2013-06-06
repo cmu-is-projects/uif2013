@@ -43,11 +43,11 @@ Uif2013::Application.routes.draw do
   
 
   #Generated model routes
-  resources :allergies
+  #resources :allergies
   resources :guardians do
     resources :notes
   end
-  resources :student_allergies
+  #resources :student_allergies
   resources :households do 
     resources :notes
   end
@@ -71,6 +71,7 @@ Uif2013::Application.routes.draw do
   resources :departments
   resources :enrollments
   resources :section_events
+  resources :conditions
   
   # Default URL
   root :to => 'home#index'
