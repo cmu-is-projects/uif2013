@@ -13,7 +13,7 @@
 
 <h1>All Sections</h1>
 
-<table class="table table-striped">
+<table class="table">
   <thead>
   <tr>
     <th width="320">Program<br />name</th>
@@ -26,17 +26,32 @@
   </thead>
   <tbody id="list">
 <% @sections.each do |section| %>
-  <tr>
-    <td><%= link_to section.program.name, program_path(section.program) %></td>
-    <td><%= link_to section.name, section_path(section) %></td>
+  <% if section.enrollments.size==section.max_capacity || section.enrollments.size== 0 %>
+    <tr bgcolor="#EEB4B4">
+      <td><%= link_to section.program.name, program_path(section.program) %></td>
+      <td><%= link_to section.name, section_path(section) %></td>
+  
+      <td align="center"><%= section.enrollments.size %></td>
+      <td align="center"><%= section.max_capacity %></td>
+  
+      <td><%= section.active ? "Yes" : "No" %></td>
+      <td><%= link_to raw("<i class='icon-edit'></i> Edit"),
+		  edit_section_path(section), :class => 'btn btn-mini' %></td>
+    </tr>
+  <% else %>
+    <tr>
+      <td><%= link_to section.program.name, program_path(section.program) %></td>
+      <td><%= link_to section.name, section_path(section) %></td>
+  
+      <td align="center"><%= section.enrollments.size %></td>
+      <td align="center"><%= section.max_capacity %></td>
+  
+      <td><%= section.active ? "Yes" : "No" %></td>
+      <td><%= link_to raw("<i class='icon-edit'></i> Edit"),
+		  edit_section_path(section), :class => 'btn btn-mini' %></td>
+    </tr>
+  <% end %>
 
-    <td align="center"><%= section.enrollments.size %></td>
-    <td align="center"><%= section.max_capacity %></td>
-
-    <td><%= section.active ? "Yes" : "No" %></td>
-    <td><%= link_to raw("<i class='icon-edit'></i> Edit"),
-                edit_section_path(section), :class => 'btn btn-mini' %></td>
-  </tr>
 <% end %>
 </tbody>
 </table>

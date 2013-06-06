@@ -10,7 +10,7 @@ class Section < ActiveRecord::Base
   accepts_nested_attributes_for :enrollments
 
   scope :active, where('active = ?', true) 
-  scope :alphabetical, joins(:program).order('programs.name, sections.name')
+  scope :alphabetical, joins('left join programs on sections.program_id=programs.id').order('programs.name, sections.name')
   scope :maxed_out, joins(:enrollments).select('sections.id').group('sections.id').having('count(enrollments.id) = sections.max_capacity')
   scope :empty_sections, joins('left outer join enrollments on sections.id=enrollments.section_id').select('sections.id').group('sections.id').having('count(enrollments.id) = 0')
 

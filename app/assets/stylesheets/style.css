@@ -47,26 +47,30 @@ table {
 #search #query {
   margin: 0 0 0 8px; }
 
+#household_form {
+  display: none;
+}
+
 #visitor {
-  background: #ff8c00;
+  background: #BF8337;
 }
 #student {
-  background: #cc8829;
+  background: #A65E04;
 }
 #volunteer {
-  background: #e58f17;
+  background: #FFC479;
 }
 #event {
   background: #ff9500;
 }
 #program {
-  background: #cc7a29;
+  background: #ff9500;
 }
 #household {
-  background: #e57e17;
+  background: #FFAE49;
 }
 #guardian {
-  background: #ff8000;
+  background: #BF8337;
 }
 .dashboard {
   width: 840px;

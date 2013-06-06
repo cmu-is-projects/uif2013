@@ -3,7 +3,8 @@
 
   <div class="form-inputs">
   <div class="field">
-    <%= f.input :volunteer_id %><br />  
+    <%= f.collection_select :volunteer_id, Volunteer.order(:first_name), :id, :proper_name, :prompt => "-- Select Volunteer --" %>
+  </div>
   </div>
     <%= f.input :start_time %>
     <%= f.input :end_time %>

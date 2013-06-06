@@ -13,7 +13,7 @@
 
 <% @shifts.each do |shift| %>
   <tr>
-    <td><%= shift.volunteer.proper_name %></td>
+    <td><%= link_to shift.volunteer.name, volunteer_path(shift.volunteer) %></td>
     <td><%= shift.start_time.strftime("%b %d, %Y") %></td>
     <td><%= shift.start_time.strftime("%I:%M %P") %></td>
     <td><%= shift.end_time.strftime("%I:%M %P") %></td>

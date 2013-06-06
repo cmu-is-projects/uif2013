@@ -1,39 +1,18 @@
-<h1>Listing volunteers</h1>
+<div class="row-fluid">
+  <div class="span8">
+    <div id="search">
+    	<%= form_tag('/volunteers/search') do %>
+    		<strong>Quick Filter:</strong> <%= text_field_tag 'query' -%>
+    	<% end %>
+    </div>
+  </div>
+  <div class="span4">
+    <%= link_to raw("<i class='icon-plus'></i> <strong>Add volunteer</strong>"), new_volunteer_path, :class => 'btn btn-success pull-right' %>
+  </div>
+</div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Cell phone</th>
-      <th>Email</th>
-      <th>App approved</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody id="list">
-    <% @volunteers.each do |volunteer| %>
-      <tr>
-        <td><%= link_to volunteer.name, volunteer %></td>
-        <td><% if volunteer.can_text == true %>
-                <%= volunteer.cell_phone %>&nbsp;<i class='icon-phone'></i>
-                <%else%><%= volunteer.cell_phone %>
-                <%end%></td>
-        <td><%= mail_to(volunteer.email) %></td>
-        <td><% if volunteer.app_approved == true %>
-            <i class='icon-ok'></i>
-            <%else%>
-              <i class='icon-remove'></i>
-          <%end%>
-        </td>
-        <td><%= link_to raw("<i class='icon-file'></i>"), new_note_path(:id => volunteer.id, :source => 'volunteer'), :class => 'btn btn-mini' %>
-        &nbsp;<%= link_to raw("<i class='icon-pencil'></i>"),edit_volunteer_path(volunteer), :class => 'btn btn-mini' %></td>
-  </tbody>
-
-  </tr>
+<% if @query == 0 %>
+  <%= render :partial => "normal-table" %>
+<% else %>
+  <%= render :partial => "query-table"%>  
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Volunteer', new_volunteer_path %>

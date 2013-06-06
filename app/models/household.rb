@@ -5,6 +5,7 @@ class Household < ActiveRecord::Base
   # Relationships
   has_many :guardians
   has_many :students
+  has_many :volunteers
   has_many :notes, :as => :notable, :dependent => :destroy
 
   #Validations

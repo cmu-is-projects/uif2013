@@ -14,7 +14,8 @@ class ShiftsController < ApplicationController
   # GET /shifts/1.json
   def show
     @shift = Shift.find(params[:id])
-
+    @shiftable_type = @shift.shiftable_type
+    @shfitable_id = @shift.shiftable_id
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @shift }
@@ -25,6 +26,7 @@ class ShiftsController < ApplicationController
   # GET /shifts/new.json
   def new
     @shift = Shift.new
+    @volunteers = Volunteer.all
     unless params[:id].nil? || params[:source].nil?
       @klass = params[:source]
       @klass_id = params[:id]

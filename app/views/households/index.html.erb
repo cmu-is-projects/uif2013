@@ -11,11 +11,11 @@
   </div>
 </div>
 
-<% unless @households.missing_info.empty? %>
+<% unless @households.active.missing_info.empty? %>
   <div class="alert">
     <div class="low">
       <h3>Households missing insurance information</h3>
-      <% @households.missing_info.each do |household| %>
+      <% @households.active.missing_info.each do |household| %>
       Family Name - <%= link_to household.name, household_path(household) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add insurance information", edit_household_path(household) %><br>
     <% end %>
     </div>
