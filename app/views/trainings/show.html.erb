@@ -1,0 +1,25 @@
+
+
+<p>
+  <b>Name:</b>
+  <%= @training.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @training.description %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%= @training.level %>
+</p>
+
+<p>
+  <b>Next Offered:</b>
+  <%= @training.next_offered.strftime("%B %d, %Y") %>
+</p>
+
+
+<%= link_to 'Edit', edit_training_path(@training) %> |
+<%= link_to 'Back', trainings_path %>

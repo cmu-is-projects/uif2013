@@ -1,10 +1,21 @@
 Uif2013::Application.routes.draw do
+  get "check/edit"
+
+  get "check/index"
+
+  get "check/new"
+
+  get "check/show"
+
+  get "training/index"
+
+  get "training/show"
+
   resources :volunteers
-
-
-  resources :shifts
-
-
+  resources :trainings  
+  resources :checks
+    resources :shifts
+    resources :department_trainings
   resources :notes
 
   #require 'api_constraints' 
