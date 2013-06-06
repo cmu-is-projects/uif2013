@@ -53,7 +53,7 @@ $("#last_name").keyup(function(){
 <%= f.input :cell_phone %>
 <%= f.input :can_text %>
 <%= f.input :email %>
-<%= f.input :status, :collection => Student::STATUS_LIST, :prompt => 'Choose Status' %>
+<%= f.input :status, :collection => Student::STATUS_LIST, :default => 'Choose Status' %>
 <%= f.input :avatar, :label => 'Your photo please' %>
 
 <div id="enrollment_nested_form">
