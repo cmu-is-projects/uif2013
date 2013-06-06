@@ -17,6 +17,7 @@ class Student < ActiveRecord::Base
   
   #Nested Attributes
   accepts_nested_attributes_for :enrollments, :allow_destroy => true
+  accepts_nested_attributes_for :household
   
   #Validations
   validates_presence_of :first_name, :last_name
@@ -30,7 +31,9 @@ class Student < ActiveRecord::Base
   validates_format_of :barcode_number, :with => /^\d{12}$/, :message => 'should be 12 digits', :allow_blank => true, :if => :is_visitor
   validates_uniqueness_of :barcode_number
   #validate :one_form_of_contact_is_required
-  validate :any_present?
+  #validate :any_present?
+  validates_associated :household
+  validates_associated :enrollments
 
   #Scopes
   scope :active, where('active = ?', true)
