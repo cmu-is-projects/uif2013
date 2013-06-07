@@ -1,0 +1,24 @@
+
+<% if @volunteers.empty? %>
+There are no volunteers with this check at this time.
+<p><br>
+<% else %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Volunteer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @volunteers.each do |volunteer| %>
+      <tr>
+				<td><%= link_to volunteer.name, volunteer_path(volunteer) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+<% end %>
+
+<%= will_paginate @volunteers, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>

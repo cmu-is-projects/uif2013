@@ -1,0 +1,26 @@
+<h1>Check Details </h1>
+
+<p>
+  <b>Name:</b>
+  <%= @check.name %>
+</p>
+
+<p>
+  <b>Duration:</b>
+  <%= @check.duration %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%= @check.cost %>
+</p>
+
+
+
+
+
+<p>              <%= render :partial => "current_volunteers" %> </p>
+
+<%= link_to 'Edit', edit_check_path(@check) %> |
+<%= link_to 'Back', checks_path %>
+

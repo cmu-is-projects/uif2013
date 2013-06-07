@@ -18,6 +18,7 @@ class VolunteersController < ApplicationController
     @notable = @volunteer
     @shifts = @volunteer.shifts
     @trainings = @volunteer.trainings.alphabetical
+    @checks = @volunteer.checks.alphabetical
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @volunteer }

@@ -17,6 +17,7 @@ Uif2013::Application.routes.draw do
     resources :shifts
     resources :department_trainings
     resources :volunteer_trainings
+    resources :volunteer_checks
   resources :notes
 
   #require 'api_constraints' 
