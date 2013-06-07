@@ -4,7 +4,7 @@
   <thead>
       <tr>
           <th><%= model_class.human_attribute_name(:name) %></th>
-          <th><%= model_class.human_attribute_name(:grade) %></th>
+          <th><%= model_class.human_attribute_name(:date_of_birth) %></th>
           <th><%= model_class.human_attribute_name(:cell_phone) %></th>
           <th><%= model_class.human_attribute_name(:email) %></th>
           <th></th>
@@ -15,7 +15,7 @@
       <tr>
 
       <td><%= link_to student.name, student_path(student) %></td>
-      <td><%= student.grade %></td>
+      <td><%= student.date_of_birth.strftime("%B %d, %Y") %></td>
       <td><%= number_to_phone(student.cell_phone) %></td>
       <td><%= mail_to(student.email) %></td> 
        

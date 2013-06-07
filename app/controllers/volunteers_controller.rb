@@ -28,6 +28,7 @@ class VolunteersController < ApplicationController
   # GET /volunteers/new.json
   def new
     @volunteer = Volunteer.new
+    @volunteer_first_name = Student.search(params[:volunteer_first_name])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @volunteer }
@@ -103,6 +104,15 @@ class VolunteersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to volunteers_url }
       format.json { head :no_content }
+    end
+  end
+  
+  def students
+    if !params[:date].nil?
+      month = params[:date][:month]
+      year = params[:date][:year]
+      day = params[:date][:day]
+      @student = ActiveRecord::Base.connection.execute('SELECT students.name AS student FROM "students" WHERE (EXTRACT(MONTH from date_of_birth)::int = '+month+' AND EXTRACT(YEAR from date)::int ='+year+' AND EXTRACT(DAY from date)::int ='+day+') ORDER BY student')
     end
   end
 end

@@ -1,8 +1,9 @@
-<%= simple_nested_form_for @volunteer, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
-    <%= f.input :first_name %>
+<%= simple_nested_form_for @volunteer, :remote => true, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
+    <%= f.input :first_name, :id => "first_name" %>
     <%= f.input :last_name %>
     <%= f.input :household_id, :collection => get_households, :prompt => 'Choose Household' %>
-    <a href="#" onclick="toggle_visibility('household_form');">Add new household</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#" onclick="toggle_visibility('household_form');">Add new household</a>
     <div id="household_form">
     <%= f.fields_for :household, Household.new do |builder| %>
       <%= render 'household_form', :f => builder %>
@@ -20,8 +21,7 @@
     <%= f.input :role, :collection => Volunteer::ROLE_LIST, :prompt => 'Choose Role' %>
     <%= f.input :name_displayed %>
     <%= f.input :spouse_id, :collection => get_volunteers, :prompt => 'Choose Spouse' %>
-    <%= f.input :student_id %>
-
+    <%= f.input :student_id, :collection => get_students, :prompt => 'Choose Student' %>
     <div class="form-actions">
       <%= f.button :submit, :class => 'btn-success' %>
         <% if @data.blank? %> 
