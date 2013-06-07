@@ -3,9 +3,12 @@
 <head>
     <title>Uif2013</title>
     <%= include_gon %>
+    <%= stylesheet_link_tag "modern" %>
     <%= stylesheet_link_tag "application", "http://fonts.googleapis.com/css?family=Oswald", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "bootstrap" %>
     <%= yield :javascripts %>
+    <%= yield :head %>
     <%= csrf_meta_tags %>
 </head>
 <body>

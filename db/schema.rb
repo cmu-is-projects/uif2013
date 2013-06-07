@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529040437) do
+ActiveRecord::Schema.define(:version => 20130605015547) do
 
   create_table "allergies", :force => true do |t|
     t.string   "name"
@@ -197,7 +197,6 @@ ActiveRecord::Schema.define(:version => 20130529040437) do
 
   create_table "trainings", :force => true do |t|
     t.string   "name"
-    t.string   "type"
     t.string   "description"
     t.string   "level"
     t.date     "next_offered"
@@ -242,6 +241,13 @@ ActiveRecord::Schema.define(:version => 20130529040437) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "volunteer_meals", :force => true do |t|
+    t.integer  "volunteer_id"
+    t.integer  "event_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "volunteer_trainings", :force => true do |t|
     t.integer  "volunteer_id"
     t.integer  "training_id"
@@ -269,6 +275,8 @@ ActiveRecord::Schema.define(:version => 20130529040437) do
     t.boolean  "app_approved"
     t.string   "role"
     t.string   "name_displayed"
+    t.integer  "spouse_id"
+    t.integer  "student_id"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end

@@ -4,7 +4,7 @@
 body {
   color: black;
   font-size: 0.9em;
-  padding: 100px 0 60px; }
+  padding: 80px 0 60px; }
 
 a {
   color: #8d1f12;
@@ -37,7 +37,8 @@ table {
     padding: 4px 8px; }
 
 .container-fluid {
-  padding: 0 60px 0 230px; }
+  padding: 0 40px 0 180px;
+  }
 
 .pagination ul li.active a {
   background-color: #ffeb00;
@@ -46,9 +47,51 @@ table {
 #search #query {
   margin: 0 0 0 8px; }
 
+#household_form {
+  display: none;
+}
+
+#visitor {
+  background: #BF8337;
+}
+#student {
+  background: #A65E04;
+}
+#volunteer {
+  background: #FFC479;
+}
+#event {
+  background: #ff9500;
+}
+#program {
+  background: #ff9500;
+}
+#household {
+  background: #FFAE49;
+}
+#guardian {
+  background: #BF8337;
+}
+.dashboard {
+  width: 840px;
+}
+.dashboard table {
+  font-size: 10px;
+}
+.tile-content ul {
+  list-style-type: none;
+  list-style: none;
+}
 .table tr td:last-child {
   white-space: nowrap; }
 
+ul.nav li.dropdown:hover > ul.dropdown-menu{
+    display: block;    
+}
+
+a.menu:after, .dropdown-toggle:after {
+    content: none;
+}
 /*========================================
   NAVBAR
   ========================================*/
@@ -57,51 +100,53 @@ table {
   background-image: none;
   border-style: solid;
   border-color: #b6f23d;
-  border-width: 0 0 10px;
-  height: 65px;
+  border-width: 0 0 5px;
+  height: 45px;
   padding: 0 60px; }
 
 .navbar .brand {
   padding: 3px 20px; }
   .navbar .brand .logo {
-    width: 150px;
-    height: 115px; }
+    width: 100px;
+    height: 77px; }
 
 .navbar .nav li a {
-  background: #ffb432;
+  background: #ff930c;
   color: #8d1f12;
-  line-height: 65px;
+  line-height: 43px;
+  margin-top: 1px;
   margin-right: 1px;
+  margin-bottom: 1px;
   padding: 0 20px;
   text-shadow: none; }
-  .navbar .nav li a:hover {
-    background: #ffeb00;
-    color: #8d1f12; }
-  .navbar .nav li a i {
-    margin-right: 3px; }
+.navbar .nav li a:hover {
+  background: #ffeb00;
+  color: #8d1f12; }
+.navbar .nav li a i {
+  margin-right: 3px; }
 .navbar .nav li.active a, .navbar .nav li.active a:hover {
   background: #ffeb00;
   box-shadow: none;
   color: #8d1f12;
   position: relative; }
-  .navbar .nav li.active a:after, .navbar .nav li.active a:hover:after {
-    content: '';
-    height: 0;
-    width: 0;
-    position: absolute;
-    left: 42.5%;
-    top: 65px;
-    border-style: solid;
-    border-width: 10px;
-    border-color: transparent;
-    border-top-color: #ffeb00; }
+.navbar .nav li.active a:after, .navbar .nav li.active a:hover:after {
+  content: '';
+  height: 0;
+  width: 0;
+  position: absolute;
+  left: 42.5%;
+  top: 45px;
+  border-style: solid;
+  border-width: 10px;
+  border-color: transparent;
+  border-top-color: #ffeb00; }
 
 #login {
   display: inline-block;
   float: right;
-  line-height: 65px; }
-  #login a {
-    color: #8d1f12; }
+  line-height: 45px; }
+#login a {
+  color: #8d1f12; }
 
 /*========================================
   STUDENTS

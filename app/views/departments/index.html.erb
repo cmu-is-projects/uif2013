@@ -1,25 +1,21 @@
-<div class="row">
-  <div class="span10">
-    <div class="page-header">
-      <h1>All Departments</h1>
-    </div>
-</div>
-<div class="span2">
-<%= link_to raw("<i class='icon-plus'></i> <strong>Add department</strong>"), new_department_path, :class => 'btn btn-primary' %>
-</div>
+<div class="row-fluid">
+<div class="span12">
+<%= link_to raw("<i class='icon-plus'></i> <strong>Add department</strong>"), new_department_path, :class => 'btn btn-success pull-right' %>
 </div>
 
+<div class="span 10">
+  <h1>All Departments</h1>
 <table class="table table-striped">
   <thead>
     <tr>
-    <th width="220">Name</th>
-    <th width="670">Description</th>
-    <th width="80">Active</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Active</th>
     <th></th>
     </tr>
   </thead>
   <tbody id="list">
-<% @departments.each do |department| %>
+    <% @departments.each do |department| %>
   <tr>
     <td><%= link_to department.name, department_path(department) %></td>
     <td><%= department.description %></td>
@@ -35,3 +31,4 @@
 <br />
 
 <%# link_to raw("<i class='icon-plus'></i> <strong>Add department</strong>"), new_department_path, :class => 'btn btn-primary' %>
+</div></div>

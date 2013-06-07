@@ -1,0 +1,15 @@
+
+
+<p>
+  <b>Section:</b>
+  <%= @department_training.department_id %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%= @department_training.training_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_department_training_path(@department_training) %> |
+<%= link_to 'Back', department_trainings_path %>

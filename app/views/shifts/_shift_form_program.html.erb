@@ -1,0 +1,12 @@
+<div class="well">
+  <h2>Add a shift</h2>
+  <%= simple_form_for([@shiftable, Shift.new], :html => { :class => 'form-horizontal' }) do |f| %>
+    <fieldset>
+        <%= f.collection_select :volunteer_id, Volunteer.order(:first_name), :id, :proper_name, :prompt => "-- Select Volunteer --" %>
+        <%= f.input :start_time, :order => [:month, :day, :year, :hour, :minute] %>
+        <%= f.input :end_time, :order => [:month, :day, :year, :hour, :minute] %>
+        <%= f.submit nil, :class => 'btn btn-success' %>
+    </fieldset>
+  <% end %>
+</div>
+

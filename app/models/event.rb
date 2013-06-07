@@ -9,7 +9,8 @@ class Event < ActiveRecord::Base
   has_many :students, :through => :attendances
   has_many :sections, :through => :section_events
   has_many :notes, :as => :notable, :dependent => :destroy
-   
+  has_many :shifts, :as => :shiftable, :dependent => :destroy
+  
   #Validations
   validates_presence_of :location_id, :message => "must enter location"
   validates_presence_of :program_id, :message => "must enter program"
@@ -28,6 +29,7 @@ class Event < ActiveRecord::Base
   scope :past, where('date < ?', Date.today)
   scope :upcoming, where('date >= ?', Date.today)
   scope :current, where('date = ?', Date.today)
+  scope :this_week, where("date >= ? AND date <= ?", Date.today, Date.today.next_week)
   scope :by_date, order('date')
   scope :by_date_desc, order('date DESC')
   
