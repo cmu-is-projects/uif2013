@@ -13,5 +13,7 @@ class Training < ActiveRecord::Base
     validates_uniqueness_of :name
     
     scope :alphabetical, order('name')
+    scope :for_training, lambda {|training_id| where("training_id = ?", training_id) }
+    scope :for_check, lambda {|check_id| where("check_id = ?", check_id) }
     
 end

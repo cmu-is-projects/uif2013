@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :duration %>
+    <%= f.input :duration, :collection => [*1..24], :prompt => 'Number of Months'  %>
     <%= f.input :cost %>
 
   </div>

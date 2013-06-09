@@ -20,10 +20,12 @@
         <td><%= training.description %></td>
         <td><%= link_to raw("<i class='icon-file'></i>"), new_note_path(:id => training.id, :source => 'training'), :class => 'btn btn-mini' %>
         &nbsp;<%= link_to raw("<i class='icon-pencil'></i>"),edit_training_path(training), :class => 'btn btn-mini' %></td>
-  </tbody>
-
   </tr>
 <% end %>
+
+  </tbody>
+
+
 </table>
 
 <br />

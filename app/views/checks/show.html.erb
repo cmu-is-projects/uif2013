@@ -12,7 +12,7 @@
 
 <p>
   <b>Cost:</b>
-  <%= @check.cost %>
+  $<%= @check.cost %>
 </p>
 
 
@@ -21,6 +21,15 @@
 
 <p>              <%= render :partial => "current_volunteers" %> </p>
 
-<%= link_to 'Edit', edit_check_path(@check) %> |
-<%= link_to 'Back', checks_path %>
+<div class="form-actions">
+  <%= link_to raw("<i class='icon-backward'></i> Back to checks"),
+              checks_path, :class => 'btn'  %>
+  <%= link_to raw("<i class='icon-edit'></i> Edit this check"),
+              edit_check_path(@check), :class => 'btn' %>
+  <%= link_to raw("<i class='icon-remove'></i> Destroy this check"),
+              check_path(@check),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 

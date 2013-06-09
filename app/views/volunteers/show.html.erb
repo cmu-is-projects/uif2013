@@ -79,20 +79,27 @@
 	  
     </div>
     <div class="well">
+      <h2>Volunteer Trainings</h2>
           <p><%= @volunteer.trainings.size.zero? ? "No trainings yet" : pluralize(@volunteer.trainings.size, 'training') %> for this <%= "#{@volunteer.class.to_s.downcase}" %></p>
           <% unless @trainings.nil?||  @trainings.empty? %>
               <%= render :partial => "partials/training_list" %>
-          <% end %>
-	  <%= link_to 'Add Training to this Volunteer', new_volunteer_training_path(:id => @volunteer.id, :from => 'volunteer', :class => 'btn btn-primary') %>
+          <% end %><br>
+    <%= link_to raw("<i class='icon-plus'></i> <strong>Add Training to this Volunteer</strong>"), new_volunteer_training_path, :class => 'btn-small btn-success' %></br>
+
+
 
     </div>
 
     <div class="well">
+      <h2>Volunteer Checks</h2>
           <p><%= @volunteer.checks.size.zero? ? "No checks yet" : pluralize(@volunteer.checks.size, 'check') %> for this <%= "#{@volunteer.class.to_s.downcase}" %></p>
           <% unless @checks.nil?||  @checks.empty? %>
               <%= render :partial => "partials/check_list" %>
           <% end %>
-    <%= link_to 'Add Check to this Volunteer', new_volunteer_check_path(:id => @volunteer.id, :from => 'volunteer', :class => 'btn btn-primary') %>
+
+<br>
+    <%= link_to raw("<i class='icon-plus'></i> <strong>Add Check to this Volunteer</strong>"), new_volunteer_check_path, :class => 'btn-small btn-success' %></br>
+
 
     </div>
 
@@ -131,11 +138,11 @@
                       </table><% end %>
 		  </div>
 
-	      </div>
 
 
-    </div></div><div class="span5 pull-right">
+    </div></div><div class="span6 pull-right">
     <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @volunteer} %>           
   </div></div>
+	      </div>
   
 </div>

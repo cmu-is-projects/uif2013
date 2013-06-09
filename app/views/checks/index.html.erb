@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Duration</th>
+      <th>Duration (in Months)</th>
       <th>Cost</th>
       <th></th>
     </tr>
@@ -17,15 +17,15 @@
       <tr>
         <td><%= link_to check.name, check %></td>
         <td><%= check.duration %></td>
-        <td><%= check.cost %></td>
+        <td>$<%= check.cost %></td>
         <td><%= link_to raw("<i class='icon-file'></i>"), new_note_path(:id => check.id, :source => 'check'), :class => 'btn btn-mini' %>
         &nbsp;<%= link_to raw("<i class='icon-pencil'></i>"),edit_check_path(check), :class => 'btn btn-mini' %></td>
-  </tbody>
-
   </tr>
 <% end %>
+
+  </tbody>
+
 </table>
 
 <br />
 
-<%= link_to 'New Check', new_check_path %>
