@@ -1,3 +1,11 @@
-<% for check in @checks %>
-<li><%= check.name %></li>
+<% for volunteer_check in @volunteer_checks %>
+<li><%= link_to volunteer_check.check.name, volunteer_check.check %> , 
+	<% if volunteer_check.date_completed.nil? %>
+		Pending
+  	<% else %>
+
+	<%= volunteer_check.date_completed.strftime("%m/%d/%y") %>	
+  	<% end %>
+</li>
+
 <% end %>

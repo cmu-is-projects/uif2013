@@ -23,7 +23,7 @@
       </div></div>
       <div class="tile" id="visitor"><a href="students.html">
 	<div class="tile-content"><h1>Visitors</h1>
-	  <li>New visitors - <%= @visitors.new_visitor.count %></li>
+	  <li>New visitors: <%= @visitors.new_visitor.count %></li>
 	  <li><%= link_to "Add visitor", new_student_path %></li>
       </div></div>
       <div class="tile" id="student"><a href="students.html">
@@ -37,9 +37,9 @@
       <div class="tile" id="event"><a href="events.html">
 	<div class="tile-content"><h1>Event</h1>
 	  <li><% if @events.current.empty? %> No events today
-	  <% else %>Today - <%= @events.current.count %><% end %></li>
+	  <% else %>Today: <%= @events.current.count %><% end %></li>
 	  <li><% if @events.this_week.empty? %> No events next week
-	  <% else %>This week - <%= @events.this_week.count %><% end %></li>
+	  <% else %>This week: <%= @events.this_week.count %><% end %></li>
       </div></div>
       <div id="tall-tile" class="tile"><a href="statistics.html">
 	<div class="tile-content"><h1>Statistics</h1>
@@ -48,20 +48,20 @@
 	  <h3>For the past week</h3>
 	  <li>#75.3% student attendance</li>
 	  <li>#1290 volunteer hours</li>
-	  <li>New students - <%= @students.new_student.count %>, New volunteers - <%= @volunteers.new_volunteer.count %></li>
+	  <li>New students: <%= @students.new_student.count %>, New volunteers: <%= @volunteers.new_volunteer.count %></li>
       </div></div>
       <div class="tile" id="program"><a href="sections">
 	<div class="tile-content"><h1>Program Sections</h1>
 	  <li><% if @sections.maxed_out.empty? %> Sections are available
-	  <% else %>Maxed out sections - <%= @sections.maxed_out.length %><% end %></li>
+	  <% else %>Maxed out sections: <%= @sections.maxed_out.length %><% end %></li>
 	  <% unless @sections.empty_sections.empty? %><li>
-	    Empty sections - <%= @sections.empty_sections.length %></li><% end %>
+	    Empty sections: <%= @sections.empty_sections.length %></li><% end %>
 	</div></div>
       <div class="tile" id="household"><a href="households.html">
 	<div class="tile-content"><h1>Household</h1>
 	  <li><% if @households.missing_info.empty? %>
 	    All is good<% else %>
-	    Missing insurance info - <%= @households.missing_info.length %><% end %></li>
+	    Missing insurance info: <%= @households.missing_info.length %><% end %></li>
       </div></div>
       <div class="tile" id="guardian"><a href="guardians.html">
 	<div class="tile-content"><h1>Guardian</h1>

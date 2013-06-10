@@ -1,5 +1,5 @@
 
-<% if @volunteers.empty? %>
+<% if @volunteer_trainings.empty? %>
 There are no volunteers for this training at this time.
 <p><br>
 <% else %>
@@ -8,12 +8,15 @@ There are no volunteers for this training at this time.
   <thead>
     <tr>
       <th>Volunteer</th>
+      <th>Date</th>
     </tr>
   </thead>
   <tbody>
-    <% @volunteers.each do |volunteer| %>
+    <% @volunteer_trainings.each do |volunteer_training| %>
       <tr>
-				<td><%= link_to volunteer.name, volunteer_path(volunteer) %> </td>
+				<td><%= link_to volunteer_training.volunteer.name, volunteer_path(volunteer_training.volunteer) %> </td>
+				<td><%= link_to volunteer_training.date.strftime("%B %d, %Y") %> </td>
+
       </tr>
     <% end %>
   </tbody>
@@ -21,4 +24,3 @@ There are no volunteers for this training at this time.
 </table>
 <% end %>
 
-<%= will_paginate @volunteers, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>

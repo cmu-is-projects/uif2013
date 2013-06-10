@@ -1,3 +1,3 @@
-<% for training in @trainings %>
-<li><%= training.name %> <%= training.level%> </li>
+<% for volunteer_training in @volunteer_trainings %>
+<li><%= link_to volunteer_training.training.name, volunteer_training.training %> , <%= volunteer_training.training.level%>, <%= volunteer_training.date.strftime("%m/%d/%y") %></li>
 <% end %>

@@ -1,5 +1,5 @@
 
-<% if @volunteers.empty? %>
+<% if @volunteer_checks.empty? %>
 There are no volunteers with this check at this time.
 <p><br>
 <% else %>
@@ -8,12 +8,20 @@ There are no volunteers with this check at this time.
   <thead>
     <tr>
       <th>Volunteer</th>
+      <th>Date Submitted</th>
+      <th>Date Completed</th>
+      <th>Paid</th>
+      <th>Approved</th>
     </tr>
   </thead>
   <tbody>
-    <% @volunteers.each do |volunteer| %>
+    <% @volunteer_checks.each do |volunteer_check| %>
       <tr>
-				<td><%= link_to volunteer.name, volunteer_path(volunteer) %> </td>
+				<td><%= link_to volunteer_check.volunteer.name, volunteer_check.volunteer %></td>
+				<td>	<%= volunteer_check.date_submitted.strftime("%m/%d/%y") %> </td>
+				<td>	<%= volunteer_check.date_completed.strftime("%m/%d/%y") %> </td>
+				<td>	<%= volunteer_check.paid ? "Yes" : "No" %> </td>
+				<td>	<%= volunteer_check.approved ? "Yes" : "No" %> </td>
       </tr>
     <% end %>
   </tbody>
@@ -21,4 +29,6 @@ There are no volunteers with this check at this time.
 </table>
 <% end %>
 
-<%= will_paginate @volunteers, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+<%= will_paginate @volunteer_checks, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+
+    <%= link_to raw("<i class='icon-plus'></i> <strong>Add Volunteer</strong>"), new_volunteer_check_path, :class => 'btn-small btn-success' %></br>

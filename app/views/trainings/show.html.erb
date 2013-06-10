@@ -24,15 +24,16 @@
 
 <div class="row-fluid">
   
-  <div class="span6">
+  <div class="span4">
 
 <p>              <%= render :partial => "current_departments" %> </p>
-<p> 		<%= link_to raw("<i class='icon-plus icon-white'></i> Assign Department"), new_department_training_path(:id => @training.id, :from => 'training'), :class => 'btn btn-primary' %> </p>
+
+<p> 		<%= link_to raw("<i class='icon-plus icon-white'></i> <strong>Assign Department</strong>"), new_department_training_path(:id => @training.id, :from => 'training'), :class => 'btn-small btn-success' %> </p>
 
 
-</div>  <div class="span6">
+</div>  <div class="span8">
 <p>              <%= render :partial => "current_volunteers" %> </p>
-<p> 		<%= link_to raw("<i class='icon-plus icon-white'></i> Assign Volunteer"), new_volunteer_training_path(:id => @training.id, :from => 'training'), :class => 'btn btn-primary' %> </p>
+<p> 		<%= link_to raw("<i class='icon-plus icon-white'></i> <strong>Assign Volunteer</strong>"), new_volunteer_training_path(:id => @training.id, :from => 'training'), :class => 'btn-small btn-success' %> </p>
 
 </div></div>
 

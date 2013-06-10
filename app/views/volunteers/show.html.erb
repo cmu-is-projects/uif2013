@@ -55,7 +55,7 @@
           <dt><strong>Role:</strong></dt>
           <dd><%= @volunteer.role %></dd>
           <dt><strong>App Approved:</strong></dt>
-          <dd><%= @volunteer.app_approved %></dd>
+          <dd><%= @volunteer.app_approved ? "Yes" : "No" %></dd>
           <% if !@volunteer.app_approved %>
             <dt><strong>App Submit Date:</strong></dt>
             <dd><%= @volunteer.app_submit_date.strftime("%B %d, %Y") %></dd>

@@ -14,6 +14,7 @@ class ChecksController < ApplicationController
   # GET /checks/1.json
   def show
     @check = Check.find(params[:id])
+    @volunteer_checks = @check.volunteer_checks.paginate(:page => params[:page]).per_page(8)
 
       # get all the volunteers for this check
       @volunteers = @check.volunteers.alphabetical.paginate(:page => params[:page]).per_page(8)
