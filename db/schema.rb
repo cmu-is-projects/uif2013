@@ -141,6 +141,19 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
     t.boolean  "scan_by_absence", :default => false
   end
 
+  create_table "schools", :force => true do |t|
+    t.string   "name"
+    t.integer  "location_id"
+    t.string   "category"
+    t.integer  "min_grade"
+    t.integer  "max_grade"
+    t.string   "contact_person"
+    t.string   "phone"
+    t.boolean  "active",         :default => true
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
   create_table "section_events", :force => true do |t|
     t.integer  "section_id"
     t.integer  "event_id"
@@ -194,6 +207,7 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "school_id"
   end
 
   create_table "trainings", :force => true do |t|
