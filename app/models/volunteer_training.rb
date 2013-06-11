@@ -7,5 +7,8 @@ class VolunteerTraining < ActiveRecord::Base
     validates_presence_of :date
     validates_uniqueness_of :volunteer_id, :scope => :training_id
 
+    scope :for_volunteer, lambda {|volunteer_id| where("volunteer_id = ?", volunteer_id) }
+    scope :for_training, lambda {|training_id| where("training_id = ?", training_id) }
+
  
 end

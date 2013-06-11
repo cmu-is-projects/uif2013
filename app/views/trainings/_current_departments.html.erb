@@ -1,0 +1,24 @@
+
+<% if @departments.empty? %>
+There are no departments for this training at this time.
+<p><br>
+<% else %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Department</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @departments.each do |department| %>
+      <tr>
+				<td><%= link_to department.name, department_path(department) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+<% end %>
+
+<%= will_paginate @departments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>

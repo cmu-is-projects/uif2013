@@ -10,6 +10,8 @@ class VolunteersController < ApplicationController
 
   def index
     @volunteers = Volunteer.alphabetical
+    @pending_checks = VolunteerCheck.pending
+
     @query = Volunteer.search(params[:query])
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +27,10 @@ class VolunteersController < ApplicationController
     @notable = @volunteer
     @shifts = @volunteer.shifts
     @trainings = @volunteer.trainings.alphabetical
+    @volunteer_checks = @volunteer.volunteer_checks
+    @volunteer_trainings = @volunteer.volunteer_trainings
+    @checks = @volunteer.checks.alphabetical
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @volunteer }

@@ -74,8 +74,10 @@ class VolunteerTrainingsController < ApplicationController
     # DELETE /volunteer_trainings/1.json
     def destroy
         @volunteer_training = VolunteerTraining.find(params[:id])
+        @training = VolunteerTraining.find(params[:id]).training
+
         @volunteer_training.destroy
         flash[:notice] = "Successfully removed volunteer_training from the UIF system."
-        redirect_to volunteer_trainings_url
+        redirect_to @training
     end
 end

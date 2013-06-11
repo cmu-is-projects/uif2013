@@ -16,20 +16,19 @@ class CheckTest < ActiveSupport::TestCase
     @insurance = FactoryGirl.create(:check, :name => "Insurance Check")
     @background = FactoryGirl.create(:check)
     
-    end
+end
 
-    # and provide a teardown method as well
-    teardown do
-        @insurance.destroy
-        @background.destroy
-    end
+# and provide a teardown method as well
+teardown do
+    @insurance.destroy
+    @background.destroy
+end
 
-    # test the scope 'alphabetical'
-    should "shows that there are two checks in in alphabetical order" do
-        assert_equal ["Background Check", "Insurance Check"], Check.alphabetical.map{|s| s.name}
-    end
+# test the scope 'alphabetical'
+should "shows that there are two checks in in alphabetical order" do
+    assert_equal ["Background Check", "Insurance Check"], Check.alphabetical.map{|s| s.name}
+end
 
-    end
-
+end
 
 end

@@ -5,7 +5,7 @@
     <div class="tile-group">
       <div class="dashboard">
       <div id="big-tile" class="tile">
-	<div class="tile-content"><h1>Events</h1>
+	<div class="tile-content"><h2>Events</h2>
 	  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
 		  <li class="active"><a href="#red" data-toggle="tab">Today</a></li>
 		  <li><a href="#orange" data-toggle="tab">Past</a></li>
@@ -23,7 +23,7 @@
       </div></div>
       <div class="tile" id="visitor"><a href="students.html">
 	<div class="tile-content"><h1>Visitors</h1>
-	  <li>New visitors - <%= @visitors.new_visitor.count %></li>
+	  <li>New visitors: <%= @visitors.new_visitor.count %></li>
 	  <li><%= link_to "Add visitor", new_student_path %></li>
       </div></div>
       <div class="tile" id="student"><a href="students.html">
@@ -32,14 +32,16 @@
       </div></div>
       <div class="tile" id="volunteer"><a href="volunteers.html">
 	<div class="tile-content"><h1>Volunteer</h1>
-	  <li>#3 background checks expiring next week</li>
+	  <li><% if @pending_checks.empty? %>
+	    All is good<% else %>
+	    Pending Checks: <%= @pending_checks.length %><% end %></li>
       </div></div>
       <div class="tile" id="event"><a href="events.html">
 	<div class="tile-content"><h1>Event</h1>
 	  <li><% if @events.current.empty? %> No events today
-	  <% else %>Today - <%= @events.current.count %><% end %></li>
+	  <% else %>Today: <%= @events.current.count %><% end %></li>
 	  <li><% if @events.this_week.empty? %> No events next week
-	  <% else %>This week - <%= @events.this_week.count %><% end %></li>
+	  <% else %>This week: <%= @events.this_week.count %><% end %></li>
       </div></div>
       <div id="tall-tile" class="tile"><a href="statistics.html">
 	<div class="tile-content"><h1>Statistics</h1>
@@ -57,15 +59,15 @@
       <div class="tile" id="program"><a href="sections">
 	<div class="tile-content"><h1>Program Sections</h1>
 	  <li><% if @sections.maxed_out.empty? %> Sections are available
-	  <% else %>Maxed out sections - <%= @sections.maxed_out.length %><% end %></li>
+	  <% else %>Maxed out sections: <%= @sections.maxed_out.length %><% end %></li>
 	  <% unless @sections.empty_sections.empty? %><li>
-	    Empty sections - <%= @sections.empty_sections.length %></li><% end %>
+	    Empty sections: <%= @sections.empty_sections.length %></li><% end %>
 	</div></div>
       <div class="tile" id="household"><a href="households.html">
 	<div class="tile-content"><h1>Household</h1>
 	  <li><% if @households.missing_info.empty? %>
 	    All is good<% else %>
-	    Missing insurance info - <%= @households.missing_info.length %><% end %></li>
+	    Missing insurance info: <%= @households.missing_info.length %><% end %></li>
       </div></div>
       <div class="tile" id="guardian"><a href="guardians.html">
 	<div class="tile-content"><h1>Guardian</h1>

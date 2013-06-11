@@ -6,6 +6,7 @@ class HomeController < ApplicationController
    @events = Event.upcoming
    @students = Student.not_visitor
    @volunteers = Volunteer.alphabetical
+   @pending_checks = VolunteerCheck.pending
    @households = Household.active
    @shifts = Shift.last_week
    @hours = 0

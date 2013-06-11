@@ -1,0 +1,36 @@
+<h1>Listing Volunteer Checks</h1>
+
+<table>
+  <tr>
+    <th>Volunteer</th>
+    <th>Check</th>
+    <th>Date Submitted</th>
+    <th>Date Completed</th>
+    <th>Paid</th>
+    <th>Approved</th>
+    <th>Notes</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @volunteer_checks.each do |volunteer_check| %>
+  <tr>
+    <td><%= link_to volunteer_check.volunteer.name, volunteer_path(volunteer_check.volunteer) %></td>
+
+    <td><%= volunteer_check.check.name %></td>
+    <td><%= volunteer_check.date_submitted.strftime("%B %d, %Y") %></td>
+    <td><%= volunteer_check.date_completed.strftime("%B %d, %Y") %></td>
+    <td><%= volunteer_check.paid %></td>
+    <td><%= volunteer_check.approved %></td>
+    <td><%= volunteer_check.notes %></td>
+
+    <td><%= link_to 'Show', volunteer_check %></td>
+    <td><%= link_to 'Edit', edit_volunteer_check_path(volunteer_check) %></td>
+    <td><%= link_to 'Destroy', volunteer_check, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Volunteer Check', new_volunteer_check_path %>

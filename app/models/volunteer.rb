@@ -12,6 +12,7 @@ class Volunteer < ActiveRecord::Base
   belongs_to :household
   has_one :student
   has_many :shifts, :as => :shiftable
+  has_many :volunteer_checks
   has_many :volunteer_trainings
   has_many :trainings, :through => :volunteer_trainings
   has_many :checks, :through => :volunteer_checks
