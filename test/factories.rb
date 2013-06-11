@@ -6,13 +6,13 @@ FactoryGirl.define do
   end
 
   factory :training do
-        name "Driving"
-        description "Instructs volunteers on how to drive kids safely"
+    name "Driving"
+    description "Instructs volunteers on how to drive kids safely"
   end
     
-    factory :check do
-        name "Background Check"
-    end
+  factory :check do
+    name "Background Check"
+  end
     
   factory :program do
     association :department

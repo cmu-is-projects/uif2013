@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "conditions", :force => true do |t|
+    t.string   "name"
+    t.text     "warning_text"
+    t.boolean  "active"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "department_trainings", :force => true do |t|
     t.integer  "training_id"
     t.integer  "department_id"
@@ -187,6 +195,21 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
     t.integer  "shiftable_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "student_conditions", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "condition_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "student_drugs", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "drug_id"
+    t.integer  "dosage"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "students", :force => true do |t|
