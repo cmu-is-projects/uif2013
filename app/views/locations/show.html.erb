@@ -15,9 +15,8 @@
 </dl>
 
 <div class="map">
-  <h2>  Click on the link to Google Maps of <% "#{@location.name}" %></h2> 
-        <%= image_tag @location.create_map_link %>
-</div>
+  <h2>  Click on the Image for <d><%= @location.name %></d>'s Google Map  </h2> 
+ </div>
 
 <div class="form-actions">
   <%= link_to raw("<i class='icon-backward'></i> Back to locations"),
