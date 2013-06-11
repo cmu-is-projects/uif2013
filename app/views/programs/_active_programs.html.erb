@@ -2,9 +2,6 @@
   <thead>
     <tr>
       <th>Program Name</th>
-      <th>Department</th>
-      <th>Grade Range</th>
-      <th>Capacity</th>
       <th>Start Date</th>
       <th></th>
     </tr>
@@ -13,14 +10,12 @@
     <% @current_programs.each do |program| %>
       <tr>
         <td><%= link_to program.name, program_path(program) %></td>
-		    <td><%= program.department.name %></td>
-        <td><%= program.grade_range %></td>
-        <td><%= program.max_capacity %></td>
         <td><%= program.start_date.strftime("%b %d, %Y") %> </td>
 
         <td>
           <%= link_to raw("<i class='icon-edit'></i> Edit"),
                       edit_program_path(program), :class => 'btn btn-mini' %>
+	  <%= link_to "Add shift", new_shift_path(:id => program.id, :source => 'program'), :class => 'btn btn-mini' %>
         </td>
       </tr>
     <% end %>

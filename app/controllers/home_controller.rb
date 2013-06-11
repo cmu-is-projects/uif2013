@@ -3,13 +3,17 @@ class HomeController < ApplicationController
   before_filter :set_controller_and_action_names
   
   def index
-   @events = Event.current
-   @all_events = Event.paginate(:page => params[:page], :per_page => 5)
-   @past = Event.past.by_date_desc.paginate(:page => params[:page], :per_page => 5)
-   
+   @events = Event.upcoming
+   @students = Student.not_visitor
+   @volunteers = Volunteer.alphabetical
+   @households = Household.active
+   @shifts = Shift.last_week
+   @hours = 0
+   @past = Event.past.by_date_desc.limit(2)
+   @sections = Section.active
    @alerts = Note.alerts.active.by_priority.by_date_desc.last_six.all
    @alert_count = Note.alerts.active.all.length
-   @upcoming = Event.upcoming.paginate(:page => params[:page], :per_page => 5)
+   @visitors = Student.is_visitor
   
   
   end 

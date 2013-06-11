@@ -1,0 +1,12 @@
+
+  <div class="well">
+  	<% unless @shifts.nil?||  @shifts.empty? %>
+  		<%= render :partial => "partials/shift_list" %>
+  	<% end %>
+  </div>
+  <div class="notes">
+    <div class="note_form">
+      <%= render :partial => "partials/shift_form" %>
+    </div>
+  </div>
+

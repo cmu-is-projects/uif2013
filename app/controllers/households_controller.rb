@@ -4,7 +4,7 @@ class HouseholdsController < ApplicationController
   # GET /households
   # GET /households.json
   def index
-    @households = Household.alphabetical.all #paginate(:page => params[:page]).per_page(10)
+    @households = Household.alphabetical #paginate(:page => params[:page]).per_page(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -48,7 +48,7 @@ class HouseholdsController < ApplicationController
 
     respond_to do |format|
       if @household.save
-        format.html { redirect_to @household, notice: 'Household was successfully created.' }
+        format.html { redirect_to @household, notice: "#{@household.name} household was successfully created." }
         format.json { render json: @household, status: :created, location: @household }
       else
         format.html { render action: "new" }
@@ -64,7 +64,7 @@ class HouseholdsController < ApplicationController
 
     respond_to do |format|
       if @household.update_attributes(params[:household])
-        format.html { redirect_to @household, notice: 'Household was successfully updated.' }
+        format.html { redirect_to @household, notice: "#{@household.name} household was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,7 +80,7 @@ class HouseholdsController < ApplicationController
     @household.destroy
 
     respond_to do |format|
-      format.html { redirect_to households_url }
+      format.html { redirect_to households_url, notice: "#{@household.name} household was successfully deleted." }
       format.json { head :no_content }
     end
   end

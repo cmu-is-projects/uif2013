@@ -1,31 +1,84 @@
 <!-- if your role is an admin -->
+
+<div class="metrouicss">
+  <div class="tiles">
+    <div class="tile-group">
+      <div class="dashboard">
+      <div id="big-tile" class="tile">
+	<div class="tile-content"><h1>Events</h1>
+	  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+		  <li class="active"><a href="#red" data-toggle="tab">Today</a></li>
+		  <li><a href="#orange" data-toggle="tab">Past</a></li>
+	      </ul>
+	      <div id="my-tab-content" class="tab-content">
+		  <div class="tab-pane active" id="red">
+		      <% if @events.current.empty? %> No events today
+		      <% else %><%= render :partial => "./admin-partials/upcoming-events" %><% end %>
+		  </div>
+		  <div class="tab-pane" id="orange">
+		      <%= render :partial => "./admin-partials/past-events" %>
+		  </div>
+
+	      </div>
+      </div></div>
+      <div class="tile" id="visitor"><a href="students.html">
+	<div class="tile-content"><h1>Visitors</h1>
+	  <li>New visitors - <%= @visitors.new_visitor.count %></li>
+	  <li><%= link_to "Add visitor", new_student_path %></li>
+      </div></div>
+      <div class="tile" id="student"><a href="students.html">
+	<div class="tile-content"><h1>Student</h1>
+	  <li>#12 students with consecutive absences last week</li>
+      </div></div>
+      <div class="tile" id="volunteer"><a href="volunteers.html">
+	<div class="tile-content"><h1>Volunteer</h1>
+	  <li>#3 background checks expiring next week</li>
+      </div></div>
+      <div class="tile" id="event"><a href="events.html">
+	<div class="tile-content"><h1>Event</h1>
+	  <li><% if @events.current.empty? %> No events today
+	  <% else %>Today - <%= @events.current.count %><% end %></li>
+	  <li><% if @events.this_week.empty? %> No events next week
+	  <% else %>This week - <%= @events.this_week.count %><% end %></li>
+      </div></div>
+      <div id="tall-tile" class="tile"><a href="statistics.html">
+	<div class="tile-content"><h1>Statistics</h1>
+	  <h3>Currently</h3>
+	  <li><%= @alert_count %> alerts</li>
+	  <h3>For the past week</h3>
+	  <li>#75.3% student attendance</li>
+	  <% for shift in @shifts %>
+	    <% @hours = @hours + shift.hours %>
+	    <% end %>
+	  <li>Volunteer hours - <%= @hours %></li>
+	  <li>New students - <%= @students.new_student.count %></li>
+	  <li>New volunteers - <%= @volunteers.new_volunteer.count %></li>
+      </div></div>
+      <div class="tile" id="program"><a href="sections">
+	<div class="tile-content"><h1>Program Sections</h1>
+	  <li><% if @sections.maxed_out.empty? %> Sections are available
+	  <% else %>Maxed out sections - <%= @sections.maxed_out.length %><% end %></li>
+	  <% unless @sections.empty_sections.empty? %><li>
+	    Empty sections - <%= @sections.empty_sections.length %></li><% end %>
+	</div></div>
+      <div class="tile" id="household"><a href="households.html">
+	<div class="tile-content"><h1>Household</h1>
+	  <li><% if @households.missing_info.empty? %>
+	    All is good<% else %>
+	    Missing insurance info - <%= @households.missing_info.length %><% end %></li>
+      </div></div>
+      <div class="tile" id="guardian"><a href="guardians.html">
+	<div class="tile-content"><h1>Guardian</h1>
+	  <h3>#All is good</h3>
+      </div></div>
+    </div>
+  </div></div>
+</div>
+
+
+
 <script type="text/javascript">
   $(function() {
 	   $('.phantom').hide();
 	});
 </script>
-
-<div class="row-fluid">
-  <div class="span8">
-    <div class="upcoming_events">
-      <%= render :partial => "./admin-partials/upcoming-events" %>
-    </div>
-    <div class="past_events">
-      <%= render :partial => "./admin-partials/past-events" %>
-    </div>
-  </div>
-
-  <div class="span4">
-    <% unless @alerts.empty? %>
-      <div class="well">
-        <%= render :partial => "./admin-partials/issues" %>
-        <% if @alert_count && @alert_count > 6 %>
-          <%= link_to "Click for more alerts", alerts_path %>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="well">
-      <%= render :partial => "./admin-partials/quick-add" %>
-    </div>
-  </div>
-</div>

@@ -20,7 +20,7 @@ gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
 gem 'cancan', '1.6.9'
 gem 'validates_timeliness', '3.0.14'
 gem 'jquery-rails', '2.2.1'
-gem 'geocoder'
+gem 'geocoder', '1.1.6'
 
 
 group :development do

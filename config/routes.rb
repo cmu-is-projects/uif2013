@@ -1,13 +1,18 @@
 Uif2013::Application.routes.draw do
-# <<<<<<< HEAD
-#   get "drug/index"
-# =======
-#   resources :shifts
 
-
-#   resources :volunteers
-
-# >>>>>>> 3358435fc04f9c6d76a37fa2462ace32567c71e9
+  # Volunteer routes
+  get "check/edit"
+  get "check/index"
+  get "check/new"
+  get "check/show"
+  get "training/index"
+  get "training/show"
+  resources :volunteers
+  resources :trainings  
+  resources :checks
+  resources :shifts
+  resources :department_trainings
+  resources :volunteer_trainings
 
   resources :notes
 
@@ -46,10 +51,17 @@ Uif2013::Application.routes.draw do
   match 'mark_absent/:id' => 'events#mark_absent', :as => :mark_absent
   
 
+  # Drugs and conditions
+  get "drug/index"
+
+
   #Generated model routes
+
+  #resources :allergies
   resources :guardians do
     resources :notes
   end
+  #resources :student_allergies
   resources :households do 
     resources :notes
   end
@@ -67,15 +79,25 @@ Uif2013::Application.routes.draw do
   end
   resources :events do
     resources :notes
+    resources :shifts
     get 'meals_served', :on => :member
     get 'barcodes', :on => :member
   end
   resources :programs do
     resources :notes
+    resources :shifts
   end
   resources :departments
   resources :enrollments
   resources :section_events
+  resources :volunteers do
+    resources :notes
+  end
+  resources :trainings do
+    resources:notes
+  end
+  resources :checks
+  resources :conditions
   
   # Default URL
   root :to => 'home#index'

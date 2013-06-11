@@ -103,3 +103,7 @@ Given /^some drugs$/ do
   create_drugs
 end
 
+Given /^some households$/ do
+  create_households
+end
+

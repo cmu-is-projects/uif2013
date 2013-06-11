@@ -19,7 +19,8 @@ class ProgramsController < ApplicationController
     @program = Program.find(params[:id])
     @notes = @program.notes.by_priority
     @notable = @program
-
+    @shifts = @program.shifts
+    @shiftable = @program
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @program }

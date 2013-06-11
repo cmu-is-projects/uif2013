@@ -5,5 +5,7 @@ class VolunteerTraining < ActiveRecord::Base
     belongs_to :training
 
     validates_presence_of :date
+    validates_uniqueness_of :volunteer_id, :scope => :training_id
+
  
 end

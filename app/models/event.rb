@@ -9,13 +9,14 @@ class Event < ActiveRecord::Base
   has_many :students, :through => :attendances
   has_many :sections, :through => :section_events
   has_many :notes, :as => :notable, :dependent => :destroy
-   
+  has_many :shifts, :as => :shiftable, :dependent => :destroy
+  
   #Validations
   validates_presence_of :location_id, :message => "must enter location"
   validates_presence_of :program_id, :message => "must enter program"
   validates_date :date
   validates_time :start_time, :message => "must enter a start time"
-  validates_time :end_time, :after => :start_time, :after_message => "must be after the start of the event", :allow_blank => true
+  validates_time :end_time, :allow_blank => true, :after => :start_time, :after_message => "must be after the start of the event"
   validates_numericality_of :location_id, :program_id, :only_integer => true, :greater_than => 0, :message => "is not a valid number"
   validates_numericality_of :meals_served, :only_integer => true, :greater_than_or_equal_to => 0, :allow_blank => false, :message => "is not a valid number"
   validates_numericality_of :bibles_distributed, :only_integer => true, :greater_than_or_equal_to => 0, :allow_blank => false, :message => "is not a valid number"
@@ -28,6 +29,7 @@ class Event < ActiveRecord::Base
   scope :past, where('date < ?', Date.today)
   scope :upcoming, where('date >= ?', Date.today)
   scope :current, where('date = ?', Date.today)
+  scope :this_week, where("date >= ? AND date <= ?", Date.today, Date.today.next_week)
   scope :by_date, order('date')
   scope :by_date_desc, order('date DESC')
   
