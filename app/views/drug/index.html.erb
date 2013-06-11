@@ -1,0 +1,30 @@
+<h1>Drug Listing</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Active</th>
+    <th>Over-the-Counter</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @drugs.each do |drug| %>
+  <tr>
+    <td><%= drug.name %></td>
+    <td><%= drug.description %></td>
+    <td><%= drug.active %></td>
+    <td><%= drug.otc %></td>
+    <td><%= link_to 'Show', drug %></td>
+    <td><%= link_to 'Edit', edit_drug_path(drug) %></td>
+    <td><%= link_to 'Destroy', drug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @drugs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+
+<br />
+
+<%= link_to 'New Drug', new_drug_path %>
+

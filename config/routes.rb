@@ -1,22 +1,19 @@
 Uif2013::Application.routes.draw do
+
+  # Volunteer routes
   get "check/edit"
-
   get "check/index"
-
   get "check/new"
-
   get "check/show"
-
   get "training/index"
-
   get "training/show"
-
   resources :volunteers
   resources :trainings  
   resources :checks
-    resources :shifts
-    resources :department_trainings
-    resources :volunteer_trainings
+  resources :shifts
+  resources :department_trainings
+  resources :volunteer_trainings
+
   resources :notes
 
   #require 'api_constraints' 
@@ -54,18 +51,23 @@ Uif2013::Application.routes.draw do
   match 'mark_absent/:id' => 'events#mark_absent', :as => :mark_absent
   
 
+  # Drugs and conditions
+  get "drug/index"
+
+
   #Generated model routes
-  resources :allergies
   resources :guardians do
     resources :notes
   end
-  resources :student_allergies
   resources :households do 
     resources :notes
   end
   resources :students do
     resources :notes
     get 'id', :on => :member
+  end
+  resources :drugs do
+    resources :notes
   end
   resources :sections
   resources :attendances

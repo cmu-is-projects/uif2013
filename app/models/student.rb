@@ -12,16 +12,15 @@ class Student < ActiveRecord::Base
   belongs_to :household
   has_many :attendances, :dependent => :delete_all
   has_many :enrollments, :dependent => :delete_all
-  has_many :student_allergies, :dependent => :delete_all
-  has_many :allergies, :through => :student_allergies
   has_many :events, :through => :attendances
   has_many :notes, :as => :notable, :dependent => :destroy
   belongs_to :school
   
   # Nested Attributes
   accepts_nested_attributes_for :enrollments, :allow_destroy => true
-  
-  # Validations
+  # accepts_nested_attributes_for :household
+
+  #Validations
   validates_presence_of :first_name, :last_name
   validates_presence_of :grade, :date_of_birth, :barcode_number, unless: Proc.new { |s| s.is_visitor}
   validates :date_of_birth, :timeliness => {:on_or_before => lambda { Date.current }, :type => :date}, unless: Proc.new { |s| s.is_visitor}
@@ -32,7 +31,10 @@ class Student < ActiveRecord::Base
   validates_inclusion_of :grade, :in => 1..12, :message => "grades are between 1 and 12"
   validates_format_of :barcode_number, :with => /^\d{12}$/, :message => 'should be 12 digits', :allow_blank => true, :if => :is_visitor
   validates_uniqueness_of :barcode_number
-  # Scopes
+  # validates_associated :household
+  # validate_associated :enrollments
+
+  #Scopes
   scope :active, where('active = ?', true)
   scope :inactive, where('active = ?', false)
   scope :alphabetical, order('last_name, first_name')
@@ -44,7 +46,10 @@ class Student < ActiveRecord::Base
   #Misc constants
   STATUS_LIST = [['Active', 'Active'],['Inactive', 'Inactive'],['College', 'College'], ['Graduated', 'Graduated'], ['Missing', 'Missing']]
   
-  # Other methods
+  GRADE_LIST = [['1', '1'], ['2' ,'2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9 (Freshman)', '9'], 
+  ['10 (Sophomore)', '10'], ['11 (Junior)','11'], ['12 (Senior)', '12']]
+
+  #Other methods
   
   def name
     "#{last_name}, #{first_name}"

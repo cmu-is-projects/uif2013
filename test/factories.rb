@@ -109,6 +109,13 @@ FactoryGirl.define do
     email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
     active true
   end
+
+  factory :drug do
+    name "Motrin"
+    description "Helps alleviate fever and menstrual cramps"
+    active true
+    otc true
+  end
   
   factory :school do
     association :location
