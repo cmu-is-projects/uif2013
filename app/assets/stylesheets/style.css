@@ -44,10 +44,14 @@ table {
   background-color: #ffeb00;
   color: black; }
 
+
 #search #query {
   margin: 0 0 0 8px; }
 
 #household_form {
+  display: none;
+}
+#student_profile {
   display: none;
 }
 

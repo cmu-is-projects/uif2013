@@ -85,7 +85,9 @@ Uif2013::Application.routes.draw do
   resources :departments
   resources :enrollments
   resources :section_events
+  match 'volunteers/autocomplete_student_first_name' => 'volunteers#autocomplete_student_first_name'
   resources :volunteers do
+    get :autocomplete_student_first_name, :on => :collection
     resources :notes
   end
   resources :trainings do

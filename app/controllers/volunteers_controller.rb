@@ -1,6 +1,13 @@
 class VolunteersController < ApplicationController
   # GET /volunteers
   # GET /volunteers.json
+  autocomplete :student, :first_name, :scopes => [:search_by_name], :display_value => :name, :extra_data => [:first_name, :last_name]
+  
+  def get_items(parameters)
+     super(parameters)
+     items = Student.search_by_name(params[:term])
+  end
+
   def index
     @volunteers = Volunteer.alphabetical
     @query = Volunteer.search(params[:query])
@@ -28,10 +35,15 @@ class VolunteersController < ApplicationController
   # GET /volunteers/new.json
   def new
     @volunteer = Volunteer.new
-    @volunteer_first_name = Student.search(params[:volunteer_first_name])
+    if params[:term]
+      @students = Student.search_by_name(params[:term])
+    else
+      @students = Student.all
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @volunteer }
+      format.json { render json: @student.to_json }
     end
   end
 
@@ -47,10 +59,21 @@ class VolunteersController < ApplicationController
       @household = params[:volunteer][:household_attributes]
     end
     params[:volunteer].delete "household_attributes"
-    
+
     @volunteer = Volunteer.new(params[:volunteer])
     @household = Household.new(params[:household])
-    
+    if !@volunteer.student_id.blank?
+      @student = Student.find(@volunteer.student_id)
+      @volunteer.first_name = @student.first_name
+      @volunteer.last_name = @student.last_name
+      @volunteer.household_id = @student.household_id
+      @volunteer.is_male = @student.is_male
+      @volunteer.date_of_birth = @student.date_of_birth
+      @volunteer.cell_phone = @student.cell_phone
+      @volunteer.can_text = @student.can_text
+      @volunteer.email = @student.email
+      @volunteer.avatar = @student.avatar
+    end
     respond_to do |format|
       if @volunteer.save and @household.save
         @volunteer.update_attributes({:household_id => @household.id})         
