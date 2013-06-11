@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130606135152) do
 
-  create_table "allergies", :force => true do |t|
-    t.string   "name"
-    t.text     "warning_text"
-    t.boolean  "active"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
   create_table "attendances", :force => true do |t|
     t.integer  "student_id"
     t.integer  "event_id"
@@ -55,9 +47,9 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.boolean  "active"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.boolean  "active",      :default => true
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "drugs", :force => true do |t|
@@ -97,9 +89,9 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
     t.string   "cell_phone"
     t.boolean  "can_text"
     t.string   "email"
-    t.boolean  "active"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.boolean  "active",        :default => true
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "households", :force => true do |t|
@@ -113,9 +105,9 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
     t.string   "church"
     t.float    "lat"
     t.float    "lon"
-    t.boolean  "active"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.boolean  "active",            :default => true
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   create_table "locations", :force => true do |t|
@@ -133,14 +125,14 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
   create_table "notes", :force => true do |t|
     t.integer  "user_id"
     t.date     "date"
+    t.string   "title"
     t.text     "contents"
     t.string   "notable_type"
     t.integer  "notable_id"
     t.integer  "priority"
+    t.boolean  "active",       :default => true
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.string   "title"
-    t.boolean  "active",       :default => true
   end
 
   create_table "programs", :force => true do |t|
@@ -149,13 +141,13 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
     t.integer  "department_id"
     t.integer  "min_grade"
     t.integer  "max_grade"
-    t.integer  "max_capacity"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
     t.boolean  "active"
+    t.integer  "max_capacity"
     t.date     "start_date"
     t.date     "end_date"
     t.boolean  "scan_by_absence", :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "schools", :force => true do |t|
@@ -180,11 +172,11 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
 
   create_table "sections", :force => true do |t|
     t.string   "name"
-    t.integer  "max_capacity"
-    t.boolean  "active"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
     t.integer  "program_id"
+    t.integer  "max_capacity"
+    t.boolean  "active",       :default => true
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "shifts", :force => true do |t|
@@ -222,12 +214,11 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
     t.date     "date_of_birth"
     t.string   "cell_phone"
     t.boolean  "can_text"
-    t.string   "photo"
     t.string   "email"
     t.string   "status"
+    t.boolean  "is_visitor",          :default => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.boolean  "is_visitor",          :default => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -250,11 +241,11 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
     t.string   "username"
     t.string   "role"
     t.integer  "department_id"
-    t.boolean  "active"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.boolean  "active",                 :default => true
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.string   "email",                  :default => "",   :null => false
+    t.string   "encrypted_password",     :default => "",   :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
