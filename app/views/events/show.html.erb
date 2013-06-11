@@ -22,7 +22,7 @@
           <td><strong>End time:</strong></td><td><%= @event.end_time.strftime("%l:%M %p") %></td>
         </tr>
         <tr>
-          <td><strong>Location:</strong></td><td><%= @event.location.name %></td>
+          <td><strong>Location:</strong></td><td><%= link_to "#{@event.location.name}", location_path(@event.location_id) %></td>
         </tr>
         <tr>
           <td><strong>Meals served:</strong></td><td><%= @event.meals_served %></td>

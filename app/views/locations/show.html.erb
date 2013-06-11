@@ -14,6 +14,11 @@
   <dd><%= @location.zip %></dd>
 </dl>
 
+<div class="map">
+  <h2>  Click on the link to Google Maps of <% "#{@location.name}" %></h2> 
+        <%= image_tag @location.create_map_link %>
+</div>
+
 <div class="form-actions">
   <%= link_to raw("<i class='icon-backward'></i> Back to locations"),
               locations_path, :class => 'btn'  %>

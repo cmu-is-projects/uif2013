@@ -243,3 +243,21 @@ table {
 .well.red {
   background-color: #FFD2CA;
   border-color: red; }
+
+/*========================================
+  STUDENT PROFILE
+  ========================================*/
+#scan-profile-student-information {
+  width:200px;
+  height:100px;
+  border:6px 
+  ridge lime green;">
+}
+
+.scan-profile {
+  width:200px;
+  height:100px;
+  background-color: lime green;
+  border:6px 
+  ridge lime green;">
+}

@@ -15,6 +15,7 @@ class LocationsController < ApplicationController
   # GET /locations/1.json
   def show
     @location = Location.find(params[:id])
+    #@location.all
     @notes = @location.notes.by_priority
     @notable = @location
 

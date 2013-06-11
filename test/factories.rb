@@ -4,6 +4,15 @@ FactoryGirl.define do
     description "Programs for children interested in performing arts"
     active true
   end
+
+  factory :training do
+        name "Driving"
+        description "Instructs volunteers on how to drive kids safely"
+  end
+    
+    factory :check do
+        name "Background Check"
+    end
     
   factory :program do
     association :department
@@ -58,6 +67,22 @@ FactoryGirl.define do
     is_male true
     email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
     is_visitor false
+  end
+  
+  factory :volunteer do
+    first_name "Brian"
+    last_name "Smith"
+    date_of_birth 19.years.ago.to_date
+    role "choir"
+    status "active"
+    barcode_number {rand(100000000000..999999999999).to_s}
+    name_displayed "brian"
+    is_male true
+    email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
+    app_approved true
+    cell_phone "4125559889"
+    can_text true
+    app_submit_date 1.month.ago.to_date
   end
   
   factory :attendance do

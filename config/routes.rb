@@ -1,5 +1,13 @@
 Uif2013::Application.routes.draw do
-  get "drug/index"
+# <<<<<<< HEAD
+#   get "drug/index"
+# =======
+#   resources :shifts
+
+
+#   resources :volunteers
+
+# >>>>>>> 3358435fc04f9c6d76a37fa2462ace32567c71e9
 
   resources :notes
 

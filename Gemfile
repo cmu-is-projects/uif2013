@@ -20,6 +20,7 @@ gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
 gem 'cancan', '1.6.9'
 gem 'validates_timeliness', '3.0.14'
 gem 'jquery-rails', '2.2.1'
+gem 'geocoder'
 
 
 group :development do
@@ -49,10 +50,10 @@ end
 
 group :test do
 	gem 'sqlite3', '1.3.7'
-	gem 'shoulda', '3.3.2'
-	gem 'shoulda-matchers'
+	gem 'shoulda', '3.5.0'
+	gem 'shoulda-matchers', '2.1.0'
 	gem 'factory_girl_rails', '4.2.1'
-	# gem 'mocha', '0.10.5'
+	gem 'mocha', '0.14.0'
 	gem 'cucumber-rails', '1.3.0', :require => false
 	gem 'gherkin', '2.11.6'
 	gem 'capybara', '2.0.2'
