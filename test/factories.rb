@@ -56,7 +56,7 @@ FactoryGirl.define do
     gospel_shared true
     bibles_distributed true
   end
-  
+
   factory :student do
     association :household
     first_name "Alexander"
@@ -99,7 +99,7 @@ FactoryGirl.define do
    insurance_company "United Healthcare"
    active true
   end
-
+  
   factory :guardian do
     association :household
     first_name  "Larry"
@@ -120,7 +120,12 @@ FactoryGirl.define do
     contact_person 'Worf, Son of Mogh'
     active false
   end
-  
-end
 
-  
+  factory :shift do
+   association :volunteer
+   start_time DateTime.now
+   end_time 2.hours.from_now
+   shiftable_type "event"
+   shiftable_id 1
+  end
+end

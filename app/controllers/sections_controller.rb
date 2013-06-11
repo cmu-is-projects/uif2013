@@ -3,7 +3,7 @@ class SectionsController < ApplicationController
   # GET /sections.json
   before_filter :authenticate_user!
   def index
-    @sections = Section.alphabetical.all
+    @sections = Section.alphabetical
     
     respond_to do |format|
       format.html # index.html.erb

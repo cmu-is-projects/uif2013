@@ -1,10 +1,22 @@
 Uif2013::Application.routes.draw do
-  resources :shifts
+  get "check/edit"
 
+  get "check/index"
+
+  get "check/new"
+
+  get "check/show"
+
+  get "training/index"
+
+  get "training/show"
 
   resources :volunteers
-
-
+  resources :trainings  
+  resources :checks
+    resources :shifts
+    resources :department_trainings
+    resources :volunteer_trainings
   resources :notes
 
   #require 'api_constraints' 
@@ -62,15 +74,24 @@ Uif2013::Application.routes.draw do
   end
   resources :events do
     resources :notes
+    resources :shifts
     get 'meals_served', :on => :member
     get 'barcodes', :on => :member
   end
   resources :programs do
     resources :notes
+    resources :shifts
   end
   resources :departments
   resources :enrollments
   resources :section_events
+  resources :volunteers do
+    resources :notes
+  end
+  resources :trainings do
+    resources:notes
+  end
+  resources :checks
   
   # Default URL
   root :to => 'home#index'
