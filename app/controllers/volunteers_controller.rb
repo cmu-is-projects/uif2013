@@ -1,7 +1,7 @@
 class VolunteersController < ApplicationController
   # GET /volunteers
   # GET /volunteers.json
-  autocomplete :student, :first_name, :scopes => [:search_by_name], :display_value => :name, :extra_data => [:first_name, :last_name]
+  autocomplete :student, :first_name, :display_value => :name, :extra_data => [:first_name, :last_name]
   
   def get_items(parameters)
      super(parameters)

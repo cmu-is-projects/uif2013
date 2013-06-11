@@ -76,8 +76,6 @@
               <%= render :partial => "partials/shift_list" %>
 		
           <% end %>
-
-
             <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
 		  <li class="active"><a href="#red" data-toggle="tab">Upcoming</a></li>
 		  <li><a href="#orange" data-toggle="tab">Past</a></li>
@@ -110,9 +108,8 @@
                         </tr>
                       <% end %>
                       </table><% end %>
-		  </div>
+		  </div></div></div>
                   
-    </div>
     
         <div class="well">
       <h2>Volunteer Trainings</h2>
@@ -133,7 +130,7 @@
 
 
     </div></div>
-    <div class="span6 pull-right">
+    <div class="span5 pull-right">
     <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @volunteer} %>           
   </div></div>
 	      </div>

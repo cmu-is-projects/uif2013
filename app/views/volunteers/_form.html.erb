@@ -21,9 +21,8 @@
     <%= f.input :avatar, :label => 'Your photo please' %>
 </div>
 <div id="mydivoff" style="display:none">
-    <!--<%= f.hidden_field :student_id, :id => "real_student_id" %>
-    <%= f.input :student_id, :url => autocomplete_student_first_name_volunteers_path, :as => :autocomplete, :id_element => "#real_user_id"  %> -->
-    <%= f.input :student_id, :collection => get_students, :prompt => 'Student name' %>
+    <%= f.input :student_id, :url => autocomplete_student_first_name_volunteers_path, :as => :autocomplete, :input_html => {:id => "student_first_name", :name => "", :id_element => "#volunteer_student_id" }, :update_elements => {} %>
+    <%= f.hidden_field :student_id, :input_html => { :name => "volunteer[student_id]" } %>
 </div>
     <%= f.input :status, :collection => Volunteer::STATUS_LIST, :prompt => 'Choose Status' %>
     <%= f.input :app_submit_date %>
