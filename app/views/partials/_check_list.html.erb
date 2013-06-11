@@ -3,7 +3,7 @@
 	<% if volunteer_check.date_completed.nil? %>
 		Pending
   	<% else %>
-
+	Completed:
 	<%= volunteer_check.date_completed.strftime("%m/%d/%y") %>	
   	<% end %>
 </li>

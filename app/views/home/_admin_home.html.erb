@@ -5,7 +5,7 @@
     <div class="tile-group">
       <div class="dashboard">
       <div id="big-tile" class="tile">
-	<div class="tile-content"><h1>Events</h1>
+	<div class="tile-content"><h2>Events</h2>
 	  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
 		  <li class="active"><a href="#red" data-toggle="tab">Today</a></li>
 		  <li><a href="#orange" data-toggle="tab">Past</a></li>
@@ -32,7 +32,9 @@
       </div></div>
       <div class="tile" id="volunteer"><a href="volunteers.html">
 	<div class="tile-content"><h1>Volunteer</h1>
-	  <li>#3 background checks expiring next week</li>
+	  <li><% if @pending_checks.empty? %>
+	    All is good<% else %>
+	    Pending Checks: <%= @pending_checks.length %><% end %></li>
       </div></div>
       <div class="tile" id="event"><a href="events.html">
 	<div class="tile-content"><h1>Event</h1>

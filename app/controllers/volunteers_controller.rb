@@ -3,6 +3,8 @@ class VolunteersController < ApplicationController
   # GET /volunteers.json
   def index
     @volunteers = Volunteer.alphabetical
+    @pending_checks = VolunteerCheck.pending
+
     @query = Volunteer.search(params[:query])
     respond_to do |format|
       format.html # index.html.erb

@@ -74,8 +74,10 @@ class VolunteerChecksController < ApplicationController
     # DELETE /volunteer_checks/1.json
     def destroy
         @volunteer_check = VolunteerCheck.find(params[:id])
+        @check = VolunteerCheck.find(params[:id]).check
+
         @volunteer_check.destroy
         flash[:notice] = "Successfully removed volunteer_check from the UIF system."
-        redirect_to volunteer_checks_url
+        redirect_to @check
     end
 end

@@ -9,6 +9,7 @@ There are no volunteers for this training at this time.
     <tr>
       <th>Volunteer</th>
       <th>Date</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,9 @@ There are no volunteers for this training at this time.
       <tr>
 				<td><%= link_to volunteer_training.volunteer.name, volunteer_path(volunteer_training.volunteer) %> </td>
 				<td><%= link_to volunteer_training.date.strftime("%B %d, %Y") %> </td>
+<td> <%= link_to raw("<i class='icon-edit'></i>"),
+                      edit_volunteer_training_path(volunteer_training, :training_id => volunteer_training.training.id), :class => 'btn btn-mini' %> 
+	<%= link_to raw("<i class='icon-trash'></i>"), volunteer_training_path(volunteer_training), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn-small btn-danger' %></td>
 
       </tr>
     <% end %>

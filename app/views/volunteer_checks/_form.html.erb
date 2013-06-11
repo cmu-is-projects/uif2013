@@ -5,7 +5,7 @@
     <%= f.input :volunteer_id, :collection => Volunteer.alphabetical, :prompt => 'Choose Volunteer' %>
     <%= f.input :check_id, :collection => Check.alphabetical, :prompt => 'Choose Check' %>
 	<%= f.input :date_submitted, :order => [:month, :day, :year], :start_year => Date.today.year-10, :end_year => Date.today.year %>
-	<%= f.input :date_completed, :order => [:month, :day, :year], :start_year => Date.today.year-10, :end_year => Date.today.year %>
+	<%= f.input :date_completed, :order => [:month, :day, :year], :start_year => Date.today.year-10, :end_year => Date.today.year, :include_blank => true %>
 	<%= f.input :paid %>
 	<%= f.input :approved %>
     <%= f.input :notes %>

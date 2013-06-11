@@ -12,6 +12,8 @@ There are no volunteers with this check at this time.
       <th>Date Completed</th>
       <th>Paid</th>
       <th>Approved</th>
+      <th></th>
+
     </tr>
   </thead>
   <tbody>
@@ -19,9 +21,24 @@ There are no volunteers with this check at this time.
       <tr>
 				<td><%= link_to volunteer_check.volunteer.name, volunteer_check.volunteer %></td>
 				<td>	<%= volunteer_check.date_submitted.strftime("%m/%d/%y") %> </td>
+	<% if volunteer_check.date_completed.nil? %>
+		<td>Pending</td>
+  	<% else %>
 				<td>	<%= volunteer_check.date_completed.strftime("%m/%d/%y") %> </td>
+
+  	<% end %>
 				<td>	<%= volunteer_check.paid ? "Yes" : "No" %> </td>
 				<td>	<%= volunteer_check.approved ? "Yes" : "No" %> </td>
+
+    <td> <%= link_to raw("<i class='icon-edit'></i>"),
+                      edit_volunteer_check_path(volunteer_check, :check_id => volunteer_check.check.id), :class => 'btn btn-mini' %> 
+	<%= link_to raw("<i class='icon-trash'></i>"), volunteer_check_path(volunteer_check), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn-small btn-danger' %></td>
+
+
+
+
+
+
       </tr>
     <% end %>
   </tbody>
