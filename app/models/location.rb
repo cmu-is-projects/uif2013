@@ -1,8 +1,7 @@
 class Location < ActiveRecord::Base
   attr_accessible :active, :city, :lat, :lon, :name, :street, :zip
 
-  #before_save :create_map_link
-
+  before_save :create_map_link
 
   #Relationships
   has_many :events
@@ -24,7 +23,17 @@ class Location < ActiveRecord::Base
   # Callbacks
   before_validation :get_location_coordinates
   
-  private
+  def create_map_link(zoom=12,width=800,height=800)
+      markers = ""; i = 1
+     #self.locations.all.each do |loc|
+     #Location.all.each do |loc|
+      markers += "&markers=color:red%7Ccolor:red%7Clabel:#{i}%7C#{lat},#{lon}"
+     #   i += 1
+     # end
+    map = "http://maps.google.com/maps/api/staticmap?center= #{lat},#{lon}&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap#{markers}&sensor=false"
+  end
+
+private
   def get_location_coordinates
     str = self.street
     zip = self.zip
@@ -38,16 +47,6 @@ class Location < ActiveRecord::Base
     end
     coord
   end
-
-
-# def create_map_link(zoom=12,width=800,height=800)
-#   markers = ""; i = 1
-#   #self.locations.all.each 
-#   Location.all.each do |location|
-#   markers += "&markers=color:red%7Ccolor:red%7Clabel:#{i}%7C#{location.lat},#{location.lon}"
-#   i += 1
-# end
-#   map = "http://maps.google.com/maps/api/staticmap?center= #{location.lat},#{location.lon}&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap&sensor=false"
-# end
+ 
 
 end
