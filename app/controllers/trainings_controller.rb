@@ -15,9 +15,9 @@ class TrainingsController < ApplicationController
   def show
     @training = Training.find(params[:id])
       # get all the departments for this training
-      @departments = @training.departments.alphabetical.paginate(:page => params[:page]).per_page(8)
+      @department_trainings = @training.department_trainings
       # get all the volunteers for this training
-      @volunteers = @training.volunteers.alphabetical.paginate(:page => params[:page]).per_page(8)
+
       @volunteer_trainings = @training.volunteer_trainings
 
     respond_to do |format|

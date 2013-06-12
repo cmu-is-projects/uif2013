@@ -74,8 +74,10 @@ class DepartmentTrainingsController < ApplicationController
     # DELETE /department_trainings/1.json
     def destroy
         @department_training = DepartmentTraining.find(params[:id])
+        @training = @department_training.training
+
         @department_training.destroy
         flash[:notice] = "Successfully removed department_training from the UIF system."
-        redirect_to department_trainings_url
+        redirect_to @training
     end
 end

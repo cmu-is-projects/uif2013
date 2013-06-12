@@ -4,6 +4,10 @@ class HomeController < ApplicationController
   
   def index
    @events = Event.upcoming
+
+
+   
+      
    @students = Student.not_visitor
    @volunteers = Volunteer.alphabetical
    @pending_checks = VolunteerCheck.pending
