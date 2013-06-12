@@ -1,5 +1,5 @@
 
-<% if @departments.empty? %>
+<% if @department_trainings.empty? %>
 There are no departments for this training at this time.
 <p><br>
 <% else %>
@@ -8,12 +8,16 @@ There are no departments for this training at this time.
   <thead>
     <tr>
       <th>Department</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <% @departments.each do |department| %>
+    <% @department_trainings.each do |department_training| %>
       <tr>
-				<td><%= link_to department.name, department_path(department) %> </td>
+				<td><%= link_to department_training.department.name, department_path(department_training.department) %> </td>
+	<td>
+	<%= link_to raw("<i class='icon-trash'></i>"), department_training_path(department_training), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn-small btn-danger' %></td>
+
       </tr>
     <% end %>
   </tbody>
@@ -21,4 +25,3 @@ There are no departments for this training at this time.
 </table>
 <% end %>
 
-<%= will_paginate @departments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>

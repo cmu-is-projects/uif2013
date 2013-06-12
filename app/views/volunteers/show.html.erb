@@ -74,7 +74,7 @@
           <% unless @shifts.nil?||  @shifts.empty? %>
 
               <%= render :partial => "partials/shift_list" %>
-		
+
           <% end %></div>
                   
     
@@ -85,6 +85,9 @@
               <%= render :partial => "partials/training_list" %>
           <% end %><br>
     <%= link_to raw("<i class='icon-plus'></i> <strong>Add Training to this Volunteer</strong>"), new_volunteer_training_path, :class => 'btn-small btn-success' %></br>
+
+
+
     </div>
 
     <div class="well">
@@ -92,8 +95,21 @@
           <p><%= @volunteer.checks.size.zero? ? "No checks yet" : pluralize(@volunteer.checks.size, 'check') %> for this <%= "#{@volunteer.class.to_s.downcase}" %></p>
           <% unless @checks.nil?||  @checks.empty? %>
               <%= render :partial => "partials/check_list" %>
+          <% end %>
+
+<br>
+    <%= link_to raw("<i class='icon-plus'></i> <strong>Add Check to this Volunteer</strong>"), new_volunteer_check_path, :class => 'btn-small btn-success' %></br>
+
+
+    </div>
+<div>
+
+
+    
+
           <% end %><br>
     <%= link_to raw("<i class='icon-plus'></i> <strong>Add Check to this Volunteer</strong>"), new_volunteer_check_path, :class => 'btn-small btn-success' %></br>
+
 
 
     </div></div>
