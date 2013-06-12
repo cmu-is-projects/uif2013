@@ -19,6 +19,7 @@ class Location < ActiveRecord::Base
   scope :alphabetical, order('name')
   scope :active, where('active = ?', true)
   scope :inactive, where('active = ?', false)
+
   
   # Callbacks
   before_validation :get_location_coordinates
@@ -31,6 +32,10 @@ class Location < ActiveRecord::Base
      #   i += 1
      # end
     map = "http://maps.google.com/maps/api/staticmap?center= #{lat},#{lon}&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap#{markers}&sensor=false"
+  end
+
+  def to_s
+    return "#{self.lat},#{self.lon}"
   end
 
 private

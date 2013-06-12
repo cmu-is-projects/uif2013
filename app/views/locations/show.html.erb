@@ -20,7 +20,7 @@
 <div class="span9">
   <div class="map">
     <h2>  Click on the Image for <d><%= @location.name %></d>'s Google Map  </h2>     
-    <a href="http://maps.google.com/?q=<#{@location.lat>,<#{@location.lon>" target="_blank"><%= image_tag @location.create_map_link %></a>
+    <a href="https://maps.google.com/?q=<%=@location.to_s%>" target="_blank"><%= image_tag @location.create_map_link %></a>
   </div>
 </div>
 
