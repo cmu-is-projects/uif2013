@@ -49,8 +49,12 @@
 	  <li><%= @alert_count %> alerts</li>
 	  <h3>For the past week</h3>
 	  <li>#75.3% student attendance</li>
-	  <li>#1290 volunteer hours</li>
-	  <li>New students: <%= @students.new_student.count %>, New volunteers: <%= @volunteers.new_volunteer.count %></li>
+	  <% for shift in @shifts %>
+	    <% @hours = @hours + shift.hours %>
+	    <% end %>
+	  <li>Volunteer hours - <%= @hours %></li>
+	  <li>New students - <%= @students.new_student.count %></li>
+	  <li>New volunteers - <%= @volunteers.new_volunteer.count %></li>
       </div></div>
       <div class="tile" id="program"><a href="sections">
 	<div class="tile-content"><h1>Program Sections</h1>

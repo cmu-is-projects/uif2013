@@ -1,7 +1,12 @@
 <%= simple_nested_form_for @volunteer, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
-    <%= f.input :first_name %>
+
+<a href="#" onclick="toggleDiv('mydiv');" id="toggle">Link to Student Profile</a>    
+<div id="mydivon" style="display:block">
+  
+    <%= f.input :first_name, :id => "first_name" %>
     <%= f.input :last_name %>
     <%= f.input :household_id, :collection => get_households, :prompt => 'Choose Household' %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="#" onclick="toggle_visibility('household_form');">Add new household</a>
     <div id="household_form">
     <%= f.fields_for :household, Household.new do |builder| %>
@@ -13,15 +18,18 @@
     <%= f.input :cell_phone %>
     <%= f.input :can_text %>
     <%= f.input :email %>
-    <%= f.input :status, :collection => Volunteer::STATUS_LIST, :prompt => 'Choose Status' %>
     <%= f.input :avatar, :label => 'Your photo please' %>
+</div>
+<div id="mydivoff" style="display:none">
+    <%= f.input :student_id, :url => autocomplete_student_first_name_volunteers_path, :as => :autocomplete, :input_html => {:id => "student_first_name", :name => "", :id_element => "#volunteer_student_id" }, :update_elements => {} %>
+    <%= f.hidden_field :student_id, :input_html => { :name => "volunteer[student_id]" } %>
+</div>
+    <%= f.input :status, :collection => Volunteer::STATUS_LIST, :prompt => 'Choose Status' %>
     <%= f.input :app_submit_date %>
     <%= f.input :app_approved %>
     <%= f.input :role, :collection => Volunteer::ROLE_LIST, :prompt => 'Choose Role' %>
     <%= f.input :name_displayed %>
     <%= f.input :spouse_id, :collection => get_volunteers, :prompt => 'Choose Spouse' %>
-    <%= f.input :student_id %>
-
     <div class="form-actions">
       <%= f.button :submit, :class => 'btn-success' %>
         <% if @data.blank? %> 

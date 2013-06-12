@@ -2,13 +2,15 @@ require 'carrierwave/orm/activerecord'
 require 'prawn'
 
 class Volunteer < ActiveRecord::Base
-  attr_accessible :app_approved, :app_submit_date, :barcode_number, :can_text, :cell_phone, :date_of_birth, :email, :first_name, :household_id, :is_male, :last_name, :name_displayed, :role, :spouse_id, :status, :student_id, :household_attributes
+  attr_accessible :app_approved, :app_submit_date, :barcode_number, :can_text, :cell_phone, :date_of_birth, :email, :first_name, :household_id, :is_male, :last_name, :name_displayed, :role, :spouse_id, :status, :student_id, :household_attributes, :student_attributes
   before_save :reformat_phone, :assign_barcode, :avatar
   attr_accessible :avatar
+  attr_reader :student_first_name
   has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "100x100>" }
   
   #Relationships
   belongs_to :household
+  has_one :student
   has_many :shifts, :as => :shiftable
   has_many :volunteer_checks
   has_many :volunteer_trainings
@@ -21,6 +23,7 @@ class Volunteer < ActiveRecord::Base
   
   #Nested Attributes
   accepts_nested_attributes_for :household, :allow_destroy => true
+  accepts_nested_attributes_for :student, :allow_destroy => true
   
   #Validations
   validates_presence_of :first_name, :last_name, :date_of_birth, :role, :status, :name_displayed

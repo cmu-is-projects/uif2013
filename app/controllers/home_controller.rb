@@ -12,6 +12,8 @@ class HomeController < ApplicationController
    @volunteers = Volunteer.alphabetical
    @pending_checks = VolunteerCheck.pending
    @households = Household.active
+   @shifts = Shift.last_week
+   @hours = 0
    @past = Event.past.by_date_desc.limit(2)
    @sections = Section.active
    @alerts = Note.alerts.active.by_priority.by_date_desc.last_six.all
