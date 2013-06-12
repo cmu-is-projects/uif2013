@@ -28,7 +28,13 @@
       </div></div>
       <div class="tile" id="student"><a href="students.html">
 	<div class="tile-content"><h1>Student</h1>
-	  <li>#12 students with consecutive absences last week</li>
+	    <% for event in @events_last_week %>
+	  	  <% unless Event.absentees(event.id).nil? %>
+	   		 <% @absences_last_week = @absences_last_week + Event.absentees(event.id).size %>
+	    	  <% end %>
+ 	    <% end %>
+	  <li>Absences Last Week: <%= @absences_last_week %></li>
+
       </div></div>
       <div class="tile" id="volunteer"><a href="volunteers.html">
 	<div class="tile-content"><h1>Volunteer</h1>
@@ -48,13 +54,24 @@
 	  <h3>Currently</h3>
 	  <li><%= @alert_count %> alerts</li>
 	  <h3>For the past week</h3>
-	  <li>#75.3% student attendance</li>
+
+	    <% for event in @events_last_week %>
+	  	  <% unless Event.attendees(event.id).nil? %>
+	   		 <% @attendees_last_week = @attendees_last_week + Event.attendees(event.id).size %>
+	    	  <% end %>
+ 	    <% end %>
+
+	  <li>Attendees Last Week: <%= @attendees_last_week %></li>
+	  <li>Absences Last Week: <%= @absences_last_week %></li>
+	  <li>Student Attendance Percentage: <%= ((@attendees_last_week.to_f / (@absences_last_week + @attendees_last_week))*100).to_i %>%</li>
+
+
 	  <% for shift in @shifts %>
 	    <% @hours = @hours + shift.hours %>
 	    <% end %>
-	  <li>Volunteer hours - <%= @hours %></li>
-	  <li>New students - <%= @students.new_student.count %></li>
-	  <li>New volunteers - <%= @volunteers.new_volunteer.count %></li>
+	  <li>Volunteer Hours : <%= @hours %></li>
+	  <li>New Students : <%= @students.new_student.count %></li>
+	  <li>New Volunteers : <%= @volunteers.new_volunteer.count %></li>
       </div></div>
       <div class="tile" id="program"><a href="sections">
 	<div class="tile-content"><h1>Program Sections</h1>

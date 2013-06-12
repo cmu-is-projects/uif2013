@@ -30,8 +30,10 @@ class Event < ActiveRecord::Base
   scope :upcoming, where('date >= ?', Date.today)
   scope :current, where('date = ?', Date.today)
   scope :this_week, where("date >= ? AND date <= ?", Date.today, Date.today.next_week)
+  scope :last_week, where("date >= ? AND date <= ?", 1.week.ago.to_date, Date.today)
   scope :by_date, order('date')
   scope :by_date_desc, order('date DESC')
+    
   
 
   # virtual attributes section_ids - corresponds with ids of sections of each event

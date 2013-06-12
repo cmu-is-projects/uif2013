@@ -4,16 +4,15 @@ class HomeController < ApplicationController
   
   def index
    @events = Event.upcoming
-
-
-   
-      
+   @events_last_week = Event.last_week
    @students = Student.not_visitor
    @volunteers = Volunteer.alphabetical
    @pending_checks = VolunteerCheck.pending
    @households = Household.active
    @shifts = Shift.last_week
-   @hours = 0
+      @hours = 0
+      @absences_last_week = 0
+      @attendees_last_week = 0
    @past = Event.past.by_date_desc.limit(2)
    @sections = Section.active
    @alerts = Note.alerts.active.by_priority.by_date_desc.last_six.all
