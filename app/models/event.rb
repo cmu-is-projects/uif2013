@@ -83,7 +83,20 @@ class Event < ActiveRecord::Base
     #absentees
     end
   end
- 
+
+  def self.volunteer_attendees(id)
+    volunteer_attendees = Volunteer.joins("INNER JOIN shifts s ON s.volunteer_id = volunteers.id INNER JOIN events e ON e.id = s.shiftable_id").where('e.id = ? AND s.shiftable_type = ? AND s.checked_in=?', id,'Event',true).order('last_name, first_name') 
+
+    return nil if volunteer_attendees.empty?
+    volunteer_attendees # return as a single object, not an array
+  end
+
+  def self.volunteer_absentees(id)
+    volunteer_absentees = Volunteer.joins("INNER JOIN shifts s ON s.volunteer_id = volunteers.id INNER JOIN events e ON e.id = s.shiftable_id").where('e.id = ? AND s.shiftable_type = ? AND s.checked_in=?', id,'Event',false).order('last_name, first_name') 
+
+    return nil if volunteer_absentees.empty?
+    volunteer_absentees # return as a single object, not an array
+  end
   
   def self.get_todays_date
     t = Time.now

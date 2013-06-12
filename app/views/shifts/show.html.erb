@@ -30,6 +30,11 @@
   <%= @shift.end_time.strftime("%I:%M %P") %>
 </p>
 
+<p>
+  <b>Checked in?:</b>
+  <%= @shift.checked_in %>
+</p>
+
 <%= link_to raw("Back to shifts"), shifts_path, :class => 'btn'  %>
       &nbsp;
       <%= link_to raw("Edit this shift"), edit_shift_path(@shift), :class => 'btn' %>

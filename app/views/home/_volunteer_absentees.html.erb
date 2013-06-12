@@ -1,7 +1,7 @@
-<% if @student_absentees.nil? %>
+<% if @volunteer_absentees.nil? %>
 <h4>No Absentees</h4>
 <% else %>
-<table id="absentees" class="table table-striped">
+<table id="volunteer_absentees" class="table table-striped">
   <thead>
     <tr>
       <th>Student</th>
@@ -11,17 +11,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @student_absentees.each do |student| %>
-      <tr class="is_visitor">
-        <td><%= link_to student.name, student_path(student) %></td>
-        <%- if student.cell_phone.nil? -%>
+    <% @volunteer_absentees.each do |volunteer| %>
+      <tr>
+        <td><%= link_to volunteer.name, volunteer_path(volunteer) %></td>
+        <%- if volunteer.cell_phone.nil? -%>
           <td>No Phone Number</td> 
         <% else %>
-          <td><%= number_to_phone student.cell_phone %></td> 
+          <td><%= number_to_phone volunteer.cell_phone %></td> 
         <% end %> 
-       <td><% if student.is_visitor %> <i class="icon-flag"></i><%end%><%= student.barcode_number %></td>   
-        <% if student.is_visitor %> <i class="icon-flag"/> <%end%></td>    
-        <td><%= link_to raw("<i class='icon-file'></i> Add note"), new_note_path(:id => student.id, :source => 'student'), :class => 'btn btn-mini' %>
+       <td><%= volunteer.barcode_number %></td>     
+        <td><%= link_to raw("<i class='icon-file'></i> Add note"), new_note_path(:id => volunteer.id, :source => 'volunteer'), :class => 'btn btn-mini' %>
+        <%= link_to raw("Check in"), volunteer_path(:id =>volunteer.id, :checked_in=>true), :method => :put, :class => 'btn btn-mini' %>
         </td>           
       </tr>
     <% end %>

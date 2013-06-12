@@ -104,7 +104,7 @@ class VolunteersController < ApplicationController
   # PUT /volunteers/1.json
   def update
     @volunteer = Volunteer.find(params[:id])
-    params[:volunteer].delete "household_attributes"
+    #params[:volunteer].delete "household_attributes"
     @household = Household.new(params[:household])
     respond_to do |format|
       if @volunteer.update_attributes(params[:volunteer])

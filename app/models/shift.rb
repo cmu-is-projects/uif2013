@@ -1,6 +1,9 @@
 class Shift < ActiveRecord::Base
-  attr_accessible :end_time, :shiftable_id, :shiftable_type, :start_time, :volunteer_id, :hidden_id, :hidden_klass
+  attr_accessible :checked_in, :end_time, :shiftable_id, :shiftable_type, :start_time, :volunteer_id, :hidden_id, :hidden_klass
   attr_accessor :hidden_id, :hidden_klass
+  after_initialize :init
+
+
   
   # Set up shifts as polymorphic
   belongs_to :shiftable, :polymorphic => true
@@ -29,5 +32,8 @@ class Shift < ActiveRecord::Base
   end
   def hours_last_week
     self.inject {|sum,x| sum + x.hours}
+  end
+  def init
+    self.checked_in  ||= false           #will set the default value only if it's nil
   end
 end

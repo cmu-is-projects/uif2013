@@ -25,8 +25,8 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-    @attendees = Event.attendees(params[:id])
-    @absentees = Event.absentees(params[:id])
+    @attendees = Event.student_attendees(params[:id])
+    @absentees = Event.student_absentees(params[:id])
     @notes = @event.notes.by_priority
     @notable = @event
     @shiftable = @event

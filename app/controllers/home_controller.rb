@@ -43,14 +43,24 @@ class HomeController < ApplicationController
       end    
       @student_attendees = Event.student_attendees(session[:event])
       @student_absentees = Event.student_absentees(session[:event])
+      @volunteer_attendees = Event.volunteer_attendees(session[:event])
+      @volunteer_absentees = Event.volunteer_absentees(session[:event])
       session[session[:event].intern] = 1;
     else
       @student_attendees = Event.student_attendees(session[:event])
       @student_absentees = Event.student_absentees(session[:event])
+      @volunteer_attendees = Event.volunteer_attendees(session[:event])
+      @volunteer_absentees = Event.volunteer_absentees(session[:event])
     end
     
     if !@event.program.scan_by_absence && params[:barcode] && session[:event]
       @student = Student.find_by_barcode_number(params[:barcode])
+      @volunteer = Volunteer.find_by_barcode_number(params[:barcode])
+      if @volunteer
+        @shift = @volunteer.shifts.where("shiftable_type = ? and shiftable_id = ?","event",params[:event_id])
+        @shift.update_attributes(:checked_in => true)
+        render :json => { message: "#{@volunteer.proper_name} was successfully scanned!", volunteer_attendees: @volunteer_attendees, volunteer_absentees: @volunteer_absences }
+      end
       if @student && @student.attendances.create(event_id: params[:event_id])
         if @student.is_visitor
           note = Note.new
@@ -64,9 +74,10 @@ class HomeController < ApplicationController
           note.active = true
           note.save
         end
-        
         @student_attendances = Event.student_attendees(session[:event])
         @student_absences = Event.student_absentees(session[:event])
+        @volunteer_attendees = Event.volunteer_attendees(session[:event])
+        @volunteer_absentees = Event.volunteer_absentees(session[:event])
         if(!@student_absences.nil?) 
           @student_absences.each do |student|
             puts student.proper_name if !student.nil?
@@ -80,12 +91,19 @@ class HomeController < ApplicationController
     
     if @event.program.scan_by_absence && params[:barcode] && session[:event]
       @student = Student.find_by_barcode_number(params[:barcode])
+      @volunteer = Volunteer.find_by_barcode_number(params[:barcode])
+      if @volunteer
+        @shift = @volunteer.shifts.where("shiftable_type = ? and shiftable_id = ?","event",params[:event_id])
+        @shift.update_attributes(:checked_in => true)
+      end
       if @student
         @student_attendance = Attendance.find_by_student_id_and_event_id(@student.id,session[:event])
         if(!@student_attendance.nil?)
           if @student.student_attendances.destroy(@student_attendance.id)
             @student_attendees = Event.student_attendees(session[:event])
             @student_absentees = Event.student_absentees(session[:event])
+            @volunteer_attendees = Event.volunteer_attendees(session[:event])
+            @volunteer_absentees = Event.volunteer_absentees(session[:event])
             render :json => { message: "#{@student.proper_name} did not attend!", attendees: @student_attendees, student_absentees: @student_absentees }
           elsif
             render :json => { error:'There was an error scanning.', message:  "#{@student.proper_name} was not scanned. Try again."}
@@ -93,6 +111,8 @@ class HomeController < ApplicationController
         else  
           @student_attendees = Event.student_attendees(session[:event])
           @student_absentees = Event.student_absentees(session[:event])
+          @volunteer_attendees = Event.volunteer_attendees(session[:event])
+          @volunteer_absentees = Event.volunteer_absentees(session[:event])
           render :json => { message:"#{@student.proper_name} is already absent.",student_attendees: @student_attendees, student_absentees: @student_absentees }
         end
       else
