@@ -1,11 +1,11 @@
 class VolunteersController < ApplicationController
   # GET /volunteers
   # GET /volunteers.json
-  autocomplete :student, :first_name, :display_value => :name, :extra_data => [:first_name, :last_name]
+  autocomplete :student, :first_name, :display_value => :proper_name, :extra_data => [:first_name, :last_name]
   
   def get_items(parameters)
      super(parameters)
-     items = Student.search_by_name(params[:term])
+     items = Student.select("first_name, last_name, id").where(["LOWER(last_name || ', ' || first_name) " + "LIKE LOWER(?)", "%#{parameters[:term]}%"]).order("last_name, first_name")
   end
 
   def index

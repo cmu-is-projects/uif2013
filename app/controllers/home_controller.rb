@@ -35,18 +35,18 @@ class HomeController < ApplicationController
     session[:event] = params[:event_id]
     @event = Event.find(session[:event])
     if @event.program.scan_by_absence && session[session[:event].intern].nil?
-      @absent_students = Event.absentees(session[:event])
+      @absent_students = Event.student_absentees(session[:event])
       if(!@absent_students.nil?)
         @absent_students.each do |student|
           student.attendances.create(event_id: session[:event])
         end
       end    
-      @attendees = Event.attendees(session[:event])
-      @absentees = Event.absentees(session[:event])
+      @student_attendees = Event.student_attendees(session[:event])
+      @student_absentees = Event.student_absentees(session[:event])
       session[session[:event].intern] = 1;
     else
-      @attendees = Event.attendees(session[:event])
-      @absentees = Event.absentees(session[:event])
+      @student_attendees = Event.student_attendees(session[:event])
+      @student_absentees = Event.student_absentees(session[:event])
     end
     
     if !@event.program.scan_by_absence && params[:barcode] && session[:event]
@@ -65,14 +65,14 @@ class HomeController < ApplicationController
           note.save
         end
         
-        @attendances = Event.attendees(session[:event])
-        @absences = Event.absentees(session[:event])
-        if(!@absences.nil?) 
-          @absences.each do |student|
+        @student_attendances = Event.student_attendees(session[:event])
+        @student_absences = Event.student_absentees(session[:event])
+        if(!@student_absences.nil?) 
+          @student_absences.each do |student|
             puts student.proper_name if !student.nil?
           end
         end
-        render :json => { message: "#{@student.proper_name} was successfully scanned!", attendees: @attendances, absentees: @absences }
+        render :json => { message: "#{@student.proper_name} was successfully scanned!", student_attendees: @student_attendances, student_absentees: @student_absences }
       else
         render :json => { error:'There was an error scanning.'}
       end    
@@ -81,19 +81,19 @@ class HomeController < ApplicationController
     if @event.program.scan_by_absence && params[:barcode] && session[:event]
       @student = Student.find_by_barcode_number(params[:barcode])
       if @student
-        @attendance = Attendance.find_by_student_id_and_event_id(@student.id,session[:event])
-        if(!@attendance.nil?)
-          if @student.attendances.destroy(@attendance.id)
-            @attendees = Event.attendees(session[:event])
-            @absentees = Event.absentees(session[:event])
-            render :json => { message: "#{@student.proper_name} did not attend!", attendees: @attendees, absentees: @absentees }
+        @student_attendance = Attendance.find_by_student_id_and_event_id(@student.id,session[:event])
+        if(!@student_attendance.nil?)
+          if @student.student_attendances.destroy(@student_attendance.id)
+            @student_attendees = Event.student_attendees(session[:event])
+            @student_absentees = Event.student_absentees(session[:event])
+            render :json => { message: "#{@student.proper_name} did not attend!", attendees: @student_attendees, student_absentees: @student_absentees }
           elsif
             render :json => { error:'There was an error scanning.', message:  "#{@student.proper_name} was not scanned. Try again."}
           end
         else  
-          @attendees = Event.attendees(session[:event])
-          @absentees = Event.absentees(session[:event])
-          render :json => { message:"#{@student.proper_name} is already absent.",attendees: @attendees, absentees: @absentees }
+          @student_attendees = Event.student_attendees(session[:event])
+          @student_absentees = Event.student_absentees(session[:event])
+          render :json => { message:"#{@student.proper_name} is already absent.",student_attendees: @student_attendees, student_absentees: @student_absentees }
         end
       else
         render :json => { error:'There was an error scanning.' }

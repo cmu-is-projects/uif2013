@@ -27,7 +27,7 @@ class Shift < ActiveRecord::Base
   def hours
     ((self.end_time-self.start_time)/ 1.hour).round
   end
-  def hours_this_week
+  def hours_last_week
     self.inject {|sum,x| sum + x.hours}
   end
 end
