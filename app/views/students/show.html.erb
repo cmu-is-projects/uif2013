@@ -50,6 +50,12 @@
             <dt><strong>Household:</strong></dt>
             <dd><%= link_to "#{@student.household.name} Family", household_path(@student.household.id) %> (<%= @student.household.street %>) <a class="household-button" href=<%= household_path(@student.household.id) %> ><i class="icon-home"></i> </a></dd>
           <% end %>
+
+          <% if !@student.school.nil? %>
+            <dt><strong>School:</strong></dt>
+            <dd><%= link_to "#{@student.school.name}", school_path(@student.school.id) %> (<%= @student.school.name %>)
+          <%end%>
+
           <% if !@student.is_male.blank? %>
             <dt><strong>Gender:</strong></dt>
             <dd><%= @student.is_male ? "Male" : "Female" %></dd>
