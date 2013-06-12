@@ -25,13 +25,9 @@ class Location < ActiveRecord::Base
   before_validation :get_location_coordinates
   
   def create_map_link(zoom=12,width=800,height=800)
-      markers = ""; i = 1
-     #self.locations.all.each do |loc|
-     #Location.all.each do |loc|
-      markers += "&markers=color:red%7Ccolor:red%7Clabel:#{i}%7C#{lat},#{lon}"
-     #   i += 1
-     # end
-    map = "http://maps.google.com/maps/api/staticmap?center= #{lat},#{lon}&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap#{markers}&sensor=false"
+      markers = ""; i = 1   
+      markers += "&markers=color:red%7Ccolor:red%7Clabel:#{i}%7C#{lat},#{lon}"  
+      map = "http://maps.google.com/maps/api/staticmap?center= #{lat},#{lon}&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap#{markers}&sensor=false"
   end
 
   def to_s

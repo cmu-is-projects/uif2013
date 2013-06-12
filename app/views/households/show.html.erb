@@ -5,6 +5,12 @@
     <%= render :partial => "household_details" %>
     <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @household} %>
   </div>
+
+  <div class="map">
+    <h2>  Click on the Image for <d><%= @household.name %></d>'s Household Google Map  </h2>     
+    <a href="https://maps.google.com/?q=<%=@household.to_s%>" target="_blank"><%= image_tag @household.create_map_link %></a>
+  </div>
+
   <div class="span5">
     <%= render :partial => "household_children" %>
     <p>&nbsp;</p>
