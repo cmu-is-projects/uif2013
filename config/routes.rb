@@ -26,6 +26,7 @@ Uif2013::Application.routes.draw do
   
   # Barcode scanning routes
   match 'checkin', :controller => 'home', :action => 'checkin', :as => :checkin
+  match 'volunteer_checkin', :controller => 'home', :action => 'volunteer_checkin', :as => :volunteer_checkin
   match 'meals_served', :controller => 'event', :action => 'meals_served'
   
   # General Home

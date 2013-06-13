@@ -3,8 +3,6 @@ class Shift < ActiveRecord::Base
   attr_accessor :hidden_id, :hidden_klass
   after_initialize :init
 
-
-  
   # Set up shifts as polymorphic
   belongs_to :shiftable, :polymorphic => true
   
@@ -24,7 +22,7 @@ class Shift < ActiveRecord::Base
   scope :past, where('start_time < ?', DateTime.now)
   scope :upcoming, where('start_time >= ?', DateTime.now)
   scope :no_end_time, where('end_time IS NULL')
-  scope :last_week, where("start_time >= ? AND start_time >= ?", DateTime.now.end_of_day, 1.week.ago.to_datetime)
+  scope :last_week, where("start_time <= ? AND start_time >= ?", DateTime.now.end_of_day, 1.week.ago.to_datetime)
   
   #Methods
   def hours

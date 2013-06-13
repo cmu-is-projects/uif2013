@@ -29,18 +29,33 @@
       <div class="tile" id="student"><a href="students.html">
 	<div class="tile-content"><h1>Student</h1>
 	    <% for event in @events_last_week %>
-	  	  <% unless Event.absentees(event.id).nil? %>
-	   		 <% @absences_last_week = @absences_last_week + Event.absentees(event.id).size %>
+	  	  <% unless Event.student_absentees(event.id).nil? %>
+	   		 <% @absences_last_week = @absences_last_week + Event.student_absentees(event.id).size %>
 	    	  <% end %>
  	    <% end %>
-	  <li>Absences Last Week: <%= @absences_last_week %></li>
+ 	    <% if @absences_last_week==0 && @student_alerts==0 %>
+	      All is good
+	      <% else %>
+		<% unless @absences_last_week ==0 %>
+		  <li>Absences Last Week: <%= @absences_last_week %></li>
+		<% end %>
+		<% unless @student_alerts==0 %>
+		  <li>Student Alerts: <%= @student_alerts %></li>
+		<% end %>
+	      <% end %>
 
       </div></div>
       <div class="tile" id="volunteer"><a href="volunteers.html">
 	<div class="tile-content"><h1>Volunteer</h1>
-	  <li><% if @pending_checks.empty? %>
-	    All is good<% else %>
-	    Pending Checks: <%= @pending_checks.length %><% end %></li>
+	  <% if @pending_checks.empty? && @volunteer_alerts==0 %>
+	    All is good
+	    <% else %>
+	      <% unless @pending_checks.empty? %>
+		<li>Pending Checks: <%= @pending_checks.length %></li>
+	      <% end %>
+	      <% unless @volunteer_alerts==0 %>
+		<li>Volunteer Alerts: <%= @volunteer_alerts %></li>
+	      <% end %>
       </div></div>
       <div class="tile" id="event"><a href="events.html">
 	<div class="tile-content"><h1>Event</h1>
@@ -56,8 +71,8 @@
 	  <h3>For the past week</h3>
 
 	    <% for event in @events_last_week %>
-	  	  <% unless Event.attendees(event.id).nil? %>
-	   		 <% @attendees_last_week = @attendees_last_week + Event.attendees(event.id).size %>
+	  	  <% unless Event.student_attendees(event.id).nil? %>
+	   		 <% @attendees_last_week = @attendees_last_week + Event.student_attendees(event.id).size %>
 	    	  <% end %>
  	    <% end %>
 

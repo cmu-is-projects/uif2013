@@ -21,7 +21,6 @@
         <% end %> 
        <td><%= volunteer.barcode_number %></td>     
         <td><%= link_to raw("<i class='icon-file'></i> Add note"), new_note_path(:id => volunteer.id, :source => 'volunteer'), :class => 'btn btn-mini' %>
-        <%= link_to raw("Check in"), volunteer_path(:id =>volunteer.id, :checked_in=>true), :method => :put, :class => 'btn btn-mini' %>
         </td>           
       </tr>
     <% end %>
