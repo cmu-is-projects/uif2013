@@ -19,6 +19,7 @@ class HomeController < ApplicationController
    @alert_count = Note.alerts.active.all.length
    @student_alerts = Note.active.student_alerts.length
    @volunteer_alerts = Note.active.volunteer_alerts.length
+   @event_alerts = Note.active.event_alerts.length
    @visitors = Student.is_visitor
   
   

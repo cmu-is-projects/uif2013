@@ -13,6 +13,7 @@ class Note < ActiveRecord::Base
   scope :by_date_desc, order('date DESC')
   scope :student_alerts, where('priority < ? AND notable_type=?', 3, 'Student')
   scope :volunteer_alerts, where('priority < ? AND notable_type=?', 3, 'Volunteer')
+  scope :event_alerts, where('priority < ? AND notable_type=?', 3, 'Event')
   scope :alerts, where('priority < ?', 3)
   scope :last_six, limit(6)
   scope :active, where('active = ?', true)

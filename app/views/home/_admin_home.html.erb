@@ -56,13 +56,20 @@
 	      <% unless @volunteer_alerts==0 %>
 		<li>Volunteer Alerts: <%= @volunteer_alerts %></li>
 	      <% end %>
+	    <% end %>
       </div></div>
       <div class="tile" id="event"><a href="events.html">
 	<div class="tile-content"><h1>Event</h1>
-	  <li><% if @events.current.empty? %> No events today
-	  <% else %>Today: <%= @events.current.count %><% end %></li>
+	  <li><% if @events.current.empty? %>
+	    No events today
+	  <% else %>
+	    Today: <%= @events.current.count %>
+	  <% end %></li>
 	  <li><% if @events.this_week.empty? %> No events next week
 	  <% else %>This week: <%= @events.this_week.count %><% end %></li>
+	  <% unless @event_alerts==0 %>
+	    <li>Event Alerts: <%= @event_alerts %></li>
+	  <% end %>  
       </div></div>
       <div id="tall-tile" class="tile"><a href="statistics.html">
 	<div class="tile-content"><h1>Statistics</h1>
