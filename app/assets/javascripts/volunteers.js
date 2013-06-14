@@ -7,7 +7,6 @@ function toggle_visibility(id) {
 }
 
 function toggleDiv(divid){
- 
     varon = divid + 'on';
     varoff = divid + 'off';
     if(document.getElementById(varon).style.display == 'none')
@@ -22,11 +21,4 @@ function toggleDiv(divid){
       document.getElementById(varoff).style.display = 'block';
       document.getElementById(varon).style.display = 'none';
     }
- 
- }
- 
-  $(function() {
-    $( "#tags" ).autocomplete({
-      source: '<%= volunteer_path(:format => :json) %>'
-    });
-  });
+}

@@ -73,8 +73,6 @@
       </div></div>
       <div id="tall-tile" class="tile"><a href="statistics.html">
 	<div class="tile-content"><h1>Statistics</h1>
-	  <h3>Currently</h3>
-	  <li><%= @alert_count %> alerts</li>
 	  <h3>For the past week</h3>
 
 	    <% for event in @events_last_week %>
@@ -86,8 +84,6 @@
 	  <li>Attendees Last Week: <%= @attendees_last_week %></li>
 	  <li>Absences Last Week: <%= @absences_last_week %></li>
 	  <li>Student Attendance Percentage: <%= ((@attendees_last_week.to_f / (@absences_last_week + @attendees_last_week))*100).to_i %>%</li>
-
-
 	  <% for shift in @shifts %>
 	    <% @hours = @hours + shift.hours %>
 	    <% end %>
@@ -104,9 +100,11 @@
 	</div></div>
       <div class="tile" id="household"><a href="households.html">
 	<div class="tile-content"><h1>Household</h1>
-	  <li><% if @households.missing_info.empty? %>
-	    All is good<% else %>
-	    Missing insurance info: <%= @households.missing_info.length %><% end %></li>
+	  <% if @households.missing_info.empty? %>
+	    All is good
+	  <% else %>
+	    <li>Missing insurance info: <%= @households.missing_info.length %></li>
+	  <% end %>
       </div></div>
       <div class="tile" id="guardian"><a href="guardians.html">
 	<div class="tile-content"><h1>Guardian</h1>
