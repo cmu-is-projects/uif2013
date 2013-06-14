@@ -78,41 +78,7 @@
           <% end %>
 	  
     </div>
-    <div class="well">
-
-            <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-		  <li class="active"><a href="#red" data-toggle="tab">Upcoming</a></li>
-		  <li><a href="#orange" data-toggle="tab">Past</a></li>
-	      </ul>
-	      <div id="my-tab-content" class="tab-content">
-		  <div class="tab-pane active" id="red">
-		      <% if @shifts.upcoming.empty? %> No upcoming shifts
-		      <% else %>
-                      <table>
-                        <thead><tr><td>Date</td><td>Start time</td><td>End time</td></tr></thead>
-                      <% for shift in @shifts.upcoming %>
-                        <tr>
-                          <td><%= shift.start_time.strftime("%b %d, %Y") %></td>
-                          <td><%= shift.start_time.strftime("%I:%M %P") %></td>
-                          <td><%= shift.end_time.strftime("%I:%M %P") %></td>
-                        </tr>
-                      <% end %>
-                      </table><% end %>
-		  </div>
-		  <div class="tab-pane" id="orange">
-		      <% if @shifts.past.empty? %> No past shifts
-		      <% else %>
-                      <table>
-                        <thead><tr><td>Date</td><td>Start time</td><td>End time</td></tr></thead>
-                      <% for shift in @shifts.past %>
-                        <tr>
-                          <td><%= shift.start_time.strftime("%b %d, %Y") %></td>
-                          <td><%= shift.start_time.strftime("%I:%M %P") %></td>
-                          <td><%= shift.end_time.strftime("%I:%M %P") %></td>
-                        </tr>
-                      <% end %>
-                      </table><% end %>
-		  </div></div></div>
+ 
                   
     
         <div class="well">
@@ -143,10 +109,6 @@
 
 
     
-
-          <% end %><br>
-    <%= link_to raw("<i class='icon-plus'></i> <strong>Add Check to this Volunteer</strong>"), new_volunteer_check_path, :class => 'btn-small btn-success' %></br>
-
 
 
     </div></div>
