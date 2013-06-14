@@ -14,6 +14,11 @@ class TrainingsController < ApplicationController
   # GET /trainings/1.json
   def show
     @training = Training.find(params[:id])
+      # get all the departments for this training
+      @department_trainings = @training.department_trainings
+      # get all the volunteers for this training
+
+      @volunteer_trainings = @training.volunteer_trainings
 
     respond_to do |format|
       format.html # show.html.erb

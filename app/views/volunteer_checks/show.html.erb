@@ -1,0 +1,15 @@
+
+
+<p>
+  <b>Volunteer:</b>
+  <%= @volunteer_check.volunteer_id %>
+</p>
+
+<p>
+  <b>Check:</b>
+  <%= @volunteer_check.check_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_volunteer_check_path(@volunteer_check) %> |
+<%= link_to 'Back', volunteers_path %>

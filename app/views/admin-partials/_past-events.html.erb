@@ -2,7 +2,15 @@
   <h2> There Are No Past Events </h2>
 <% else %>
   <h3>Recent Events</h3>
-  <% @past.each do |event| %>
-    <%= link_to event.program.name, event_path(event) %>&nbsp;&nbsp;&nbsp;&nbsp; <%= event.date.strftime("%B %d, %Y") %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "(Scan)", {:controller => "home", :action => "checkin", :event_id => event.id}%><br>
-  <% end %> 
+  <table>
+    <% @past.each do |event| %>
+      <tr>
+        <td><%= link_to event.program.name, event_path(event) %></td>
+        <td><%= event.date.strftime("%B %d, %Y") %></td>
+        <td><%= link_to "(Student)", {:controller => "home", :action => "checkin", :event_id => event.id}%></td>
+        <td><%= link_to "(Volunteers)", {:controller => "home", :action => "volunteer_checkin", :event_id => event.id}%></td>
+      </tr>
+    <% end %> 
+  </table>
+
 <% end %>
