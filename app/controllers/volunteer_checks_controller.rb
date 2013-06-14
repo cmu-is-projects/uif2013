@@ -59,14 +59,16 @@ class VolunteerChecksController < ApplicationController
     # PUT /volunteer_checks/1
     # PUT /volunteer_checks/1.json
     def update
-        @volunteer = VolunteerCheck.find(params[:id]).volunteer
-        
-        @volunteer_check = Volunteer_check.find(params[:id])
-        if @volunteer_check.update_attributes(params[:volunteer_check])
-            flash[:notice] = "Successfully updated volunteer_check."
-            redirect_to @volunteer
-            else
-            render :action => 'edit'
+        @volunteer_check = VolunteerCheck.find(params[:id])
+        @volunteer = @volunteer_check.volunteer
+        respond_to do |format|
+            if @volunteer_check.update_attributes(params[:volunteer_check])
+                format.html { redirect_to @volunteer, notice: 'Volunteer Check was successfully updated.' }
+                format.json { head :no_content }
+                else
+                format.html { render action: "edit" }
+                format.json { render json: @volunteer_check.errors, status: :unprocessable_entity }
+            end
         end
     end
     
@@ -77,7 +79,7 @@ class VolunteerChecksController < ApplicationController
         @check = VolunteerCheck.find(params[:id]).check
 
         @volunteer_check.destroy
-        flash[:notice] = "Successfully removed volunteer_check from the UIF system."
+        flash[:notice] = "Successfully removed Volunteer Check from the UIF system."
         redirect_to @check
     end
 end

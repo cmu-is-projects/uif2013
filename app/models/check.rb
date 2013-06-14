@@ -7,7 +7,7 @@ class Check < ActiveRecord::Base
     
     has_many :notes, :as => :notable, :dependent => :destroy
     
-    validates_presence_of :name
+    validates_presence_of :name, :duration, :cost
     validates_uniqueness_of :name
     
     scope :alphabetical, order('name')

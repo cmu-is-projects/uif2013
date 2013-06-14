@@ -4,6 +4,8 @@ class VolunteerCheck < ActiveRecord::Base
     belongs_to :volunteer
     belongs_to :check
     
+    validates_presence_of :check_id, :volunteer_id
+    
     scope :pending, where('date_completed IS NULL')
     scope :expiring, lambda {|duration| joins(:check).where("duration = ?", duration) }
     

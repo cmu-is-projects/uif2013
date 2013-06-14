@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(:version => 20130612030431) do
     t.datetime "end_time"
     t.string   "shiftable_type"
     t.integer  "shiftable_id"
-    t.boolean  "checked_in", :default => false
+    t.boolean  "checked_in"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end

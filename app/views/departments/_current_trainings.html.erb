@@ -10,7 +10,6 @@ There are no trainings for this department at this time.
       <th>Training</th>
       <th>Level</th>
       <th>Description</th>
-      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -20,12 +19,7 @@ There are no trainings for this department at this time.
 				<td><%= training.level %></td>
 
 				<td><%= training.description %></td>
-        <td>
-					<%= link_to raw("<i class='icon-file'></i> Details"), training_path(training), :class => 'btn btn-mini' %>
-          <%= link_to raw("<i class='icon-pencil'></i> Edit"), edit_training_path(training), :class => 'btn btn-mini' %>
-
-     
-        </td>
+        
       </tr>
     <% end %>
   </tbody>
