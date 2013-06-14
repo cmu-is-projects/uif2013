@@ -1,4 +1,7 @@
 Uif2013::Application.routes.draw do
+  resources :shifts
+
+
   get "check/edit"
 
   get "check/index"
@@ -13,16 +16,17 @@ Uif2013::Application.routes.draw do
 
   resources :trainings  
   resources :checks
-    resources :shifts
-    resources :department_trainings
-    resources :volunteer_trainings
-    resources :volunteer_checks
+  resources :shifts
+  resources :department_trainings
+  resources :volunteer_trainings
+  resources :volunteer_checks
   resources :notes
 
   #require 'api_constraints' 
   
   # Barcode scanning routes
   match 'checkin', :controller => 'home', :action => 'checkin', :as => :checkin
+  match 'volunteer_checkin', :controller => 'home', :action => 'volunteer_checkin', :as => :volunteer_checkin
   match 'meals_served', :controller => 'event', :action => 'meals_served'
   
   # General Home

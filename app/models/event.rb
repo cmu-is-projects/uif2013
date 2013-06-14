@@ -60,22 +60,22 @@ class Event < ActiveRecord::Base
 
   end
   
-  def self.attendees(id)
-    attendees = Student.joins("INNER JOIN attendances a ON a.student_id = students.id INNER JOIN events e ON e.id = a.event_id").where('e.id = ?', id).order('last_name, first_name') 
+  def self.student_attendees(id)
+    student_attendees = Student.joins("INNER JOIN attendances a ON a.student_id = students.id INNER JOIN events e ON e.id = a.event_id").where('e.id = ?', id).order('last_name, first_name') 
 
-    return nil if attendees.empty?
-    attendees # return as a single object, not an array
+    return nil if student_attendees.empty?
+    student_attendees # return as a single object, not an array
   end
   
-  def self.absentees(id)
-    attendees = Student.joins("INNER JOIN attendances a ON a.student_id = students.id INNER JOIN events e ON e.id = a.event_id").where('e.id = ?', id).select('students.id').map{|s|s.id}
-    absentees = Student.joins('INNER JOIN enrollments r ON r.student_id = students.id INNER JOIN sections s ON s.id = r.section_id INNER JOIN section_events se ON se.section_id = s.id INNER JOIN events e ON e.id = se.event_id').where('e.id = ? AND students.id NOT IN (?)', id, attendees).order('last_name, first_name')
+  def self.student_absentees(id)
+    student_attendees = Student.joins("INNER JOIN attendances a ON a.student_id = students.id INNER JOIN events e ON e.id = a.event_id").where('e.id = ?', id).select('students.id').map{|s|s.id}
+    student_absentees = Student.joins('INNER JOIN enrollments r ON r.student_id = students.id INNER JOIN sections s ON s.id = r.section_id INNER JOIN section_events se ON se.section_id = s.id INNER JOIN events e ON e.id = se.event_id').where('e.id = ? AND students.id NOT IN (?)', id, student_attendees).order('last_name, first_name')
     all_students = Student.joins('INNER JOIN enrollments r ON r.student_id = students.id INNER JOIN sections s ON s.id = r.section_id INNER JOIN section_events se ON se.section_id = s.id INNER JOIN events e ON e.id = se.event_id').where('e.id = ?', id).order('last_name, first_name')
-    if(!absentees.empty?)
+    if(!student_absentees.empty?)
       puts "Absentees is not empty"
-      puts absentees.length
-      absentees
-    elsif(attendees.length <1 && !all_students.empty?)
+      puts student_absentees.length
+      student_absentees
+    elsif(student_attendees.length <1 && !all_students.empty?)
       puts "Returning All students"
             puts all_students.length
       all_students
@@ -85,7 +85,20 @@ class Event < ActiveRecord::Base
     #absentees
     end
   end
- 
+
+  def self.volunteer_attendees(id)
+    volunteer_attendees = Volunteer.joins("INNER JOIN shifts s ON s.volunteer_id = volunteers.id INNER JOIN events e ON e.id = s.shiftable_id").where('e.id = ? AND s.shiftable_type = ? AND s.checked_in=?', id,'Event',true).order('last_name, first_name') 
+
+    return nil if volunteer_attendees.empty?
+    volunteer_attendees # return as a single object, not an array
+  end
+
+  def self.volunteer_absentees(id)
+    volunteer_absentees = Volunteer.joins("INNER JOIN shifts s ON s.volunteer_id = volunteers.id INNER JOIN events e ON e.id = s.shiftable_id").where('e.id = ? AND s.shiftable_type = ? AND s.checked_in=?', id,'Event',false).order('last_name, first_name') 
+
+    return nil if volunteer_absentees.empty?
+    volunteer_absentees # return as a single object, not an array
+  end
   
   def self.get_todays_date
     t = Time.now

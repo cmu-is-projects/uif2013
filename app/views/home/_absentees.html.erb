@@ -1,4 +1,4 @@
-<% if @absentees.nil? %>
+<% if @student_absentees.nil? %>
 <h4>No Absentees</h4>
 <% else %>
 <table id="absentees" class="table table-striped">
@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @absentees.each do |student| %>
+    <% @student_absentees.each do |student| %>
       <tr class="is_visitor">
         <td><%= link_to student.name, student_path(student) %></td>
         <%- if student.cell_phone.nil? -%>

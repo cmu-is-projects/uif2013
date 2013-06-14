@@ -10,7 +10,7 @@ class Volunteer < ActiveRecord::Base
   
   #Relationships
   belongs_to :household
-  has_one :student
+  belongs_to :student
   has_many :shifts, :as => :shiftable
   has_many :volunteer_checks
   has_many :volunteer_trainings
@@ -23,7 +23,6 @@ class Volunteer < ActiveRecord::Base
   
   #Nested Attributes
   accepts_nested_attributes_for :household, :allow_destroy => true
-  accepts_nested_attributes_for :student, :allow_destroy => true
   
   #Validations
   validates_presence_of :first_name, :last_name, :date_of_birth, :role, :status, :name_displayed

@@ -1,9 +1,8 @@
-
+<% unless @shifts.nil?||  @shifts.empty? %>
   <div class="well">
-  	<% unless @shifts.nil?||  @shifts.empty? %>
-  		<%= render :partial => "partials/shift_list" %>
-  	<% end %>
+    <%= render :partial => "partials/shift_list" %>
   </div>
+<% end %>
   <div class="notes">
     <div class="note_form">
       <%= render :partial => "partials/shift_form" %>

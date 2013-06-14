@@ -292,3 +292,7 @@ a.menu:after, .dropdown-toggle:after {
 .well.red {
   background-color: #FFD2CA;
   border-color: red; }
+
+#volunteer_student {
+  height: 150px;
+}
