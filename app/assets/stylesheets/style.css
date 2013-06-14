@@ -243,3 +243,13 @@ table {
 .well.red {
   background-color: #FFD2CA;
   border-color: red; }
+
+/*========================================
+  SCAN PROFILE
+  ========================================*/
+#scan-profile-information{
+  border-style:solid;
+  border-radius: 5px;
+}
+
+
