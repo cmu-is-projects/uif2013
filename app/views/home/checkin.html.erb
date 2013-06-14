@@ -1,6 +1,7 @@
 <div class="adjust_page">
   <div class="page-header checkin">
   <h2><%= @event.date.strftime("%b %d, %Y") %></h2>
+  <%= link_to "Scan Volunteers for this event", {:controller => "home", :action => "volunteer_checkin", :event_id => @event.id}%>
   <%- if @event.program.scan_by_absence %>
     <h2>Absence Scan for Following Sections:</h2>
   <%- else %>

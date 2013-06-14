@@ -56,7 +56,8 @@ Uif2013::Application.routes.draw do
   # Special attendance routes
   match 'mark_attended/:id' => 'events#mark_attended', :as => :mark_attended
   match 'mark_absent/:id' => 'events#mark_absent', :as => :mark_absent
-  
+  match 'mark_volunteer_attended/:id' => 'events#mark_volunteer_attended', :as => :mark_volunteer_attended
+  match 'mark_volunteer_absent/:id' => 'events#mark_volunteer_absent', :as => :mark_volunteer_absent  
 
   #Generated model routes
   resources :allergies

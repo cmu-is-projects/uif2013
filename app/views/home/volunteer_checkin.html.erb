@@ -1,6 +1,7 @@
 <div class="adjust_page">
   <div class="page-header checkin">
   <h2><%= @event.date.strftime("%b %d, %Y") %></h2>
+  <%= link_to "Scan Students for this event", {:controller => "home", :action => "checkin", :event_id => @event.id}%>
     <h3>Attendance Scan for Following Sections:</h3>
   </div>
   <ul class="scan_sections">

@@ -1,7 +1,14 @@
 <% if @events.current.count() == 0 %>
   <h2> There Are No Events Today</h2>
 <% else %>
-  <% @events.current.each do |event| %>
-    <%= link_to event.program.name, event_path(event) %>&nbsp;&nbsp;&nbsp;&nbsp; <%= event.date.strftime("%B %d, %Y") %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "(Scan)", {:controller => "home", :action => "checkin", :event_id => event.id}%>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "(Volunteers)", {:controller => "home", :action => "volunteer_checkin", :event_id => event.id}%><br>
-  <% end %> 
+  <table>
+    <% @events.current.each do |event| %>
+      <tr>
+        <td><%= link_to event.program.name, event_path(event) %></td>
+        <td><%= event.date.strftime("%B %d, %Y") %></td>
+        <td><%= link_to "(Student)", {:controller => "home", :action => "checkin", :event_id => event.id}%></td>
+        <td><%= link_to "(Volunteers)", {:controller => "home", :action => "volunteer_checkin", :event_id => event.id}%></td>
+      </tr>
+    <% end %> 
+  </table>
 <% end %>
