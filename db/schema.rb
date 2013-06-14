@@ -11,7 +11,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612030431) do
 
   create_table "allergies", :force => true do |t|
     t.string   "name"
@@ -37,6 +36,14 @@ ActiveRecord::Schema.define(:version => 20130612030431) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "conditions", :force => true do |t|
+    t.string   "name"
+    t.text     "warning_text"
+    t.boolean  "active"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "department_trainings", :force => true do |t|
     t.integer  "training_id"
     t.integer  "department_id"
@@ -50,6 +57,15 @@ ActiveRecord::Schema.define(:version => 20130612030431) do
     t.boolean  "active",      :default => true
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "drugs", :force => true do |t|
+    t.string   "name"
+    t.boolean  "otc"
+    t.boolean  "active"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "enrollments", :force => true do |t|
@@ -141,6 +157,19 @@ ActiveRecord::Schema.define(:version => 20130612030431) do
     t.datetime "updated_at",                         :null => false
   end
 
+  create_table "schools", :force => true do |t|
+    t.string   "name"
+    t.integer  "location_id"
+    t.string   "category"
+    t.integer  "min_grade"
+    t.integer  "max_grade"
+    t.string   "contact_person"
+    t.string   "phone"
+    t.boolean  "active",         :default => true
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
   create_table "section_events", :force => true do |t|
     t.integer  "section_id"
     t.integer  "event_id"
@@ -168,9 +197,17 @@ ActiveRecord::Schema.define(:version => 20130612030431) do
     t.datetime "updated_at",     :null => false
   end
 
-  create_table "student_allergies", :force => true do |t|
+  create_table "student_conditions", :force => true do |t|
     t.integer  "student_id"
-    t.integer  "allergy_id"
+    t.integer  "condition_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "student_drugs", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "drug_id"
+    t.integer  "dosage"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -194,6 +231,7 @@ ActiveRecord::Schema.define(:version => 20130612030431) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "school_id"
   end
 
   create_table "trainings", :force => true do |t|

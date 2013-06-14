@@ -44,6 +44,7 @@ namespace :db do
       loc.zip = zip
       loc.active = true
       loc.save!
+      sleep 1
     end
       
     # Step 2: Add Some Programs for each Department and add Sections to Programs
@@ -172,6 +173,7 @@ namespace :db do
       else
         household.active = true
       end
+      sleep 1
      
      n = (1..2).to_a.sample 
      Student.populate n do |student|

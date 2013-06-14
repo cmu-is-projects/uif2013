@@ -6,13 +6,13 @@ FactoryGirl.define do
   end
 
   factory :training do
-        name "Driving"
-        description "Instructs volunteers on how to drive kids safely"
+    name "Driving"
+    description "Instructs volunteers on how to drive kids safely"
   end
     
-    factory :check do
-        name "Background Check"
-    end
+  factory :check do
+    name "Background Check"
+  end
     
   factory :program do
     association :department
@@ -107,7 +107,25 @@ FactoryGirl.define do
     guardian_type 'Father'
     cell_phone "222-222-2222"
     email {"#{first_name.downcase}.#{last_name.downcase}@yahoo.com"}
-    active  true
+    active true
+  end
+
+  factory :drug do
+    name "Motrin"
+    description "Helps alleviate fever and menstrual cramps"
+    active true
+    otc true
+  end
+  
+  factory :school do
+    association :location
+    name  "Klingon Language Institute"
+    min_grade 6
+    max_grade 12
+    category 'charter'
+    phone "412-268-2323"
+    contact_person 'Worf, Son of Mogh'
+    active false
   end
 
   factory :shift do

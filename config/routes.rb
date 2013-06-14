@@ -1,21 +1,5 @@
 Uif2013::Application.routes.draw do
-  resources :shifts
 
-
-  get "check/edit"
-
-  get "check/index"
-
-  get "check/new"
-
-  get "check/show"
-
-  get "training/index"
-
-  get "training/show"
-
-  resources :trainings  
-  resources :checks
   resources :shifts
   resources :department_trainings
   resources :volunteer_trainings
@@ -59,18 +43,26 @@ Uif2013::Application.routes.draw do
   match 'mark_volunteer_attended/:id' => 'events#mark_volunteer_attended', :as => :mark_volunteer_attended
   match 'mark_volunteer_absent/:id' => 'events#mark_volunteer_absent', :as => :mark_volunteer_absent  
 
+  # Drugs and conditions
+  get "drug/index"
+
+
   #Generated model routes
-  resources :allergies
+
+  #resources :allergies
   resources :guardians do
     resources :notes
   end
-  resources :student_allergies
+  #resources :student_allergies
   resources :households do 
     resources :notes
   end
   resources :students do
     resources :notes
     get 'id', :on => :member
+  end
+  resources :drugs do
+    resources :notes
   end
   resources :sections
   resources :attendances
@@ -99,6 +91,7 @@ Uif2013::Application.routes.draw do
     resources:notes
   end
   resources :checks
+  resources :conditions
   
   # Default URL
   root :to => 'home#index'

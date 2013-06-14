@@ -58,8 +58,11 @@ class ActiveSupport::TestCase
  # Context for households
   def create_household_context
     @smith = FactoryGirl.create(:household)
+    sleep 1
     @shroot = FactoryGirl.create(:household, :name => "Shroot", :street => "43 New Lane", :city => "New York", :zip => '10540', :active => false)
+    sleep 1
     @scott = FactoryGirl.create(:household, :name => "Scott", :street => "123 Cool Place", :city => "Scranton", :zip => '48579', :active => true)
+    sleep 1
   end
   
   def remove_household_context
@@ -71,8 +74,11 @@ class ActiveSupport::TestCase
  # Context for locations
   def create_location_context
     @cmu = FactoryGirl.create(:location)
+    sleep 1
    	@new_jersey = FactoryGirl.create(:location, :name => "Jocelyn's Home", :street => "12 Somewhere Road", :city => "Someplace", :zip => '10000', :active => false)
+   	sleep 1
     @oakland = FactoryGirl.create(:location, :name => "Oakland")
+    sleep 1
   end
   
   def remove_location_context
@@ -128,13 +134,19 @@ class ActiveSupport::TestCase
    @amanda.destroy
   end 
   
- # Context for student allergies
-  def create_student_allergy_context
-    
+ # Context for medical conditions
+  def create_drug_context
+    @motrin = FactoryGirl.create(:drug, name: "Motrin", active: true, otc: true, description: "Helps alleviate fever and menstrual cramps")
+    @ibuprofen = FactoryGirl.create(:drug, name: "Ibuprofen", active: true, otc: true, description: "Used for headaches")
+    @advil = FactoryGirl.create(:drug, name: "Advil", active: true, otc: true)
+    @antihistamine = FactoryGirl.create(:drug, name: "Antihistamine", active: false, otc: false, description: "Used for allergies and sinuses")
   end
-  
-  def remove_student_allergy_context
-   
+
+  def remove_drug_context
+    @motrin.destroy
+    @ibuprofen.destroy
+    @advil.destroy
+    @antihistamine.destroy
   end
 
   # Context for volunteers
@@ -148,6 +160,37 @@ class ActiveSupport::TestCase
     @brian.destroy
     @james.destroy
     @dan.destroy
+  end
+  
+  # Context for schools
+  def create_school_context
+    @capa_loc = FactoryGirl.create(:location, name: "CAPA School", street: "111 Ninth Street", city: "Pittsburgh", zip: '15222', active: true)
+    @capa = FactoryGirl.create(:school, name: "CAPA School", location: @capa_loc, min_grade: 6, max_grade: 12, category: 'public', active: true, phone: '412-338-6143')
+    sleep 1
+    @perry_loc = FactoryGirl.create(:location, name: "Perry High School", street: "3875 Perrysville Avenue", city: "Pittsburgh", zip: '15214', active: true)
+    @perry = FactoryGirl.create(:school, name: "Perry High School", location: @perry_loc, min_grade: 9, max_grade: 12, category: 'public', active: true, phone: '412-323-3404')
+    sleep 1
+    @conroy_loc = FactoryGirl.create(:location, :name => "Conroy School", street: "1398 Page Street", city: "Pittsburgh", zip: '15233', active: true)
+    @conroy = FactoryGirl.create(:school, name: "Conroy School", location: @conroy_loc, min_grade: 1, max_grade: 5, category: 'public', active: true, phone: '412-323-3495')
+    sleep 1
+    @north_catholic_loc = FactoryGirl.create(:location, name: "North Catholic School", street: "1400 Troy Hill Rd", city: "Pittsburgh", zip: '15212', active: true)
+    @north_catholic = FactoryGirl.create(:school, name: "North Catholic School", location: @north_catholic_loc, min_grade: 6, max_grade: 12, category: 'catholic', active: true, phone: '412-321-4823')
+    sleep 1
+    @kli_loc = FactoryGirl.create(:location, name: "ACAC", street: "250 East Ohio", city: "Pittsburgh", zip: '15212', active: true)
+    @kli = FactoryGirl.create(:school, location: @kli_loc)
+  end
+  
+  def remove_school_context
+    @capa_loc.destroy
+    @capa.destroy
+    @perry_loc.destroy
+    @perry.destroy
+    @conroy_loc.destroy
+    @conroy.destroy
+    @north_catholic_loc.destroy 
+    @north_catholic.destroy
+    @kli_loc.destroy
+    @kli.destroy
   end
   
 end

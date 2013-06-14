@@ -3,7 +3,7 @@ source :rubygems
 gem 'rails', '3.2.13'
 gem 'gon', '4.0.1'
 gem 'mini_magick', '3.4'
-gem 'rmagick', '2.13.2'
+#gem 'rmagick', '2.13.2'
 gem 'time_date_helpers'
 gem 'carrierwave', '0.7.1'
 gem "paperclip", '3.3.1'
@@ -21,6 +21,8 @@ gem 'cancan', '1.6.9'
 gem 'validates_timeliness', '3.0.14'
 gem 'jquery-rails', '2.2.1'
 gem 'rails3-jquery-autocomplete'
+gem 'geocoder', '1.1.6'
+
 
 group :development do
   gem 'mina', '0.2.1'

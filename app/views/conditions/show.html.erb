@@ -1,0 +1,26 @@
+<h1>Condition</h1>
+
+<table>
+    <tr>
+      <td><strong>Name:</strong></td><td><%= @condition.name %></td>
+    </tr>
+    <tr>
+      <td><strong>Warning:</strong></td><td><%= @condition.warning_text %></td>
+    </tr>
+    <tr>
+      <td><strong>Active:</strong></td><td><%= @condition.active %></td>
+    </tr>
+</table>
+
+<div class="form-actions">
+  <%= link_to raw("<i class='icon-backward'></i> Back to conditions"),
+              conditions_path, :class => 'btn'  %>
+  <%= link_to raw("<i class='icon-edit'></i> Edit this condition"),
+              edit_condition_path(@condition), :class => 'btn' %>
+  <%= link_to raw("<i class='icon-remove'></i> Destroy this condition"),
+              condition_path(@condition),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
+

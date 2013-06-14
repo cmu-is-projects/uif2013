@@ -4,6 +4,7 @@ class LocationTest < ActiveSupport::TestCase
   # Test Relationships
   should have_many(:events)
   should have_many(:programs).through(:events)
+  should have_one(:school)
   
   # Test Validations
   should validate_presence_of(:name)
@@ -19,16 +20,16 @@ class LocationTest < ActiveSupport::TestCase
   should_not allow_value("152134").for(:zip)
   should allow_value("15213-0983").for(:zip)
 
- # Test for Longitude and Latitude
-  should validate_numericality_of(:lat)
-  should validate_numericality_of(:lon)
+ # Test for Longitude and Latitude (NOTE: no longer needed with callback)
+  # should validate_numericality_of(:lat)
+  # should validate_numericality_of(:lon)
 
-  should allow_value(19.23).for(:lat)
-  should allow_value(-19.23).for(:lat)
-  should_not allow_value("bad").for(:lat)
-  should allow_value(19.23).for(:lon)
-  should allow_value(-19.23).for(:lon)
-  should_not allow_value("bad").for(:lon)
+  # should allow_value(19.23).for(:lat)
+  # should allow_value(-19.23).for(:lat)
+  # should_not allow_value("bad").for(:lat)
+  # should allow_value(19.23).for(:lon)
+  # should allow_value(-19.23).for(:lon)
+  # should_not allow_value("bad").for(:lon)
   
   # Establish context
   # Testing other methods with a context
@@ -73,10 +74,11 @@ class LocationTest < ActiveSupport::TestCase
       assert_equal ["Jocelyn's Home"], Location.inactive.alphabetical.map{|s| s.name}
     end
     
-    # test the callback that gets store coordinates
-    # should "get the the right coordinates for a location" do
-    # assert_equal 40.4435037, @cmu.lat
-    # assert_equal -79.9415706, @cmu.lon
-    # end
+    
+    # test the callback 
+    should "have a method to identify geocoordinates" do
+      assert_in_delta(40.444167, @cmu.lat, 0.001)
+      assert_in_delta(-79.943361, @cmu.lon, 0.001)
+    end
   end  
 end
