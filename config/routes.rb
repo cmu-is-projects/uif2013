@@ -29,6 +29,8 @@ Uif2013::Application.routes.draw do
   match 'privacy' => 'home#privacy', :as => :privacy
   match 'search' => 'home#search', :as => :search
   match 'statistics' => 'home#statistics', :as => :statistics
+  match 'today' => 'events#today', :as => :today
+
   
   # mobile routes
   resources :tokens,:only => [:create, :destroy]
