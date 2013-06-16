@@ -30,6 +30,7 @@ Uif2013::Application.routes.draw do
   match 'search' => 'home#search', :as => :search
   match 'statistics' => 'home#statistics', :as => :statistics
   match 'today' => 'events#today', :as => :today
+  match 'tomorrow' => 'events#tomorrow', :as => :tomorrow
 
   
   # mobile routes

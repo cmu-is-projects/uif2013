@@ -29,6 +29,7 @@ class Event < ActiveRecord::Base
   scope :past, where('date < ?', Date.today)
   scope :upcoming, where('date >= ?', Date.today)
   scope :current, where('date = ?', Date.today)
+  scope :tomorrow, where('date = ?', Date.tomorrow)
   scope :this_week, where("date >= ? AND date <= ?", Date.today, Date.today.next_week)
   scope :by_date, order('date')
   scope :by_date_desc, order('date DESC')
