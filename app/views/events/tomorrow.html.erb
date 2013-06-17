@@ -1,9 +1,7 @@
 <%# model_class = Event -%>
-<div class="span7">
-    <%= link_to raw("<i class='icon-plus'></i> <strong>Add event</strong>"), new_event_path, :class => 'btn btn-success pull-right' %>
-</div>
+
 <% if @events.tomorrow.count() == 0 %>
-	<h1> <%= Date.tomorrow.strftime("%m/%d/%Y") %> </h1>
+	<h1> <%= Date.tomorrow.strftime("%B %d") %> </h1>
   	<h2> There Are No Events Tomorrow</h2>
 <% else %>
 <h1>Event: <%= @event.program.name %> - <%= @event.date.strftime("%b %d, %Y") %></h1>

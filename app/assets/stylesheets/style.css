@@ -158,7 +158,11 @@ a.menu:after, .dropdown-toggle:after {
   margin-right: 40px;
   border: 1px solid black;
   width: 150px !important;
-  height: auto !important; }
+  height: auto !important;   }
+
+.dl-horizontal {
+  margin-top: 0px;
+}
 
 .dl-horizontal dt, .dl-horizontal dd {
   text-align: left;
@@ -307,9 +311,51 @@ a.menu:after, .dropdown-toggle:after {
   ridge lime green;">
 }
 
-/*.show-button .form-actions {
-  width: 100px;
-  height: 50px;
-  background-color: lime green;
-}
-*/
+/*========================================
+  SEARCH BAR
+  ========================================*/
+#tfheader{
+    background-color:#ff930c;
+  }
+  #tfnewsearch{
+    float:right;
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+  .tftextinput4{
+    margin: 0;
+    padding: 6px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:14px;
+    color:#666;
+    border:1px solid #0076a3; border-right:0px;
+    border-top-left-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px; 
+  }
+  /*.tfbutton4 {
+    margin: 0;
+    padding: 0;
+    width:30px;
+    height:30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:14px;
+    font-weight:bold;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    border: solid 1px #0076a3; border-right:0px;
+    border-top-right-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    background: #438db8 url('tf-search-icon.png');
+  }*/
+  /* Fixes submit button height problem in Firefox */
+  .tfbutton4::-moz-focus-inner {
+    border: 0;
+  }
+  .tfclear{
+    clear:both;
+  }
+
+
