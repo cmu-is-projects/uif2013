@@ -307,11 +307,9 @@ a.menu:after, .dropdown-toggle:after {
   ridge lime green;">
 }
 
-/*========================================
-  Add Notes
-  ========================================*/
-  .note_form {
-    float:right;
-
-  }
-
+/*.show-button .form-actions {
+  width: 100px;
+  height: 50px;
+  background-color: lime green;
+}
+*/
