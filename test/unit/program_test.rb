@@ -116,8 +116,8 @@ class ProgramTest < ActiveSupport::TestCase
     should "ensure that if the program has no description it should return N/A" do
       @choir_nodesc = FactoryGirl.build(:program, department: @arts, max_grade: 12, min_grade: 6, max_capacity: 60, active: true, description:"")
       assert_equal 0, @choir_nodesc.description.size
-      assert_equal "N/A", @choir_nodesc.hasdescription
-      assert_equal "Choir is for those who love to sing", @choir.hasdescription
+      assert_equal "N/A", @choir_nodesc.has_description
+      assert_equal "Choir is for those who love to sing", @choir.has_description
     end
 
     # test to see if enddate format is correct and valid

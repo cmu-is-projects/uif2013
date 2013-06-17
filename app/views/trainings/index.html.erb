@@ -1,0 +1,29 @@
+<h1>Listing trainings</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Level</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody id="list">
+    <% @trainings.each do |training| %>
+      <tr>
+        <td><%= link_to training.name, training %></td>
+        <td><%= training.level %></td>
+        <td><%= training.description %></td>
+        <td><%= link_to raw("<i class='icon-file'></i>"), new_note_path(:id => training.id, :source => 'training'), :class => 'btn btn-mini' %>
+        &nbsp;<%= link_to raw("<i class='icon-pencil'></i>"),edit_training_path(training), :class => 'btn btn-mini' %></td>
+  </tbody>
+
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Training', new_training_path %>

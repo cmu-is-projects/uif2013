@@ -6,13 +6,18 @@ class StudentsController < ApplicationController
   
   respond_to :html, :xml, :json, :js
   def index
+    if params[:term]
+      @students = Student.find(:all,:conditions => ['first_name LIKE ?', "%#{params[:term]}%"])
+    else
+      @students = Student.all
+    end
     @students = Student.alphabetical.not_visitor
     @visitors = Student.alphabetical.is_visitor
     @query = Student.search(params[:query])
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @students }
+      format.json { render json: @students.to_json }
     end
   end
 

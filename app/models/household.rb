@@ -5,10 +5,11 @@ class Household < ActiveRecord::Base
   # Relationships
   has_many :guardians
   has_many :students
+  has_many :volunteers
   has_many :notes, :as => :notable, :dependent => :destroy
 
   #Validations
-  validates_presence_of :name, :street, :city, :zip
+  validates_presence_of :name, :street, :zip
   validates_format_of :zip, :with => /^\d{5}(\-\d{4})?$/, :message => "should be five digits long"
   validates_numericality_of :lat, :lon, :allow_blank => true
   
@@ -16,5 +17,6 @@ class Household < ActiveRecord::Base
   scope :alphabetical,   order("name")
   scope :active, where('active = ?', true)
   scope :inactive, where('active = ?', false)
+  scope :missing_info, where('insurance_number = ?', "")
   
 end

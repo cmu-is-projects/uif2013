@@ -9,6 +9,7 @@ class Program < ActiveRecord::Base
   has_many :enrollments, :through => :sections
   has_many :locations, :through => :events
   has_many :notes, :as => :notable, :dependent => :destroy
+  has_many :shifts, :as => :shiftable, :dependent => :destroy
   
   #Validations
   validates_presence_of :name, :department_id, :max_grade, :min_grade, :max_capacity
@@ -52,7 +53,7 @@ class Program < ActiveRecord::Base
     end
 	end
 	
-	def hasdescription
+	def has_description
     if self.description.length > 0
       return self.description
     else

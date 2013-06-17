@@ -1,0 +1,36 @@
+
+<% if @trainings.empty? %>
+There are no trainings for this department at this time.
+<p><br>
+<% else %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Training</th>
+      <th>Level</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trainings.each do |training| %>
+      <tr>
+				<td><%= link_to training.name, training_path(training) %> </td>
+				<td><%= training.level %></td>
+
+				<td><%= training.description %></td>
+        <td>
+					<%= link_to raw("<i class='icon-file'></i> Details"), training_path(training), :class => 'btn btn-mini' %>
+          <%= link_to raw("<i class='icon-pencil'></i> Edit"), edit_training_path(training), :class => 'btn btn-mini' %>
+
+     
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+<% end %>
+
+<%= will_paginate @trainings, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>

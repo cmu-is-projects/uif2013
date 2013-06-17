@@ -1,57 +1,18 @@
-<h1>Listing volunteers</h1>
+<div class="row-fluid">
+  <div class="span8">
+    <div id="search">
+    	<%= form_tag('/volunteers/search') do %>
+    		<strong>Quick Filter:</strong> <%= text_field_tag 'query' -%>
+    	<% end %>
+    </div>
+  </div>
+  <div class="span4">
+    <%= link_to raw("<i class='icon-plus'></i> <strong>Add volunteer</strong>"), new_volunteer_path, :class => 'btn btn-success pull-right' %>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Barcode number</th>
-    <th>Household</th>
-    <th>Is male</th>
-    <th>Date of birth</th>
-    <th>Cell phone</th>
-    <th>Can text</th>
-    <th>Email</th>
-    <th>Status</th>
-    <th>Avatar file name</th>
-    <th>Avatar file size</th>
-    <th>Avatar file content type</th>
-    <th>Avatar updated at</th>
-    <th>App submit date</th>
-    <th>App approved</th>
-    <th>Role</th>
-    <th>Name displayed</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @volunteers.each do |volunteer| %>
-  <tr>
-    <td><%= volunteer.first_name %></td>
-    <td><%= volunteer.last_name %></td>
-    <td><%= volunteer.barcode_number %></td>
-    <td><%= volunteer.household_id %></td>
-    <td><%= volunteer.is_male %></td>
-    <td><%= volunteer.date_of_birth %></td>
-    <td><%= volunteer.cell_phone %></td>
-    <td><%= volunteer.can_text %></td>
-    <td><%= volunteer.email %></td>
-    <td><%= volunteer.status %></td>
-    <td><%= volunteer.avatar_file_name %></td>
-    <td><%= volunteer.avatar_file_size %></td>
-    <td><%= volunteer.avatar_file_content_type %></td>
-    <td><%= volunteer.avatar_updated_at %></td>
-    <td><%= volunteer.app_submit_date %></td>
-    <td><%= volunteer.app_approved %></td>
-    <td><%= volunteer.role %></td>
-    <td><%= volunteer.name_displayed %></td>
-    <td><%= link_to 'Show', volunteer %></td>
-    <td><%= link_to 'Edit', edit_volunteer_path(volunteer) %></td>
-    <td><%= link_to 'Destroy', volunteer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% if @query == 0 %>
+  <%= render :partial => "normal-table" %>
+<% else %>
+  <%= render :partial => "query-table"%>  
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Volunteer', new_volunteer_path %>

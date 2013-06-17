@@ -1,95 +1,95 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Volunteer -%>
 
-<p>
-  <b>First name:</b>
-  <%= @volunteer.first_name %>
-</p>
+<h1><%= @volunteer.proper_name%>'s Profile</h1>
 
-<p>
-  <b>Last name:</b>
-  <%= @volunteer.last_name %>
-</p>
+<div class="row-fluid">
+  
+  <div class="span6">
+    <% if !@volunteer.avatar_file_name.blank? %>
+        <div class="img-polaroid"><%= image_tag @volunteer.avatar.url(:medium) %></div>
+      <% else %>
+        <% if @volunteer.is_male %>
+          <div class="img-polaroid"> <%= image_tag("male.jpg") %></div>&nbsp;&nbsp;
+        <% else %>  
+          <div class="img-polaroid"> <%= image_tag("female.jpg") %></div>&nbsp;&nbsp;
+        <% end %>
+    <% end %>
+    
+    <div class="volunteer-info">
+        <dl class="dl-horizontal">
+          <dt><strong>Name:</strong></dt> 
+          <dd><%= @volunteer.proper_name %></dd> 
+          <dt><strong>Date of Birth:</strong></dt>
+          <dd><%= @volunteer.date_of_birth.strftime("%B %d, %Y") %></dd>          
+          <% if !@volunteer.cell_phone.blank? %>
+            <dt><strong><%= model_class.human_attribute_name(:cell_phone) %>:</strong></dt>
+            <dd><% if @volunteer.can_text == true %>
+                <%= @volunteer.cell_phone %>&nbsp;<i class='icon-phone'></i>
+                <%else%><%= @volunteer.cell_phone %>
+                <%end%></dd>
+          <% end %>
+          <% if !@volunteer.email.blank? %>
+            <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+            <dd><%= mail_to @volunteer.email, @volunteer.email %></dd>
+          <% end %>
+          <dt><strong><%= model_class.human_attribute_name(:barcode_number) %>:</strong></dt>
+          <dd><%= link_to @volunteer.barcode_number, volunteer_path(@volunteer.id, :format => 'pdf') %></dd> 
+          <% if !@volunteer.household.nil? %>
+            <dt><strong>Household:</strong></dt>
+            <dd><%= link_to "#{@volunteer.household.name} Family", household_path(@volunteer.household.id) %> (<%= @volunteer.household.street %>) <a class="household-button" href=<%= household_path(@volunteer.household.id) %> ><i class="icon-home"></i> </a></dd>
+          <% end %>
+          <% if !@volunteer.spouse_id.nil? %>
+            <dt><strong>Spouse:</strong></dt>
+            <dd><%= link_to "Volunteer Profile", volunteer_path(@volunteer.spouse_id) %></a></dd>
+          <% end %>
+          <% if !@volunteer.student_id.nil? %>
+            <dt><strong>Student Volunteer:</strong></dt>
+            <dd><%= link_to "Student Profile", student_path(@volunteer.student_id) %></a></dd>
+          <% end %>
+          <% if !@volunteer.is_male.blank? %>
+            <dt><strong>Gender:</strong></dt>
+            <dd><%= @volunteer.is_male ? "Male" : "Female" %></dd>
+          <% end %>
+          <dt><strong>Status:</strong></dt>
+          <dd><%= @volunteer.status %></dd>
+          <dt><strong>Role:</strong></dt>
+          <dd><%= @volunteer.role %></dd>
+          <dt><strong>App Approved:</strong></dt>
+          <dd><%= @volunteer.app_approved %></dd>
+          <% if !@volunteer.app_approved %>
+            <dt><strong>App Submit Date:</strong></dt>
+            <dd><%= @volunteer.app_submit_date.strftime("%B %d, %Y") %></dd>
+          <% end %>
+      </dl>
+      <p><%= link_to raw("Back to volunteer"), volunteers_path, :class => 'btn'  %>
+      &nbsp;
+      <%= link_to raw("Edit this volunteer"), edit_volunteer_path(@volunteer), :class => 'btn' %>
+      &nbsp;   
+      <%= link_to raw("Generate barcode (PDF)"), volunteer_path(@volunteer.id, :format => 'pdf'), :class => 'btn' %>         
+      <%= link_to raw("Remove volunteer"),volunteer_path(@volunteer),:method => 'delete',:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure you want to permanently delete this volunteer?')) },:class => 'btn btn-danger btn-med' %></p>
+    </div>
+    <div class="well">
+      <h2>Volunteer Shifts</h2>
+          <p><%= @shifts.size.zero? ? "No shifts yet" : pluralize(@shifts.size, 'shift') %> for this <%= "#{@volunteer.class.to_s.downcase}" %></p>
+          <% unless @shifts.nil?||  @shifts.empty? %>
 
-<p>
-  <b>Barcode number:</b>
-  <%= @volunteer.barcode_number %>
-</p>
+              <%= render :partial => "partials/shift_list" %>
+		
+          <% end %>
 
-<p>
-  <b>Household:</b>
-  <%= @volunteer.household_id %>
-</p>
+    </div>
+    <div class="well">
+          <p><%= @volunteer.trainings.size.zero? ? "No trainings yet" : pluralize(@volunteer.trainings.size, 'training') %> for this <%= "#{@volunteer.class.to_s.downcase}" %></p>
+          <% unless @trainings.nil?||  @trainings.empty? %>
+              <%= render :partial => "partials/training_list" %>
+          <% end %>
+	  <%= link_to 'Add Training to this Volunteer', new_volunteer_training_path(:id => @volunteer.id, :from => 'volunteer', :class => 'btn btn-primary') %>
 
-<p>
-  <b>Is male:</b>
-  <%= @volunteer.is_male %>
-</p>
+    </div>
+    </div>
 
-<p>
-  <b>Date of birth:</b>
-  <%= @volunteer.date_of_birth %>
-</p>
-
-<p>
-  <b>Cell phone:</b>
-  <%= @volunteer.cell_phone %>
-</p>
-
-<p>
-  <b>Can text:</b>
-  <%= @volunteer.can_text %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @volunteer.email %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @volunteer.status %>
-</p>
-
-<p>
-  <b>Avatar file name:</b>
-  <%= @volunteer.avatar_file_name %>
-</p>
-
-<p>
-  <b>Avatar file size:</b>
-  <%= @volunteer.avatar_file_size %>
-</p>
-
-<p>
-  <b>Avatar file content type:</b>
-  <%= @volunteer.avatar_file_content_type %>
-</p>
-
-<p>
-  <b>Avatar updated at:</b>
-  <%= @volunteer.avatar_updated_at %>
-</p>
-
-<p>
-  <b>App submit date:</b>
-  <%= @volunteer.app_submit_date %>
-</p>
-
-<p>
-  <b>App approved:</b>
-  <%= @volunteer.app_approved %>
-</p>
-
-<p>
-  <b>Role:</b>
-  <%= @volunteer.role %>
-</p>
-
-<p>
-  <b>Name displayed:</b>
-  <%= @volunteer.name_displayed %>
-</p>
-
-
-<%= link_to 'Edit', edit_volunteer_path(@volunteer) %> |
-<%= link_to 'Back', volunteers_path %>
+    <div class="span5 pull-right">
+    <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @volunteer} %>
+  </div>
+  
+</div>

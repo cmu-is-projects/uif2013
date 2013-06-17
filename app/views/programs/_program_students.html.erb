@@ -1,0 +1,10 @@
+<div class="well">
+  <% @program.sections.alphabetical.all.each do |section| %>
+  	<h2><%= section.name %> Section</h2>
+  	<% section.enrollments.students.alphabetical.all.each do |student| %>
+    <p>
+      <%= link_to student.proper_name, student_path(student) %> 
+    </p>
+  	<% end %>
+  <% end %>
+</div>

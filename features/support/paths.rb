@@ -79,12 +79,61 @@ module NavigationHelpers
       edit_household_path(@smith)
 
     #### STUDENTS
+
+    when /the new student page/
+      new_student_path
+      
+    when /the student index page/
+      students_path
+
+    when /the Alex Heimann page/
+      student_path(@alex)
+      
+    when /the edit Alex Heimann page/
+      edit_student_path(@alex)
+      
+    when /the Stephany Park page/
+      student_path(@stephany)
+      
+    when /the edit Stephany Park page/
+      edit_student_path(@stephany)
+      
+    when /the Sean Scott page/
+      student_path(@sean)
+      
+    when /the edit Sean Scott page/
+      edit_student_path(@sean)
     
     #### GUARDIANS
     
     #### MEDICAL_CONDITIONS
     
     #### OTC_DRUGS
+
+    when /the new drug page/
+      new_drug_path
+      
+    when /the drug index page/
+      drugs_path
+
+    when /the Motrin page/
+      drug_path(@motrin)
+      
+    when /the edit Motrin page/
+      edit_drug_path(@motrin)
+      
+    when /the Ibuprofen page/
+      drug_path(@ibuprofen)
+      
+    when /the edit Ibuprofen page/
+      edit_drug_path(@ibuprofen)
+      
+    when /the Advil page/
+      drug_path(@advil)
+      
+    when /the edit Advil page/
+      edit_drug_path(@advil)
+
     
     #### MEALS
             

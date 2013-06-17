@@ -51,7 +51,7 @@ end
 def create_students
  @alex = FactoryGirl.create(:student, household: @smith)
  @stephany = FactoryGirl.create(:student, household: @shroot, first_name: "Stephany", last_name: "Park", grade: 8, is_male: true)
- @sean = FactoryGirl.create(:student, household: @scott, first_name: "Sean", last_name: "Kumar", grade: 4, is_male: true)
+ @sean = FactoryGirl.create(:student, household: @scott, first_name: "Sean", last_name: "Scott", grade: 4, is_male: true)
  @amanda = FactoryGirl.create(:student, household:@smith, first_name: "Amanda", last_name: "Works", grade: 6, is_male: false)
 end
 
@@ -61,6 +61,12 @@ def create_guardians
   @cscott = FactoryGirl.create(:guardian, household: @scott, first_name: "Clark", last_name: "Scott", cell_phone: "412-222-2222")
 end
 
+def create_drugs
+    @motrin = FactoryGirl.create(:drug, name: "Motrin", active: true, otc: true, description: "Helps alleviate fever and menstrual cramps")
+    @ibuprofen = FactoryGirl.create(:drug, name: "Ibuprofen", active: true, otc: true, description: "Used for headaches")
+    @advil = FactoryGirl.create(:drug, name: "Advil", active: true, otc: true)
+    @antihistamine = FactoryGirl.create(:drug, name: "Antihistamine", active: false, otc: false, description: "Used for allergies and sinuses")
+end
 
 
 #### GIVENS
@@ -80,6 +86,7 @@ end
 Given /^an initial setup$/ do
   create_locations
   create_departments
+  create_households
 end
 
 Given /^some programs and events$/ do
@@ -88,8 +95,15 @@ Given /^some programs and events$/ do
   create_outreach_programs_and_events
 end
 
+Given /^some students$/ do
+  create_students
+end
+
+Given /^some drugs$/ do
+  create_drugs
+end
+
 Given /^some households$/ do
   create_households
 end
-
 

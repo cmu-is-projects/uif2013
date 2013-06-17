@@ -1,0 +1,27 @@
+<h1>Listing Volunteer Trainings</h1>
+
+<table>
+  <tr>
+    <th>Volunteer</th>
+    <th>Training</th>
+    <th>Date</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @volunteer_trainings.each do |volunteer_training| %>
+  <tr>
+    <td><%= link_to volunteer_training.volunteer.name, volunteer_path(volunteer_training.volunteer) %></td>
+
+    <td><%= volunteer_training.training.name %></td>
+    <td><%= volunteer_training.date.strftime("%B %d, %Y") %></td>
+    <td><%= link_to 'Show', volunteer_training %></td>
+    <td><%= link_to 'Edit', edit_volunteer_training_path(volunteer_training) %></td>
+    <td><%= link_to 'Destroy', volunteer_training, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Volunteer Training', new_volunteer_training_path %>

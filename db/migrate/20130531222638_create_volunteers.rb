@@ -19,6 +19,8 @@ class CreateVolunteers < ActiveRecord::Migration
       t.boolean :app_approved
       t.string :role
       t.string :name_displayed
+      t.integer :spouse_id
+      t.integer :student_id
 
       t.timestamps
     end

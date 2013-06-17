@@ -1,6 +1,6 @@
 
 
-<div class="row">
+<div class="row-fluid">
   <div class="span10">
     <div id="search">
     	<%= form_tag('/guardians/search') do %>
@@ -14,7 +14,8 @@
   <div class="span2">
     <%= link_to raw("<i class='icon-plus'></i> <strong>Add guardian</strong>"), new_guardian_path, :class => 'btn btn-primary' %>
   </div>
-</div>
+
+<div id="span10">
 <table class="table table-striped">
   <thead>
       <tr>
@@ -22,7 +23,6 @@
           <th width="225">Household</th>
           <th width="150">Relation</th>
           <th width="100">Cell Phone</th>
-          <th width="250">Email</th>
 		      <th>&nbsp;</th>
 		   </tr>
 	</thead>
@@ -34,13 +34,12 @@
       <td><%= link_to "#{guardian.household.name} (#{guardian.household.street})", household_path(guardian.household) %></td>
       <td><%= guardian.guardian_type %></td>
       <td><%= number_to_phone(guardian.cell_phone) %></td>
-      <td><%= mail_to(guardian.email) %></td>
 
 
       <td>
-          <%= link_to raw("<i class='icon-file'></i> Add note"), new_note_path(:id => guardian.id, :source => 'guardian'), :class => 'btn btn-mini' %>
+          <%= link_to raw("<i class='icon-file'></i>"), new_note_path(:id => guardian.id, :source => 'guardian'), :class => 'btn btn-mini' %>
           &nbsp;
-          <%= link_to raw("<i class='icon-edit'></i> Edit"),
+          <%= link_to raw("<i class='icon-edit'></i>"),
                       edit_guardian_path(guardian), :class => 'btn btn-mini' %>
         </td>
 
@@ -48,6 +47,6 @@
       <% end %>
   </tbody>
 </table>
-
+</div></div>
 <%# will_paginate @guardians %>
 

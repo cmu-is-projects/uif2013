@@ -8,14 +8,15 @@ class Student < ActiveRecord::Base
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "100x100>" }
   
-  #Relationships
+  # Relationships
   belongs_to :household
   has_many :attendances, :dependent => :delete_all
   has_many :enrollments, :dependent => :delete_all
   has_many :events, :through => :attendances
   has_many :notes, :as => :notable, :dependent => :destroy
+  belongs_to :school
   
-  #Nested Attributes
+  # Nested Attributes
   accepts_nested_attributes_for :enrollments, :allow_destroy => true
   accepts_nested_attributes_for :household
   
@@ -30,6 +31,7 @@ class Student < ActiveRecord::Base
   validates_inclusion_of :grade, :in => 1..12, :message => "grades are between 1 and 12"
   validates_format_of :barcode_number, :with => /^\d{12}$/, :message => 'should be 12 digits', :allow_blank => true, :if => :is_visitor
   validates_uniqueness_of :barcode_number
+
   #validate :one_form_of_contact_is_required
   #validate :any_present?
   validates_associated :household
@@ -41,9 +43,15 @@ class Student < ActiveRecord::Base
   scope :alphabetical, order('last_name, first_name')
   scope :is_visitor, where('is_visitor =?', true)
   scope :not_visitor, where('is_visitor = ? ', false)
+  scope :new_student, where('created_at > ? ', 1.week.ago)
+  scope :new_visitor, where('created_at > ? ', 1.week.ago)
+  
   #Misc constants
   STATUS_LIST = [['Active', 'Active'],['Inactive', 'Inactive'],['College', 'College'], ['Graduated', 'Graduated'], ['Missing', 'Missing']]
   
+  GRADE_LIST = [['1', '1'], ['2' ,'2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9 (Freshman)', '9'], 
+  ['10 (Sophomore)', '10'], ['11 (Junior)','11'], ['12 (Senior)', '12']]
+
   #Other methods
   
   def name
@@ -129,6 +137,7 @@ class Student < ActiveRecord::Base
       end
     end
   end
+
 
   #For visitors, we require at least one form of contact: street, cellphone, or email
   private
