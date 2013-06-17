@@ -71,17 +71,40 @@
             <dd><%= @student.status %></dd>
           <% end %>
       </dl>
+
+<%= simple_nested_form_for @student, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
+<div id="enrollment_nested_form">
+    <%= f.fields_for :enrollments do |enrollment_form| %>
+      <%= render 'enrollment_fields', f: enrollment_form %>
+    <% end %>
+  <p><%= link_to_add_fields raw("<i class='icon-plus'></i> Add an enrollment"), f, :enrollments %></p>
+</div>
+
+<div class="form-actions">
+    <%= f.button :submit, :class => 'btn-success' %>
+    <% if @data.blank? %> 
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+    students_path, :class => 'btn' %>
+    <%else%>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+    home_path, :class => 'btn' %>
+    <%end%>
+    <%end%>
+</div>
+
       <p><%= link_to raw("<i class='icon-backward'></i> Back to students"), students_path, :class => 'btn'  %>
       &nbsp;
       <%= link_to raw("<i class='icon-edit'></i> Edit this student"), edit_student_path(@student), :class => 'btn' %>
       &nbsp;   
       <%= link_to raw("<i class='icon-barcode'></i>&nbsp;&nbsp;&nbsp;Generate barcode (PDF)"), student_path(@student.id, :format => 'pdf'), :class => 'btn' %></p>          
-
     </div>
-    <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @student} %>
-  </div>
 
-  <div class="span4">   
+<div class="span8">
+    <dd><%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @student} %></dd>
+  </div>
+</div>
+
+<div class="span4">   
       <%= render :partial => 'recent_activities' %>
   </div>
   

@@ -1,17 +1,14 @@
-<%# model_class = Event -%>
-<div class="span7">
-    <%= link_to raw("<i class='icon-plus'></i> <strong>Add event</strong>"), new_event_path, :class => 'btn btn-success pull-right' %>
-</div>
-<% if @events.tomorrow.count() == 0 %>
-	<h1> <%= Date.tomorrow.strftime("%m/%d/%Y") %> </h1>
-  	<h2> There Are No Events Tomorrow</h2>
+<% model_class = Event -%>
+
+<% if @events.past.count() == 0 %>
+  	<h2> There Were No Events in the Past</h2>
 <% else %>
 <h1>Event: <%= @event.program.name %> - <%= @event.date.strftime("%b %d, %Y") %></h1>
-  <% @events.tomorrow.each do |event| %>
+  <% @events.past.each do |event| %>
+  	<% #if controller.controller_name == "events" %>
+
     <%= link_to event.program.name, event_path(event) %>&nbsp;&nbsp;&nbsp;&nbsp; <%= event.start_time.strftime("%B %d, %Y") %>-<%= event.end_time.strftime("%B %d, %Y") %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "(Scan)", {:controller => "home", :action => "checkin", :event_id => event.id}%><br>
+    <%#end%>
   <% end %> 
-
-  
-
 <% end %>
 

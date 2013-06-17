@@ -306,3 +306,12 @@ a.menu:after, .dropdown-toggle:after {
   border:6px 
   ridge lime green;">
 }
+
+/*========================================
+  Add Notes
+  ========================================*/
+  .note_form {
+    float:right;
+
+  }
+

@@ -3,8 +3,10 @@
 <div class="row-fluid">
   <div class="span7">
     <%= render :partial => "household_details" %>
+    <div class="span7"
     <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @household} %>
   </div>
+</div>
 
   <div class="map">
     <h2>  Click on the Image for <d><%= @household.name %></d>'s Household Google Map  </h2>     
