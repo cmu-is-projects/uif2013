@@ -47,7 +47,7 @@
       </div></div>
       <div class="tile" id="volunteer"><a href="volunteers.html">
 	<div class="tile-content"><h1>Volunteer</h1>
-	  <% if @pending_checks.empty? && @volunteer_alerts==0 %>
+	  <% if @pending_checks.empty? && @volunteer_alerts==0 && @expiring_checks.empty? %>
 	    All is good
 	    <% else %>
 	      <% unless @pending_checks.empty? %>
@@ -56,6 +56,10 @@
 	      <% unless @volunteer_alerts==0 %>
 		<li>Volunteer Alerts: <%= @volunteer_alerts %></li>
 	      <% end %>
+	      <% unless @expiring_checks.empty? %>
+		<li>Expiring Checks: <%= @expiring_checks.length %></li>
+	      <% end %>
+
 	    <% end %>
       </div></div>
       <div class="tile" id="event"><a href="events.html">
@@ -67,6 +71,8 @@
 	  <% end %></li>
 	  <li><% if @events.this_week.empty? %> No events next week
 	  <% else %>This week: <%= @events.this_week.count %><% end %></li>
+	  <li><% if @events.religious.empty? %> No religious events next week
+	  <% else %>Upcoming Religious Events: <%= @events.this_week.religious.count %><% end %></li>
 	  <% unless @event_alerts==0 %>
 	    <li>Event Alerts: <%= @event_alerts %></li>
 	  <% end %>  
@@ -83,7 +89,12 @@
 
 	  <li>Attendees Last Week: <%= @attendees_last_week %></li>
 	  <li>Absences Last Week: <%= @absences_last_week %></li>
-	  <li>Student Attendance Percentage: <%= ((@attendees_last_week.to_f / (@absences_last_week + @attendees_last_week))*100).to_i %>%</li>
+
+	   <% unless @absences_last_week.zero? %>
+
+	  <li>Student Attendance Percentage: <%= ((@attendees_last_week.to_f / (@absences_last_week + @attendees_last_week))*100).to_i %>%</li>	  
+ 	    <% end %>
+
 	  <% for shift in @shifts %>
 	    <% @hours = @hours + shift.hours %>
 	    <% end %>

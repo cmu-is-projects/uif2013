@@ -12,6 +12,7 @@ class VolunteersController < ApplicationController
   def index
     @volunteers = Volunteer.alphabetical
     @pending_checks = VolunteerCheck.pending
+      @expiring_checks = VolunteerCheck.expiring
 
     @query = Volunteer.search(params[:query])
     respond_to do |format|
