@@ -11,8 +11,8 @@
 <br>
 <p>Departments this Training belongs to:</p>
 <p>
-	<%= check_box_tag('check_all', 'check_all', false,  :onClick => "$$('#my_form input.check').each(function(box){box.checked=($('check_all').checked)?true:false});")%>
-	Select All
+	<%#(Select All javascript! Implement F13) check_box_tag('check_all', 'check_all', false,  :onClick => "$$('#my_form input.check').each(function(box){box.checked=($('check_all').checked)?true:false});")%>
+	
 <br>
 
   <% for department in Department.alphabetical %>
