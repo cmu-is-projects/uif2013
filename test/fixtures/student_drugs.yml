@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  student_id: 1
+  drug_id: 1
+  dosage: 1
+
+two:
+  student_id: 1
+  drug_id: 1
+  dosage: 1

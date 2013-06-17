@@ -19,7 +19,7 @@
           <td><strong>Start time:</strong></td><td><%= @event.start_time.strftime("%l:%M %p") %></td>
         </tr>
         <tr>
-          <td><strong>End time:</strong></td><td><%= @event.end_time.strftime("%l:%M %p") %></td>
+          <td><strong>End time:</strong></td><td><%= @event.end_time.nil? ? "N/A" : @event.end_time.strftime("%l:%M %p") %></td>
         </tr>
         <tr>
           <td><strong>Number of volunteers attending:</strong></td><td><%= @shifts.size %></td>
@@ -71,6 +71,8 @@
     <div class="span6">
       <%= render :partial => "attendees" %>
       <%= render :partial => "absentees" %>
+      <%= render :partial => "volunteer_attendees" %>
+      <%= render :partial => "volunteer_absentees" %>
     </div>
   <% end %>
   

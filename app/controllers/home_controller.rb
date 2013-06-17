@@ -38,7 +38,7 @@ class HomeController < ApplicationController
    @total_hits = @students.size
   end
 
-  def checkin
+def checkin
     session[:event] = params[:event_id]
     @event = Event.find(session[:event])
     if @event.program.scan_by_absence && session[session[:event].intern].nil?
@@ -71,6 +71,7 @@ class HomeController < ApplicationController
           note.active = true
           note.save
         end
+        
         @student_attendances = Event.student_attendees(session[:event])
         @student_absences = Event.student_absentees(session[:event])
         if(!@student_absences.nil?) 
@@ -78,7 +79,7 @@ class HomeController < ApplicationController
             puts student.proper_name if !student.nil?
           end
         end
-        render :json => { message: "#{@student.proper_name} was successfully scanned!", student_attendees: @student_attendances, student_absentees: @student_absences }
+        render :json => { message: "#{@student.proper_name} was successfully scanned!", attendees: @student_attendances, absentees: @student_absences }
       else
         render :json => { error:'There was an error scanning.'}
       end    
@@ -89,25 +90,24 @@ class HomeController < ApplicationController
       if @student
         @student_attendance = Attendance.find_by_student_id_and_event_id(@student.id,session[:event])
         if(!@student_attendance.nil?)
-          if @student.student_attendances.destroy(@student_attendance.id)
+          if @student.attendances.destroy(@student_attendance.id)
             @student_attendees = Event.student_attendees(session[:event])
             @student_absentees = Event.student_absentees(session[:event])
-            @volunteer_attendees = Event.volunteer_attendees(session[:event])
-            @volunteer_absentees = Event.volunteer_absentees(session[:event])
-            render :json => { message: "#{@student.proper_name} did not attend!", attendees: @student_attendees, student_absentees: @student_absentees }
+            render :json => { message: "#{@student.proper_name} did not attend!", attendees: @student_attendees, absentees: @student_absentees }
           elsif
             render :json => { error:'There was an error scanning.', message:  "#{@student.proper_name} was not scanned. Try again."}
           end
         else  
           @student_attendees = Event.student_attendees(session[:event])
           @student_absentees = Event.student_absentees(session[:event])
-          render :json => { message:"#{@student.proper_name} is already absent.",student_attendees: @student_attendees, student_absentees: @student_absentees }
+          render :json => { message:"#{@student.proper_name} is already absent.",attendees: @student_attendees, absentees: @student_absentees }
         end
       else
         render :json => { error:'There was an error scanning.' }
       end    
     end
   end
+
   
 def volunteer_checkin
     session[:event] = params[:event_id]

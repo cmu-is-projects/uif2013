@@ -90,11 +90,13 @@
 	  <li>Attendees Last Week: <%= @attendees_last_week %></li>
 	  <li>Absences Last Week: <%= @absences_last_week %></li>
 
+
 	   <% unless @absences_last_week.zero? %>
 
 	  <li>Student Attendance Percentage: <%= ((@attendees_last_week.to_f / (@absences_last_week + @attendees_last_week))*100).to_i %>%</li>	  
  	    <% end %>
 
+	  <li>Events Last Week: <%= @events_last_week.length %></li>
 	  <% for shift in @shifts %>
 	    <% @hours = @hours + shift.hours %>
 	    <% end %>
@@ -119,7 +121,7 @@
       </div></div>
       <div class="tile" id="guardian"><a href="guardians.html">
 	<div class="tile-content"><h1>Guardian</h1>
-	  <li>All is good</li>
+	  All is good
       </div></div>
     </div>
   </div></div>

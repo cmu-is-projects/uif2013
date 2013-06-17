@@ -1,0 +1,48 @@
+<div class="row-fluid">
+  <div class="span8">
+    <div id="search">
+      <%= form_tag('/drugs/search') do %>
+        <strong>Quick Filter:</strong> <%= text_field_tag 'query' -%>
+      <% end %>
+    </div>
+  </div>
+  <div class="span4">
+  <%= link_to raw("<i class='icon-plus'></i> <strong>Add drug</strong>"), new_drug_path, :class => 'btn btn-success pull-right' %>
+  </div>
+</div>
+
+<h1>Drug Listing</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Drug Name</th>
+      <th>Description</th>
+      <th>Active</th>
+      <th>Over-the-Counter</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="list">
+    <% @drugs.each do |drug| %>
+      <tr>
+        <td><%= link_to drug.name, drug_path(drug) %></td>
+        <td><%= drug.description %></td>
+        <td><%= drug.active %></td>
+        <td><%= drug.otc %></td>
+
+        <td>
+          <%= link_to raw("<i class='icon-edit'></i> Edit"),
+                      edit_drug_path(drug), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="digg_pagination">
+    <div class="page_info">
+        <%= page_entries_info @drugs %>
+    </div>
+    <%= will_paginate @drugs, :container => true %>
+</div>
+

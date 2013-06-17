@@ -1,4 +1,90 @@
-var displayUnicode, formatPhone, url_param, url_query;
+var displayUni, displayUnicode, formatPhone, url_param, url_query;
+
+$(document).ready(function() {
+  $("#attendance_barcodes input").focus();
+  return $("#attendance_barcodes input").keyup(displayUni);
+});
+
+displayUni = function() {
+  var _ref,
+    _this = this;
+  _this = this;
+  this.input = $("#attendance_barcodes input");
+  this.display = $('#student_checked');
+  if (((_ref = this.input.val()) != null ? _ref.length : void 0) === 12) {
+    $.ajax({
+      url: '/checkin',
+      data: {
+        barcode: this.input.val(),
+        event_id: url_query('event_id')
+      },
+      success: function(data) {
+        var absentees, absentees_body, attendees, attendees_body, headers, i, j, row;
+        if (data.error) {
+          return alert(data.error);
+        } else {
+          _this.display.html("<div>" + data.message + "</div>");
+          setTimeout((function() {
+            return _this.display.fadeOut('slow').html('').fadeIn('fast');
+          }), 2000);
+          if (data.attendees !== null) {
+            $('#attend').html('');
+            attendees = $('<table/>').addClass("table table-striped");
+            headers = $('<thead />');
+            headers.append('<tr><th>Student</th><th>Phone Number</th><th>Barcode Number</th><th></th></tr>');
+            attendees.append(headers);
+            attendees_body = $('<tbody/>');
+            for (i in data.attendees) {
+              row = $('<tr />');
+              row.append('<td><a href="/students/' + data.attendees[i]['id'] + '">' + data.attendees[i]['last_name'] + ', ' + data.attendees[i]['first_name'] + '</a></td>');
+              if (data.attendees[i]['cell_phone'] === null) {
+                row.append('<td>No Phone Number</td>');
+              } else {
+                row.append('<td>' + formatPhone(data.attendees[i]['cell_phone']) + '</td>');
+              }
+              if (data.attendees[i]['is_visitor']) {
+                row.append('<td><i class="icon-flag"></i>' + data.attendees[i]['barcode_number'] + '</td>');
+              } else {
+                row.append('<td>' + data.attendees[i]['barcode_number'] + '</td>');
+              }
+              row.append('<td><a href="/notes/new?id=' + data.attendees[i]['id'] + '&source=student" class="btn btn-mini"><i class="icon-file"></i> Add note</a></td>');
+              attendees_body.append(row);
+            }
+            attendees.append(attendees_body);
+            $('#attend').hide().html(attendees).show();
+          } else {
+            $('#attend').html('<h4>No Attendees</h4>');
+          }
+          if (data.absentees !== null && typeof data.absentees !== "undefined") {
+            $('#absent').html('');
+            absentees = $('<table/>').addClass("table table-striped");
+            headers = $('<thead />');
+            headers.append('<tr><th>Student</th><th>Phone Number</th><th>Barcode Number</th><th></th></tr>');
+            absentees.append(headers);
+            absentees_body = $('<tbody/>');
+            for (j in data.absentees) {
+              row = $('<tr />');
+              row.append('<td><a href="/students/' + data.absentees[j]['id'] + '">' + data.absentees[j]['last_name'] + ', ' + data.absentees[j]['first_name'] + '</a></td>');
+              if (data.absentees[j]['cell_phone'] === null) {
+                row.append('<td>No Phone Number</td>');
+              } else {
+                row.append('<td>' + formatPhone(data.absentees[j]['cell_phone']) + '</td>');
+              }
+              row.append('<td>' + data.absentees[j]['barcode_number'] + '</td>');
+              row.append('<td><a href="/notes/new?id=' + data.absentees[j]['id'] + '&source=student" class="btn btn-mini"><i class="icon-file"></i> Add note</a></td>');
+              absentees_body.append(row);
+            }
+            absentees.append(absentees_body);
+            return $('#absent').hide().html(absentees).show();
+          } else {
+            return $('#absent').html('<h4>No Absentees</h4>');
+          }
+        }
+      }
+    });
+    return this.input.val('');
+  }
+};
 
 $(document).ready(function() {
   $("#volunteer_barcodes input").focus();

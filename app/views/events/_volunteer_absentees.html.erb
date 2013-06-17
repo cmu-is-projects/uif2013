@@ -1,0 +1,27 @@
+<% if @volunteer_absentees.nil? %>
+<h2>No Volunteer Absentees</h2>
+<% else %>
+<h2>Volunteer Absentees</h2>
+<table id="absentees" class="table table-striped">
+  <thead>
+    <tr>
+      <th width="230">Volunteer</th>
+      <th width="120">Phone</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @volunteer_absentees.each do |volunteer| %>
+      <tr>
+        <td><%= link_to volunteer.name, volunteer_path(volunteer) %></td>
+        <td><%= number_to_phone volunteer.cell_phone %></td> 
+        <td>
+          <%= link_to raw("<i class='icon-arrow-up'></i> Attendee"), mark_volunteer_attended_path(:id => volunteer.id, :event_id => @event.id, :source => 'event'), :class => 'btn btn-mini' %>
+          &nbsp;
+          <%= link_to raw("<i class='icon-file'></i> Add note"), new_note_path(:id => volunteer.id, :source => 'volunteer'), :class => 'btn btn-mini' %>
+        </td>    
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
