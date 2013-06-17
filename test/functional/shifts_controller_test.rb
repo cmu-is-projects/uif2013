@@ -18,7 +18,7 @@ class ShiftsControllerTest < ActionController::TestCase
 
   test "should create shift" do
     assert_difference('Shift.count') do
-      post :create, shift: { end_time: @shift.end_time, shiftable_id: @shift.shiftable_id, shiftable_type: @shift.shiftable_type, start_time: @shift.start_time, volunteer_id: @shift.volunteer_id }
+      post :create, shift: { checked_in: @shift.checked_in, end_time: @shift.end_time, shiftable_id: @shift.shiftable_id, shiftable_type: @shift.shiftable_type, start_time: @shift.start_time, volunteer_id: @shift.volunteer_id }
     end
 
     assert_redirected_to shift_path(assigns(:shift))
@@ -35,7 +35,7 @@ class ShiftsControllerTest < ActionController::TestCase
   end
 
   test "should update shift" do
-    put :update, id: @shift, shift: { end_time: @shift.end_time, shiftable_id: @shift.shiftable_id, shiftable_type: @shift.shiftable_type, start_time: @shift.start_time, volunteer_id: @shift.volunteer_id }
+    put :update, id: @shift, shift: { checked_in: @shift.checked_in, end_time: @shift.end_time, shiftable_id: @shift.shiftable_id, shiftable_type: @shift.shiftable_type, start_time: @shift.start_time, volunteer_id: @shift.volunteer_id }
     assert_redirected_to shift_path(assigns(:shift))
   end
 

@@ -25,12 +25,14 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-    @attendees = Event.attendees(params[:id])
-    @absentees = Event.absentees(params[:id])
+    @attendees = Event.student_attendees(params[:id])
+    @absentees = Event.student_absentees(params[:id])
+    @volunteer_attendees = Event.volunteer_attendees(params[:id])
+    @volunteer_absentees = Event.volunteer_absentees(params[:id])
     @notes = @event.notes.by_priority
     @notable = @event
     @shiftable = @event
-    @shifts = @event.shifts
+    @shifts = @event.shifts.chronological
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
@@ -200,6 +202,32 @@ class EventsController < ApplicationController
       end
     end
   end
+
+  def mark_volunteer_absent
+    @volunteer = Volunteer.find_by_id(params[:id])
+    if @volunteer
+      @shift = @volunteer.shifts.where("shiftable_type = ? AND shiftable_id = ?","Event",params[:event_id]).first
+      @shift.checked_in = false
+      if @shift.save
+        redirect_to event_path(params[:event_id])
+      else
+        redirect_to volunteer_checkin_path(:event_id => params[:event_id])
+      end
+    end
+  end
+
+  def mark_volunteer_attended
+    @volunteer = Volunteer.find_by_id(params[:id])
+    if @volunteer
+      @shift = @volunteer.shifts.where("shiftable_type = ? AND shiftable_id = ?","Event",params[:event_id]).first
+      @shift.checked_in = true
+      if @shift.save
+        redirect_to event_path(params[:event_id])
+      else
+        redirect_to volunteer_checkin_path(:event_id => params[:event_id])
+      end
+    end
+  end 
 
   def barcodes
     @event = Event.find_by_id(params[:id])

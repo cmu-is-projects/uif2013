@@ -7,7 +7,7 @@
 	  <% if @shifts.upcoming.empty? %> No upcoming shifts
 	  <% else %>
 	  <table>
-	    <thead><tr><td>Date</td><td>Start time</td><td>End time</td></tr></thead>
+	    <thead><tr><td>Volunteer</td><td>Date</td><td>Start time</td><td>End time</td></tr></thead>
 	  <% for shift in @shifts.upcoming %>
 	    <tr>
 	      <td><%=link_to shift.volunteer.proper_name, volunteer_path(shift.volunteer) %></td>
@@ -22,7 +22,7 @@
 	  <% if @shifts.past.empty? %> No past shifts
 	  <% else %>
 	  <table>
-	    <thead><tr><td>Date</td><td>Start time</td><td>End time</td></tr></thead>
+	    <thead><tr><td>Volunteer</td><td>Date</td><td>Start time</td><td>End time</td></tr></thead>
 	  <% for shift in @shifts.past %>
 	    <tr>
 	      <td><%=link_to shift.volunteer.proper_name, volunteer_path(shift.volunteer) %></td>

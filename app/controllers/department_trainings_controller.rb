@@ -59,14 +59,16 @@ class DepartmentTrainingsController < ApplicationController
     # PUT /department_trainings/1
     # PUT /department_trainings/1.json
     def update
-        @department = DepartmentTraining.find(params[:id]).department
-        
-        @department_training = Department_training.find(params[:id])
-        if @department_training.update_attributes(params[:department_training])
-            flash[:notice] = "Successfully updated department_training."
-            redirect_to @department
-            else
-            render :action => 'edit'
+        @department_training = DepartmentTraining.find(params[:id])
+        @training = @department_training.training
+        respond_to do |format|
+            if @department_training.update_attributes(params[:department_training])
+                format.html { redirect_to @training, notice: 'Department Training was successfully updated.' }
+                format.json { head :no_content }
+                else
+                format.html { render action: "edit" }
+                format.json { render json: @department_training.errors, status: :unprocessable_entity }
+            end
         end
     end
     
@@ -74,8 +76,10 @@ class DepartmentTrainingsController < ApplicationController
     # DELETE /department_trainings/1.json
     def destroy
         @department_training = DepartmentTraining.find(params[:id])
+        @training = @department_training.training
+
         @department_training.destroy
         flash[:notice] = "Successfully removed department_training from the UIF system."
-        redirect_to department_trainings_url
+        redirect_to @training
     end
 end

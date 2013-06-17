@@ -21,5 +21,32 @@
 </p>
 
 
-<%= link_to 'Edit', edit_training_path(@training) %> |
-<%= link_to 'Back', trainings_path %>
+
+<div class="row-fluid">
+  
+  <div class="span4">
+
+<p>              <%= render :partial => "current_departments" %> </p>
+
+<p> 		<%= link_to raw("<i class='icon-plus icon-white'></i> <strong>Assign Department</strong>"), new_department_training_path(:id => @training.id, :from => 'training'), :class => 'btn-small btn-success' %> </p>
+
+
+</div>  <div class="span8">
+<p>              <%= render :partial => "current_volunteers" %> </p>
+<p> 		<%= link_to raw("<i class='icon-plus icon-white'></i> <strong>Assign Volunteer</strong>"), new_volunteer_training_path(:id => @training.id, :from => 'training'), :class => 'btn-small btn-success' %> </p>
+
+</div></div>
+
+<div class="form-actions">
+  <%= link_to raw("<i class='icon-backward'></i> Back to trainings"),
+              trainings_path, :class => 'btn'  %>
+  <%= link_to raw("<i class='icon-edit'></i> Edit this training"),
+              edit_training_path(@training), :class => 'btn' %>
+  <%= link_to raw("<i class='icon-remove'></i> Destroy this training"),
+              training_path(@training),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
+
+

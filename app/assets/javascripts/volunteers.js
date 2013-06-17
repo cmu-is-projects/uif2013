@@ -5,3 +5,20 @@ function toggle_visibility(id) {
    else
       e.style.display = 'block';
 }
+
+function toggleDiv(divid){
+    varon = divid + 'on';
+    varoff = divid + 'off';
+    if(document.getElementById(varon).style.display == 'none')
+    {
+      $('#toggle').text('Link to Student Profile');
+      document.getElementById(varon).style.display = 'block';
+      document.getElementById(varoff).style.display = 'none';
+    }
+    else
+    {
+      $('#toggle').text('Cancel Link');
+      document.getElementById(varoff).style.display = 'block';
+      document.getElementById(varon).style.display = 'none';
+    }
+}

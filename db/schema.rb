@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606135152) do
+
+  create_table "allergies", :force => true do |t|
+    t.string   "name"
+    t.text     "warning_text"
+    t.boolean  "active",       :default => true
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
 
   create_table "attendances", :force => true do |t|
     t.integer  "student_id"
@@ -23,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
 
   create_table "checks", :force => true do |t|
     t.string   "name"
-    t.time     "duration"
+    t.integer  "duration"
     t.decimal  "cost"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -185,6 +192,7 @@ ActiveRecord::Schema.define(:version => 20130606135152) do
     t.datetime "end_time"
     t.string   "shiftable_type"
     t.integer  "shiftable_id"
+    t.boolean  "checked_in"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
