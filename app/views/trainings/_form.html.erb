@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :description %>
+    <%= f.input :description, :as => :text, :input_html => { :cols => 150, :rows => 5 }%>
     <%= f.input :level, :as => :radio_buttons, :collection => [["Beginner ","Beginner "], ["Intermediate ","Intermediate "], ["Advanced ","Advanced "]], :item_wrapper_class => 'inline' %> 
     <%= f.input :next_offered, :order => [:month, :day, :year], :start_year => Date.today.year+2, :end_year => Date.today.year %>
   </div>

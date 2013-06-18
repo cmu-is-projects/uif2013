@@ -71,8 +71,8 @@
 	  <% end %></li>
 	  <li><% if @events.this_week.empty? %> No events next week
 	  <% else %>This week: <%= @events.this_week.count %><% end %></li>
-	  <li><% if @events.religious.empty? %> No religious events next week
-	  <% else %>Upcoming Religious Events: <%= @events.this_week.religious.count %><% end %></li>
+	  <% unless @events.religious.empty? %> 
+	  <li>Upcoming Religious Events: <%= @events.this_week.religious.count %></li><% end %>
 	  <% unless @event_alerts==0 %>
 	    <li>Event Alerts: <%= @event_alerts %></li>
 	  <% end %>  
