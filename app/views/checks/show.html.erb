@@ -1,0 +1,35 @@
+<h1>Check Details </h1>
+
+<p>
+  <b>Name:</b>
+  <%= @check.name %>
+</p>
+
+<p>
+  <b>Duration:</b>
+  <%= @check.duration %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  $<%= @check.cost %>
+</p>
+
+
+
+
+
+<p>              <%= render :partial => "current_volunteers" %> </p>
+
+<div class="form-actions">
+  <%= link_to raw("<i class='icon-backward'></i> Back to checks"),
+              checks_path, :class => 'btn'  %>
+  <%= link_to raw("<i class='icon-edit'></i> Edit this check"),
+              edit_check_path(@check), :class => 'btn' %>
+  <%= link_to raw("<i class='icon-remove'></i> Destroy this check"),
+              check_path(@check),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
+

@@ -45,6 +45,8 @@ class Student < ActiveRecord::Base
   scope :not_visitor, where('is_visitor = ? ', false)
   scope :new_student, where('created_at > ? ', 1.week.ago)
   scope :new_visitor, where('created_at > ? ', 1.week.ago)
+  scope :search_by_name, lambda { |q| (q ? where(["first_name LIKE ? or last_name LIKE ? or concat(first_name, ' ', last_name) like ?", '%'+ q + '%', '%'+ q + '%','%'+ q + '%' ])  : {})}
+
   
   #Misc constants
   STATUS_LIST = [['Active', 'Active'],['Inactive', 'Inactive'],['College', 'College'], ['Graduated', 'Graduated'], ['Missing', 'Missing']]
