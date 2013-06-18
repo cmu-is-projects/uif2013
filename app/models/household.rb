@@ -28,7 +28,7 @@ class Household < ActiveRecord::Base
   # Callbacks
   before_validation :get_household_coordinates
   
-  def create_map_link(zoom=12,width=800,height=800)
+  def create_map_link(zoom=15,width=800,height=800)
       to_s()
       markers = ""; i = 1   
       markers += "&markers=color:red%7Ccolor:red%7Clabel:#{i}%7C#{self.lat},#{self.lon}"  
