@@ -36,6 +36,10 @@ class Volunteer < ActiveRecord::Base
   scope :pending_applications, where('app_approved = ?', false)
   scope :text, where('can_text = ?', true)
   scope :new_volunteer, where('created_at > ? ', 1.week.ago)
+  scope :dmetaphone, lambda {|term| where("DMETAPHONE(first_name) = DMETAPHONE(?) OR DMETAPHONE(last_name) = DMETAPHONE(?)", "#{term}", "#{term}")}
+  scope :levenshtein, lambda {|term| where("(first_name ~* ? OR last_name ~* ?) AND (LEVENSHTEIN(LOWER(first_name), LOWER(?)) < 3 OR LEVENSHTEIN(LOWER(last_name), LOWER(?)) < 3)", "^#{term[0].downcase}", "^#{term[0].downcase}", "#{term}", "#{term}")}
+  scope :search, lambda { |term| where('first_name LIKE ? OR last_name LIKE ?', "#{term}%", "#{term}%") }
+
   
   #Misc constants
   STATUS_LIST = [['Active', 'Active'],['Inactive', 'Inactive'], ['Missing', 'Missing']]

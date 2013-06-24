@@ -45,7 +45,10 @@ class Student < ActiveRecord::Base
   scope :not_visitor, where('is_visitor = ? ', false)
   scope :new_student, where('created_at > ? ', 1.week.ago)
   scope :new_visitor, where('created_at > ? ', 1.week.ago)
-  
+  scope :dmetaphone, lambda {|term| where("DMETAPHONE(first_name) = DMETAPHONE(?) OR DMETAPHONE(last_name) = DMETAPHONE(?)", "#{term}", "#{term}")}
+  scope :levenshtein, lambda {|term| where("(first_name ~* ? OR last_name ~* ?) AND (LEVENSHTEIN(LOWER(first_name), LOWER(?)) < 3 OR LEVENSHTEIN(LOWER(last_name), LOWER(?)) < 3)", "^#{term[0].downcase}", "^#{term[0].downcase}", "#{term}", "#{term}")}
+  scope :search, lambda { |term| where('first_name LIKE ? OR last_name LIKE ?', "#{term}%", "#{term}%") }
+    
   #Misc constants
   STATUS_LIST = [['Active', 'Active'],['Inactive', 'Inactive'],['College', 'College'], ['Graduated', 'Graduated'], ['Missing', 'Missing']]
   
@@ -88,6 +91,15 @@ class Student < ActiveRecord::Base
     end
   end
   
+  def self.fuzzy_match(term)
+    dm_results = dmetaphone(term)
+    lv_results = levenshtein(term)
+    s_results = search(term)
+    only_lv = lv_results - dm_results
+    only_s = s_results - lv_results - dm_results
+    final_results = dm_results + only_lv + only_s
+  end 
+
   def params_to_query(params)
     params.map {|p, v| "#{p}=#{URI.escape(v.to_s)}"}.join('&')
   end

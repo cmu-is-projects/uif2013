@@ -26,7 +26,7 @@ class Household < ActiveRecord::Base
   scope :missing_info, where('insurance_number = ?', "")
 
   # Callbacks
-  before_validation :get_household_coordinates
+  # before_validation :get_household_coordinates
   
   def create_map_link(zoom=15,width=800,height=800)
       to_s()
