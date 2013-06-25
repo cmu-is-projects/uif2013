@@ -77,19 +77,19 @@ class Student < ActiveRecord::Base
     (Time.now.to_s(:number).to_i - date_of_birth.to_time.to_s(:number).to_i)/10e9.to_i
   end
   
-  def self.search(query)
-    # .length works sometimes, but for now use !query
-    if !query
-        return 0
-    else
-      sql = query.split.map do |word|
-        %w[first_name last_name].map do |column|
-          sanitize_sql ["#{column} LIKE ?", "%#{word}%"]
-        end.join(" or ")
-      end.join(") and (")
-      where(sql)
-    end
-  end
+  # def self.search(query)
+  #   # .length works sometimes, but for now use !query
+  #   if !query
+  #       return 0
+  #   else
+  #     sql = query.split.map do |word|
+  #       %w[first_name last_name].map do |column|
+  #         sanitize_sql ["#{column} LIKE ?", "%#{word}%"]
+  #       end.join(" or ")
+  #     end.join(") and (")
+  #     where(sql)
+  #   end
+  # end
   
   def self.fuzzy_match(term)
     dm_results = dmetaphone(term)

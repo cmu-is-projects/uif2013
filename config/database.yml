@@ -20,6 +20,7 @@ test:
   encoding: unicode
   database: uif_test
   pool: 5
+  host: localhost
 
 
 # development:

@@ -5,28 +5,28 @@
 		<!--student: name, phone, pic-->
 		<p><em><strong><%= @student_hits %> students found.</strong></em></p>
 		<% unless @students.empty? %>
-		<ul>
+		<ul class="no_bullet">
 		<% for student in @students do %>
-		<div class="well">
-			<% if !@student.avatar_file_name.blank? %>
-        		<div class="img-polaroid"><%= image_tag @student.avatar.url(:medium) %></div>
-      		<% else %>
-        		<% if @student.is_male %>
-          			<div class="img-polaroid"> <%= image_tag("male.jpg") %></div>&nbsp;&nbsp;
-        		<% else %>  
-          		<div class="img-polaroid"> <%= image_tag("female.jpg") %></div>&nbsp;&nbsp;
-        		<% end %>
-      		<% end %>
-			<li>Name: <%= link_to student.proper_name, student_path(student) %></li>
-			<li>Cellphone: 
-				<% if @student.cell_phone.blank? %>
-              		N/A
-              	<% else %>
-              		<%= number_to_phone @student.cell_phone %>
-              	<% end %>
-             </li>
-		</div>
-		<% end %>
+			<div class="well search_box">
+				<div class="row">
+					<div class="span2">
+						<% if !student.avatar_file_name.blank? %>
+        					<div><%= image_tag student.avatar.url(:medium), :size => "60x50", :border => 0 %></div>
+        				<% elsif student.is_male %>
+          					<div> <%= image_tag("male.jpg", :size => "60x50", :border => 0) %></div>&nbsp;&nbsp;
+        				<% else %>  
+          					<div> <%= image_tag("female.jpg", :size => "60x50", :border => 0) %></div>&nbsp;&nbsp;
+        				<% end %>
+      				</div>
+      				<div class="span4">
+						<li>Name: <%= link_to student.proper_name, student_path(student) %></li>
+						<li>Cell: 
+							<%= student.cell_phone.blank? ? "N/A" : number_to_phone(student.cell_phone) %>
+             			</li>
+					</div>
+				</div>
+			</div>
+		<% end %>		
 		</ul>
 		<p class="smtext">&nbsp;</p>
 		<% end %>
@@ -37,7 +37,7 @@
 		<% for guardian in @guardians do %>
 			<li>Name: <%= link_to guardian.proper_name, guardian_path(guardian) %></li>
 			<li>&nbsp;&nbsp;&nbsp;Children: 
-				<%= guardian.my_children.proper_name.join(',') %></li>
+				<%= guardian.my_children.map(&:proper_name).join(',') %></li>
 		<% end %>
 		</ul>
 		<% end %>
@@ -46,28 +46,28 @@
 		<!--volunteers: name, phone-->
 		<p><em><strong><%= @volunteer_hits %> volunteers found.</strong></em></p>
 		<% unless @volunteers.empty? %>
-		<ul>
+		<ul class="no_bullet">
 		<% for volunteer in @volunteers do %>
-		<div class="well">
-			<% if !@volunteer.avatar_file_name.blank? %>
-        		<div class="img-polaroid"><%= image_tag @volunteer.avatar.url(:medium) %></div>
-      		<% else %>
-        		<% if @volunteer.is_male %>
-          			<div class="img-polaroid"> <%= image_tag("male.jpg") %></div>&nbsp;&nbsp;
-        		<% else %>  
-          		<div class="img-polaroid"> <%= image_tag("female.jpg") %></div>&nbsp;&nbsp;
-        		<% end %>
-      		<% end %>
-			<li>Name: <%= link_to volunteer.proper_name, volunteer_path(volunteer) %></li>
-			<li>Cellphone: 
-				<% if @volunteer.cell_phone.blank? %>
-              		N/A
-              	<% else %>
-              		<%= number_to_phone @volunteer.cell_phone %>
-              	<% end %>
-             </li>
-        </div>
-		<% end %>
+			<div class="well search_box">
+				<div class="row">
+					<div class="span2">
+						<% if !volunteer.avatar_file_name.blank? %>
+        					<div><%= image_tag volunteer.avatar.url(:medium), :size => "60x50", :border => 0 %></div>
+        				<% elsif volunteer.is_male %>
+          					<div> <%= image_tag("male.jpg", :size => "60x50", :border => 0) %></div>&nbsp;&nbsp;
+        				<% else %>  
+          					<div> <%= image_tag("female.jpg", :size => "60x50", :border => 0) %></div>&nbsp;&nbsp;
+        				<% end %>
+      				</div>
+      				<div class="span4">
+						<li>Name: <%= link_to volunteer.proper_name, volunteer_path(volunteer) %></li>
+						<li>Cell: 
+							<%= volunteer.cell_phone.blank? ? "N/A" : number_to_phone(volunteer.cell_phone) %>
+             			</li>
+					</div>
+				</div>
+			</div>
+		<% end %>		
 		</ul>
 		<% end %>
 	</div>

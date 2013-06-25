@@ -26,9 +26,9 @@ class HomeController < ApplicationController
 
   def search
    @query = params[:query]
-   @students = Student.search(@query)
-   @volunteers = Volunteer.search(@query)
-   @guardians = Guardian.search(@query)
+   @students = Student.fuzzy_match(@query)
+   @volunteers = Volunteer.fuzzy_match(@query)
+   @guardians = Guardian.fuzzy_match(@query)
    @student_hits = @students.size
    @volunteer_hits = @volunteers.size
    @guardian_hits = @guardians.size

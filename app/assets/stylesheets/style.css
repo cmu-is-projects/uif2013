@@ -359,5 +359,16 @@ a.menu:after, .dropdown-toggle:after {
     clear:both;
   }
 
+  .no_bullet{
+    list-style-type: none;
+  }
+
+  .search_box img { 
+    padding-left: 15px;
+  }
+
+  .search_box {
+    width: 500px;
+  }
 
 

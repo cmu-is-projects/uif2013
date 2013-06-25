@@ -54,19 +54,28 @@ class Volunteer < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def self.search(query)
-    # .length works sometimes, but for now use !query
-    if !query
-        return 0
-    else
-      sql = query.split.map do |word|
-        %w[first_name last_name].map do |column|
-          sanitize_sql ["#{column} LIKE ?", "%#{word}%"]
-        end.join(" or ")
-      end.join(") and (")
-      where(sql)
-    end
-  end
+   def self.fuzzy_match(term)
+    dm_results = dmetaphone(term)
+    lv_results = levenshtein(term)
+    s_results = search(term)
+    only_lv = lv_results - dm_results
+    only_s = s_results - lv_results - dm_results
+    final_results = dm_results + only_lv + only_s
+  end 
+
+  # def self.search(query)
+  #   # .length works sometimes, but for now use !query
+  #   if !query
+  #       return 0
+  #   else
+  #     sql = query.split.map do |word|
+  #       %w[first_name last_name].map do |column|
+  #         sanitize_sql ["#{column} LIKE ?", "%#{word}%"]
+  #       end.join(" or ")
+  #     end.join(") and (")
+  #     where(sql)
+  #   end
+  # end
 
   def params_to_query(params)
     params.map {|p, v| "#{p}=#{URI.escape(v.to_s)}"}.join('&')
