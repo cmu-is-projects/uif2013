@@ -2,34 +2,66 @@
   <div class="navbar-inner">
     <a class="brand" href="/"><%= image_tag("uif-logo.gif", :class => "logo") %></a>
       <ul class="nav">
-	<li><a href=<%= home_path %>>Dashboard</a></li>
+
+	<li class="dropdown">
+	  <a href="events" class="dropdown-toggle" data-toggle="dropdown">Events <b class="caret" valign="bottom"></b></a>
+	  <ul class="dropdown-menu">
+	    <li><a href=<%= today_path %>>Today</a></li>
+	    <li><a href=<%= tomorrow_path %>>Tomorrow</a></li>
+	    <li><a href=<%= events_path %>>All Events</a></li>
+	    <li><a href=<%= past_path %>>Past Events</a></li>
+	  </ul></li>
+
+	  <li class="dropdown">
+	  <a href="programs" class="dropdown-toggle" data-toggle="dropdown">Programs <b class="caret" id="nav-bar"></b></a>
+	  <ul class="dropdown-menu">
+	    <li><a href=<%= programs_path %>>Programs</a></li>
+	    <li><a href=<%= departments_path %>>Departments</a></li>
+	    <li><a href=<%= sections_path %>>Sections</a></li>
+	   	<li><a href=<%= enrollments_path %>>Enrollments</a></li>
+	  </ul></li>
+
 	<li class="dropdown">
 	  <a href="students" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret" valign="bottom"></b></a>
 	  <ul class="dropdown-menu">
-	    <li><a href=<%= students_path %>>Student List</a></li>
+	    <li><a href=<%= students_path %>>Students</a></li>
 	    <li><a href=<%= households_path %>>Households</a></li>
 	    <li><a href=<%= guardians_path %>>Guardians</a></li>
 	  </ul></li>
+
 	<li class="dropdown">
 	  <a href="volunteers" class="dropdown-toggle" data-toggle="dropdown">Volunteers <b class="caret" id="nav-bar"></b></a>
 	  <ul class="dropdown-menu">
 	    <li><a href=<%= volunteers_path %>>Volunteer List</a></li>
-	    <li><a href="#">Checks</a></li>
 	    <li><a href=<%= shifts_path %>>Shifts</a></li>
-
-	<li><a href=<%= trainings_path %>>Trainings</a></li>
+		<li><a href=<%= trainings_path %>>Trainings</a></li>
+		<li><a href="#">Checks</a></li>
 	  </ul></li>
-	<li class="dropdown">
-	  <a href="programs" class="dropdown-toggle" data-toggle="dropdown">Programs <b class="caret" id="nav-bar"></b></a>
+
+	  <li class="dropdown">
+	  <a href="manage_admin" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret" id="nav-bar"></b></a>
 	  <ul class="dropdown-menu">
-	    <li><a href=<%= programs_path %>>Program List</a></li>
-	    <li><a href=<%= departments_path %>>Departments</a></li>
-	    <li><a href=<%= enrollments_path %>>Enrollments</a></li>
-	    <li><a href=<%= sections_path %>>Sections</a></li>
-	  </ul></li>
-	<li><a href=<%= events_path %>>Events</a></li>
+	    <li><a href=<%= conditions_path %>>Medical Conditions</a></li>
+	    <li><a href=<%= drugs_path %>>Drugs</a></li>
+		<li><a href=<%= locations_path %>>Locations</a></li>
+		<li><a href=<%= statistics_path %>>Statistics</a></li></ul>
 
-	<li><a href=<%= statistics_path %>>Statistics</a></li></ul>
+	  <li class="dropdown">
+
+	<div id="tfheader">
+		<form id="tfnewsearch" method="get" action="http://www.google.com">
+		        <input type="text" id="tfq" class="tftextinput4" name="q" size="21" maxlength="120" value="Search...">
+		        <input type="submit" value=" " class="tfbutton4">
+		</form>
+		<div class="tfclear"></div>
+	</div>
+</li>
+
+
+
+	  </ul></li>
+	
+	
 
     <!-- TO BE DELETED LATER AFTER NAV FORMAT RESOLVED -->
     <!-- <ul class="nav">

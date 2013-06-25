@@ -22,14 +22,10 @@
           <td><strong>End time:</strong></td><td><%= @event.end_time.nil? ? "N/A" : @event.end_time.strftime("%l:%M %p") %></td>
         </tr>
         <tr>
-<<<<<<< HEAD
-          <td><strong>Location:</strong></td><td><%= link_to @event.location.name, location_path(location) %></td>
-=======
           <td><strong>Number of volunteers attending:</strong></td><td><%= @shifts.size %></td>
         </tr>
         <tr>
-          <td><strong>Location:</strong></td><td><%= @event.location.name %></td>
->>>>>>> de4417269b22b09861e65c7c143f0d0215725c37
+          <td><strong>Location:</strong></td><td><%= link_to "#{@event.location.name}", location_path(@event.location_id) %></td>
         </tr>
         <tr>
           <td><strong>Meals served:</strong></td><td><%= @event.meals_served %></td>

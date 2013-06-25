@@ -1,2 +1,2 @@
-$("#scan_profile").hide().html(<%= escape_javascript( render(:partial => 'scan_profile')) %>).fadeIn();
+$("#profile").hide().html(<%= escape_javascript( render(:partial => 'scan_profile', locals:{student: student})) %>).fadeIn();
 $("#container").hide().html(<%= escape_javascript( render(:partial => 'attendees')) %>).fadeIn();

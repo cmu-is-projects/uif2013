@@ -76,7 +76,7 @@ class HomeController < ApplicationController
             puts student.proper_name if !student.nil?
           end
         end
-        render :json => { message: "#{@student.proper_name} was successfully scanned!", attendees: @attendances, absentees: @absences }
+        render :json => { message: "#{@student.proper_name} was successfully scanned!", student: @student, attendees: @attendances, absentees: @absences }
       else
         render :json => { error:'There was an error scanning.'}
       end    

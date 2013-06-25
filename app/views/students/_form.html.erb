@@ -46,6 +46,10 @@ $("#last_name").keyup(function(){
 
 <%= f.input :household_id, :collection => get_households, :prompt => 'Choose Household' %>
 </br>
+
+<%= f.input :school_id, :collection => get_schools, :prompt => 'Choose School' %>
+</br>
+
 <%= f.input :is_male, :label => "Gender", :as => :radio_buttons, :collection => [["Male ",true], ["Female ",false]], :item_wrapper_class => 'inline' %> 
 <% end %>
 

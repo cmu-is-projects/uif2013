@@ -21,6 +21,36 @@ class EventsController < ApplicationController
     end
   end
 
+  def today
+    @events = Event.by_date_desc
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @events }
+      format.js
+    end
+  end
+
+  def tomorrow
+    @events = Event.by_date_desc
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @events }
+      format.js
+    end
+  end
+
+  def past
+    @events = Event.by_date_desc
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @events }
+      format.js
+    end
+  end
+
   # GET /events/1
   # GET /events/1.json
   def show
