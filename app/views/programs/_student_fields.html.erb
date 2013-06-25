@@ -1,0 +1,10 @@
+<div class="well black small">
+  <div class="well-header">&nbsp;&nbsp;&nbsp;Enroll Students:</div>
+  <div class="field">
+    <div class="stu">
+      <%= f.label :student %>&nbsp;
+      <%= f.collection_select :student, Student.all, :id, :name, :prompt => "Choose a Student" %>  
+    </div>
+  </div>
+  &nbsp;&nbsp;&nbsp;<%= f.link_to_remove raw("<i class='icon-remove'></i> Remove this student") %>
+</div>

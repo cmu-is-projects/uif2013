@@ -1,46 +1,33 @@
-<%# model_class = Student -%>
-
-<%# unless @student.nil? %>
+<%- model_class = Student -%>
 
 <div class="scan-profile">
-	<%= student.proper_name %>
 
-<!-- 	<div class="span4" id="scan-profile-avatar">
-		<%# if !@student.avatar_file_name.blank? %>
-		    <div class="img-polaroid"><%# image_tag @student.avatar.url(:medium) %></div>
-		  <%# else %>
-		    <%# if @student.is_male %>
-		      <div class="img-polaroid"> <%# image_tag("male.jpg") %></div>&nbsp;&nbsp;
-		    <%# else %>  
-		      <div class="img-polaroid"> <%# image_tag("female.jpg") %></div>&nbsp;&nbsp;
-		    <%# end %>
-		<%# end %>
-	
+	<div class="span4" id="scan-profile-avatar">
+		
+		<<% if !@student.avatar_file_name.blank? %>
+		    <div class="img-polaroid"><%= image_tag @student.avatar.url(:medium) %></div>
+		  <% else %>
+		    <% if @student.is_male %>
+		      <div class="img-polaroid"> <%= image_tag("male.jpg") %></div>&nbsp;&nbsp;
+		    <% else %>  
+		      <div class="img-polaroid"> <%= image_tag("female.jpg") %></div>&nbsp;&nbsp;
+		    <% end %>
+		<% end %>
+		
 	</div>
 
 	<div class="span8" id="scan-profile-information">
-		<h1><%# @student.proper_name %></h1>
-			<div class="scan-profile-student-information">
-				<b>"Grade: "</b> <%# @student.grade %>
-				<b>"Department: "</b> <%# @student.department.name %>
-				<b>"Household: "</b> <%# @student.household.name %>
-				<b>"Guardian: "</b> <%# @student.guardian.proper_name %>
-				<b>"Guardian Contact: " </b> <%# @student.guardian.cellphone %> <b> Can text? </b> <%#student.guardian.can_text %>
-				<b>"Student Contact: "</b> <%# @student.cellphone %> <b> Can text? </b> <%#student.can_text %>
-
-			</div>
-	</div> -->
-
-	<!-- <div id="scan-profile-bottom">
-		<div class="scan-profile-student-warning">
-			<h1> Warnings: </h1>
-		</div>
-		<div class="scan-profile-student-condition">
-			<h1> Conditions: </h1>
+		<h1><%= @student.proper_name %></h1>
+		<div class="scan-profile-student-information">
+			
 		</div>
 	</div>
 
-</div> -->
+	<div id="scan-profile-bottom">
+		<div class="scan-profile-student-warning">
+		</div>
+		<div class="scan-profile-student-condition">
+		</div>
+	</div>
 
-<%# end %>
-
+</div>
