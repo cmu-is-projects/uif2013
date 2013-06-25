@@ -19,7 +19,7 @@ class Guardian < ActiveRecord::Base
   scope :search, lambda { |term| where('first_name LIKE ? OR last_name LIKE ?', "#{term}%", "#{term}%") }
   
   
-  TYPE_LIST = [['Father', 'Father'],['Mother', 'Mother'],['Noncustodial', 'Noncustodial'], ['Grandparent', 'Grandparent'], ['Foster', 'Foster']]
+  TYPE_LIST = [['Father', 'Father'],['Mother', 'Mother'],['Noncustodial', 'Noncustodial'], ['Grandparent', 'Grandparent'], ['Fosterparent', 'Fosterparent']]
   
   def name
     "#{last_name}, #{first_name}"
