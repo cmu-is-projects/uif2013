@@ -21,6 +21,7 @@ class ProgramsController < ApplicationController
     @notable = @program
     @shifts = @program.shifts
     @shiftable = @program
+    @enrollment = Enrollment.new
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @program }

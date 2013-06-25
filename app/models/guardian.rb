@@ -28,6 +28,24 @@ class Guardian < ActiveRecord::Base
   def proper_name
     "#{first_name} #{last_name}"
   end
+
+  def my_children
+    self.household.students
+  end
+
+  def self.search(query)
+    # .length works sometimes, but for now use !query
+    if !query
+        return 0
+    else
+      sql = query.split.map do |word|
+        %w[first_name last_name].map do |column|
+          sanitize_sql ["#{column} LIKE ?", "%#{word}%"]
+        end.join(" or ")
+      end.join(") and (")
+      where(sql)
+    end
+  end
   
   # Callback code
   # -----------------------------

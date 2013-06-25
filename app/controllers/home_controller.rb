@@ -27,7 +27,12 @@ class HomeController < ApplicationController
   def search
    @query = params[:query]
    @students = Student.search(@query)
-   @total_hits = @students.size
+   @volunteers = Volunteer.search(@query)
+   @guardians = Guardian.search(@query)
+   @student_hits = @students.size
+   @volunteer_hits = @volunteers.size
+   @guardian_hits = @guardians.size
+   @total_hits = @students.size + @volunteers.size + @guardians.size
   end
 
   def checkin
