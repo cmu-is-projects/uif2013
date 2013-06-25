@@ -39,6 +39,10 @@ class Volunteer < ActiveRecord::Base
   scope :pending_applications, where('app_approved = ?', false)
   scope :text, where('can_text = ?', true)
   scope :new_volunteer, where('created_at > ? ', 1.week.ago)
+  scope :dmetaphone, lambda {|term| where("DMETAPHONE(first_name) = DMETAPHONE(?) OR DMETAPHONE(last_name) = DMETAPHONE(?)", "#{term}", "#{term}")}
+  scope :levenshtein, lambda {|term| where("(first_name ~* ? OR last_name ~* ?) AND (LEVENSHTEIN(LOWER(first_name), LOWER(?)) < 3 OR LEVENSHTEIN(LOWER(last_name), LOWER(?)) < 3)", "^#{term[0].downcase}", "^#{term[0].downcase}", "#{term}", "#{term}")}
+  scope :search, lambda { |term| where('first_name LIKE ? OR last_name LIKE ?', "#{term}%", "#{term}%") }
+
   
   #Misc constants
   STATUS_LIST = [['Active', 'Active'],['Inactive', 'Inactive'], ['Missing', 'Missing']]
@@ -53,19 +57,28 @@ class Volunteer < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def self.search(query)
-    # .length works sometimes, but for now use !query
-    if !query
-        return 0
-    else
-      sql = query.split.map do |word|
-        %w[first_name last_name].map do |column|
-          sanitize_sql ["#{column} LIKE ?", "%#{word}%"]
-        end.join(" or ")
-      end.join(") and (")
-      where(sql)
-    end
-  end
+   def self.fuzzy_match(term)
+    dm_results = dmetaphone(term)
+    lv_results = levenshtein(term)
+    s_results = search(term)
+    only_lv = lv_results - dm_results
+    only_s = s_results - lv_results - dm_results
+    final_results = dm_results + only_lv + only_s
+  end 
+
+  # def self.search(query)
+  #   # .length works sometimes, but for now use !query
+  #   if !query
+  #       return 0
+  #   else
+  #     sql = query.split.map do |word|
+  #       %w[first_name last_name].map do |column|
+  #         sanitize_sql ["#{column} LIKE ?", "%#{word}%"]
+  #       end.join(" or ")
+  #     end.join(") and (")
+  #     where(sql)
+  #   end
+  # end
 
   def params_to_query(params)
     params.map {|p, v| "#{p}=#{URI.escape(v.to_s)}"}.join('&')

@@ -14,9 +14,12 @@ class Guardian < ActiveRecord::Base
     
   #scope
   scope :alphabetical,   order("last_name, first_name")
+  scope :dmetaphone, lambda {|term| where("DMETAPHONE(first_name) = DMETAPHONE(?) OR DMETAPHONE(last_name) = DMETAPHONE(?)", "#{term}", "#{term}")}
+  scope :levenshtein, lambda {|term| where("(first_name ~* ? OR last_name ~* ?) AND (LEVENSHTEIN(LOWER(first_name), LOWER(?)) < 3 OR LEVENSHTEIN(LOWER(last_name), LOWER(?)) < 3)", "^#{term[0].downcase}", "^#{term[0].downcase}", "#{term}", "#{term}")}
+  scope :search, lambda { |term| where('first_name LIKE ? OR last_name LIKE ?', "#{term}%", "#{term}%") }
   
   
-  TYPE_LIST = [['Father', 'Father'],['Mother', 'Mother'],['Uncustodial', 'Uncustodial'], ['Grandparent', 'Grandparent']]
+  TYPE_LIST = [['Father', 'Father'],['Mother', 'Mother'],['Noncustodial', 'Noncustodial'], ['Grandparent', 'Grandparent'], ['Fosterparent', 'Fosterparent']]
   
   def name
     "#{last_name}, #{first_name}"
@@ -25,6 +28,33 @@ class Guardian < ActiveRecord::Base
   def proper_name
     "#{first_name} #{last_name}"
   end
+
+  def my_children
+    self.household.students
+  end
+
+ def self.fuzzy_match(term)
+    dm_results = dmetaphone(term)
+    lv_results = levenshtein(term)
+    s_results = search(term)
+    only_lv = lv_results - dm_results
+    only_s = s_results - lv_results - dm_results
+    final_results = dm_results + only_lv + only_s
+  end 
+  
+  # def self.search(query)
+  #   # .length works sometimes, but for now use !query
+  #   if !query
+  #       return 0
+  #   else
+  #     sql = query.split.map do |word|
+  #       %w[first_name last_name].map do |column|
+  #         sanitize_sql ["#{column} LIKE ?", "%#{word}%"]
+  #       end.join(" or ")
+  #     end.join(") and (")
+  #     where(sql)
+  #   end
+  # end
   
   # Callback code
   # -----------------------------

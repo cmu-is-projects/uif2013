@@ -19,21 +19,23 @@ class GuardianTest < ActiveSupport::TestCase
   should_not allow_value("example.com").for(:email)
   should_not allow_value("e4567").for(:email)
 
-  context "3 Guardians" do
+  context "Guardians" do
     # create the objects I want with factories
     setup do
       create_household_context
+      create_student_context
       create_guardian_context
     end
 
     # and provide a teardown method as well
     teardown do
       remove_household_context
+      remove_student_context
       remove_guardian_context
     end
 
     # test the scope 'alphabetical'
-    should "shows 3 guardians in an alphabetical order" do
+    should "show 3 guardians in an alphabetical order" do
       assert_equal ["Scott, Clark", "Shroot, Mary", "Smith, Larry"], Guardian.alphabetical.map{|s| s.name}
     end
 
@@ -52,5 +54,9 @@ class GuardianTest < ActiveSupport::TestCase
       assert_equal "4122222222", @cscott.cell_phone
     end
 
+    #get children of the guardian
+    should "get children of the guardian" do
+      assert_equal "Alexander Heimann", @lsmith.my_children.proper_name
+    end
   end
 end

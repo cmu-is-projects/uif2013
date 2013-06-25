@@ -1,16 +1,38 @@
 <% if @past.count() == 0 %>
   <h2> There Are No Past Events </h2>
-<% else %>
-  <h3>Recent Events</h3>
+  <% else %>
   <table>
-    <% @past.each do |event| %>
+    <tr>
+      <td width="2000">
+              <h3>Recent Events</h3>
+      </td>
+      
+      <td width="180" align="center">
+       <p> Student</p>
+      </td>
+       <td width="101" align="center">
+       <p> Volunteer</p>
+       </td>
+    </tr>
+    <table>
+      <% @past.each do |event| %>
       <tr>
-        <td><%= link_to event.program.name, event_path(event) %></td>
-        <td><%= event.date.strftime("%B %d, %Y") %></td>
-        <td><%= link_to "(Student)", {:controller => "home", :action => "checkin", :event_id => event.id}%></td>
-        <td><%= link_to "(Volunteers)", {:controller => "home", :action => "volunteer_checkin", :event_id => event.id}%></td>
-      </tr>
-    <% end %> 
+        <td>
+        <%= link_to event.program.name, event_path(event) %>&nbsp;&nbsp;&nbsp;&nbsp; 
+        </td>
+        <td>
+        <%= event.date.strftime("%B %d, %Y") %>&nbsp;&nbsp;&nbsp;&nbsp;
+        </td>
+        <td>
+        <%=link_to image_tag("student_barcode.jpg", :width => 60, :height => 60), {:controller => "home", :action => 
+      "checkin", :event_id => event.id}%><br>
+        </td>
+         <td>
+        <%=link_to image_tag("volunteer_barcode.jpg", :width => 60, :height => 60), {:controller => "home", :action => 
+      "checkin", :event_id => event.id}%><br>
+        </td>
+       <% end %> 
+     </tr>
+    </table>
   </table>
-
 <% end %>

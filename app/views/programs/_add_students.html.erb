@@ -1,0 +1,19 @@
+<%= simple_form_for @enrollment, :html => { :class => 'form-horizontal' } do |f| %>
+    <div id="add_enrollment_form">
+        <%= f.fields_for :students do |student_form| %>
+          <%= render 'student_fields', f: student_form %>
+        <% end %>
+      <p><%= link_to_add_fields raw("<i class='icon-plus'></i> Add a student"), f, :students %></p>
+    </div>
+
+    <div class="form-actions">
+        <%= f.button :submit, :class => 'btn-success' %>
+        <% if @data.blank? %> 
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+        students_path, :class => 'btn' %>
+        <%else%>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+        home_path, :class => 'btn' %>
+        <%end%>
+    </div>
+<% end %>

@@ -1,7 +1,8 @@
 <%- model_class = Program -%>
-<div class="row-fluid">
-  <div class="span8">
 <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+<div class="row-fluid">
+  <div class="span7">
+
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
@@ -21,7 +22,6 @@
   <dt><strong><%= model_class.human_attribute_name(:scan_by_absence) %>:</strong></dt>
   <dd><%= @program.scan_by_absence %></dd>
 </dl>
-  </div><div class="span8">
 <div class="form-actions">
   <%= link_to raw("<i class='icon-backward'></i> Back to programs"),
               programs_path, :class => 'btn'  %>
@@ -46,4 +46,9 @@
       </div>
     </div>
 <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @program} %>
-  </div></div>
+  </div>
+<div class="span5">
+    <%= render :partial => "add_students" %>
+    <%= render :partial => "program_students" %>
+</div></div>
+ 

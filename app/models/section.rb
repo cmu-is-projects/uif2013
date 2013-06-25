@@ -5,6 +5,7 @@ class Section < ActiveRecord::Base
   has_many :enrollments, :dependent => :delete_all
   has_many :section_events, :dependent => :delete_all
   has_many :events, :through => :section_events
+  has_many :students, :through => :enrollments
   
   #Nested attributes
   accepts_nested_attributes_for :enrollments
