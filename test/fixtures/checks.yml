@@ -2,10 +2,10 @@
 
 one:
   name: MyString
-  duration: 2013-05-29 00:04:37
+  duration: 1
   cost: 9.99
 
 two:
   name: MyString
-  duration: 2013-05-29 00:04:37
+  duration: 1
   cost: 9.99

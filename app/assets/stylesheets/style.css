@@ -18,7 +18,7 @@ h1, h2, h3 {
   margin: 20px 0; }
 
 h1 {
-  border-bottom: 5px solid #b6f23d;
+  border-bottom: 2px solid #FFFFFF;
   font-size: 2em;
   padding-bottom: 5px; }
 
@@ -44,18 +44,22 @@ table {
   background-color: #ffeb00;
   color: black; }
 
+
 #search #query {
   margin: 0 0 0 8px; }
 
 #household_form {
   display: none;
 }
+#student_profile {
+  display: none;
+}
 
 #visitor {
-  background: #BF8337;
+  background: #FFC479;
 }
 #student {
-  background: #A65E04;
+  background: #ff9500;
 }
 #volunteer {
   background: #FFC479;
@@ -64,13 +68,13 @@ table {
   background: #ff9500;
 }
 #program {
-  background: #ff9500;
+  background: #FFC479;
 }
 #household {
-  background: #FFAE49;
+  background: #ff9500;
 }
 #guardian {
-  background: #BF8337;
+  background: #FFC479;
 }
 .dashboard {
   width: 840px;
@@ -371,4 +375,6 @@ a.menu:after, .dropdown-toggle:after {
     width: 500px;
   }
 
-
+#volunteer_student {
+  height: 150px;
+}

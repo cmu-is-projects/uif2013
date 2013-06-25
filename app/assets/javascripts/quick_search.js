@@ -1,7 +1,6 @@
 // Use jQuery to hide items in the various index lists
 $(function() {
 	$('#query').focus().keyup(function() {
-
 		// get rid of backspaces
 		var txt = $(this).val().replace(/\\b/,"");
 

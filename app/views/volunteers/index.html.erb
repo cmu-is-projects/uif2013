@@ -1,3 +1,5 @@
+
+
 <div class="row-fluid">
   <div class="span8">
     <div id="search">
@@ -10,6 +12,41 @@
     <%= link_to raw("<i class='icon-plus'></i> <strong>Add volunteer</strong>"), new_volunteer_path, :class => 'btn btn-success pull-right' %>
   </div>
 </div>
+
+<% unless @pending_checks.empty? %>
+  <div class="alert">
+    <div class="low">
+      <h3>Pending Checks</h3>
+      <% @pending_checks.each do |volunteer_check| %>
+          <br>
+          <%= link_to volunteer_check.volunteer.name, volunteer_path(volunteer_check.volunteer) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <%= link_to volunteer_check.check.name, check_path(volunteer_check.check) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          Submitted On: <%=  volunteer_check.date_submitted.strftime("%B %d, %Y") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+    <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% unless @expiring_checks.empty? %>
+  <div class="alert">
+    <div class="low">
+      <h3>Expiring Checks</h3>
+      <% @expiring_checks.each do |volunteer_check| %>
+          <br>
+          <%= link_to volunteer_check.volunteer.name, volunteer_path(volunteer_check.volunteer) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <%= link_to volunteer_check.check.name, check_path(volunteer_check.check) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<% unless volunteer_check.date_completed.nil? %>
+          Completed On: <%=  volunteer_check.date_completed.strftime("%B %d, %Y") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <% end %>
+	
+    <% end %>
+    </div>
+  </div>
+<% end %>
+
+
 
 <% if @query == 0 %>
   <%= render :partial => "normal-table" %>

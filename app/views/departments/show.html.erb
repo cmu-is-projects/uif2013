@@ -18,7 +18,9 @@
   <b>Volunteer Training Programs:</b>
 
 	<p>	<%= render :partial => "current_trainings" %></p>
-		<%= link_to raw("<i class='icon-plus icon-white'></i> Assign Training"), new_department_training_path(:id => @department.id, :from => 'department'), :class => 'btn btn-primary' %>
+
+
+		<%= link_to raw("<i class='icon-plus icon-white'></i><strong> Assign Training</strong>"), new_department_training_path(:id => @department.id, :from => 'department'), :class => 'btn-small btn-success' %>
 
 
 </p>

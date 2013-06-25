@@ -1,3 +1,5 @@
+    <%= link_to raw("<i class='icon-plus'></i> <strong>Add Training</strong>"), new_training_path, :class => 'btn btn-success pull-right' %>
+
 <h1>Listing trainings</h1>
 
 <table class="table table-striped">
@@ -18,12 +20,12 @@
         <td><%= training.description %></td>
         <td><%= link_to raw("<i class='icon-file'></i>"), new_note_path(:id => training.id, :source => 'training'), :class => 'btn btn-mini' %>
         &nbsp;<%= link_to raw("<i class='icon-pencil'></i>"),edit_training_path(training), :class => 'btn btn-mini' %></td>
-  </tbody>
-
   </tr>
 <% end %>
+
+  </tbody>
+
+
 </table>
 
 <br />
-
-<%= link_to 'New Training', new_training_path %>

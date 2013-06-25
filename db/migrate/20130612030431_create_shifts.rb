@@ -6,6 +6,7 @@ class CreateShifts < ActiveRecord::Migration
       t.datetime :end_time
       t.string :shiftable_type
       t.integer :shiftable_id
+      t.boolean :checked_in
 
       t.timestamps
     end

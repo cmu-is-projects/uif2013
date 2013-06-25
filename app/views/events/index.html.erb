@@ -12,10 +12,33 @@
 </div>
 
 <% unless @events.this_week.empty? %>
+  <div class="span10"> 
+    <div class="alert">
+      <div class="low">
+	<h3>Events this week</h3>
+	  <table>
+	    <% @events.this_week.each do |event| %>
+	      <% if controller.controller_name == "events" %>
+		<tr>
+		  <td><%= l(event.date, :format =>'%b %d, %Y') %></td>
+		  <td><%= link_to event.program.name, event_path(event) %></td>
+		  <td><%= l event.start_time %> - <%= l event.end_time %></td>
+		  <td><%= link_to "(Student)", {:controller => "home", :action => "checkin", :event_id => event.id}%></td>
+		  <td><%= link_to "(Volunteers)", {:controller => "home", :action => "volunteer_checkin", :event_id => event.id}%></td>
+		</tr>
+	      <% end %>
+	    <% end %>
+	  </table>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% unless @events.this_week.religious.empty? %>
   <div class="alert">
     <div class="low">
-      <h3>Events this week</h3>
-      <% @events.this_week.each do |event| %>
+      <h3>Upcoming Religious Events</h3>
+      <% @events.this_week.religious.each do |event| %>
 	<% if controller.controller_name == "events" %>
           <%= l(event.date, :format =>'%b %d, %Y') %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <%= link_to event.program.name, event_path(event) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -27,6 +50,7 @@
     </div>
   </div>
 <% end %>
+
 <div class="span10">
 <h1>All Events</h1>
 

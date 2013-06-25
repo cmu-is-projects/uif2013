@@ -1,8 +1,19 @@
 class VolunteersController < ApplicationController
   # GET /volunteers
   # GET /volunteers.json
+  autocomplete :student, :first_name, :display_value => :proper_name, :extra_data => [:first_name, :last_name]
+  
+  def get_autocomplete_items(parameters)
+     super(parameters)
+     items = Student.select("first_name, last_name, id").where(["LOWER(last_name || ', ' || first_name) " + "LIKE LOWER(?)", "%#{parameters[:term]}%"]).order("last_name, first_name").limit(7)
+  end
+
+
   def index
     @volunteers = Volunteer.alphabetical
+    @pending_checks = VolunteerCheck.pending
+      @expiring_checks = VolunteerCheck.expiring
+
     @query = Volunteer.search(params[:query])
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +29,10 @@ class VolunteersController < ApplicationController
     @notable = @volunteer
     @shifts = @volunteer.shifts
     @trainings = @volunteer.trainings.alphabetical
+    @volunteer_checks = @volunteer.volunteer_checks
+    @volunteer_trainings = @volunteer.volunteer_trainings
+    @checks = @volunteer.checks.alphabetical
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @volunteer }
@@ -28,10 +43,15 @@ class VolunteersController < ApplicationController
   # GET /volunteers/new.json
   def new
     @volunteer = Volunteer.new
-    @volunteer_first_name = Student.search(params[:volunteer_first_name])
+    if params[:term]
+      @students = Student.search_by_name(params[:term])
+    else
+      @students = Student.all
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @volunteer }
+      format.json { render json: @student.to_json }
     end
   end
 
@@ -47,10 +67,21 @@ class VolunteersController < ApplicationController
       @household = params[:volunteer][:household_attributes]
     end
     params[:volunteer].delete "household_attributes"
-    
+
     @volunteer = Volunteer.new(params[:volunteer])
     @household = Household.new(params[:household])
-    
+    if !@volunteer.student_id.blank?
+      @student = Student.find(@volunteer.student_id)
+      @volunteer.first_name = @student.first_name
+      @volunteer.last_name = @student.last_name
+      @volunteer.household_id = @student.household_id
+      @volunteer.is_male = @student.is_male
+      @volunteer.date_of_birth = @student.date_of_birth
+      @volunteer.cell_phone = @student.cell_phone
+      @volunteer.can_text = @student.can_text
+      @volunteer.email = @student.email
+      @volunteer.avatar = @student.avatar
+    end
     respond_to do |format|
       if @volunteer.save and @household.save
         @volunteer.update_attributes({:household_id => @household.id})         
@@ -75,7 +106,7 @@ class VolunteersController < ApplicationController
   # PUT /volunteers/1.json
   def update
     @volunteer = Volunteer.find(params[:id])
-    params[:volunteer].delete "household_attributes"
+    #params[:volunteer].delete "household_attributes"
     @household = Household.new(params[:household])
     respond_to do |format|
       if @volunteer.update_attributes(params[:volunteer])
