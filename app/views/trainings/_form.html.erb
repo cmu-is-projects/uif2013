@@ -3,12 +3,31 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :description %>
+    <%= f.input :description, :as => :text, :input_html => { :cols => 150, :rows => 5 }%>
     <%= f.input :level, :as => :radio_buttons, :collection => [["Beginner ","Beginner "], ["Intermediate ","Intermediate "], ["Advanced ","Advanced "]], :item_wrapper_class => 'inline' %> 
     <%= f.input :next_offered, :order => [:month, :day, :year], :start_year => Date.today.year+2, :end_year => Date.today.year %>
   </div>
+
+<br>
+<p>Departments this Training belongs to:</p>
+<p>
+	<%#(Select All javascript! Implement F13) check_box_tag('check_all', 'check_all', false,  :onClick => "$$('#my_form input.check').each(function(box){box.checked=($('check_all').checked)?true:false});")%>
+	
+<br>
+
+  <% for department in Department.alphabetical %>
+    <%= check_box_tag "training[department_ids][]", department.id, @training.departments.include?(department) %>
+    <%= department.name %>
+    <br />
+  <% end  %>
+
+
+</p>
+
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
+
+

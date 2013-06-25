@@ -33,6 +33,24 @@
     </div>
   </div>
 <% end %>
+
+<% unless @events.this_week.religious.empty? %>
+  <div class="alert">
+    <div class="low">
+      <h3>Upcoming Religious Events</h3>
+      <% @events.this_week.religious.each do |event| %>
+	<% if controller.controller_name == "events" %>
+          <%= l(event.date, :format =>'%b %d, %Y') %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= link_to event.program.name, event_path(event) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <%= l event.start_time %> - <%= l event.end_time %><br>
+        <% elsif %>
+          <%= link_to event.program.name, :controller => "home", :action => "checkin", :event_id => event.id %>
+        <% end %>
+    <% end %>
+    </div>
+  </div>
+<% end %>
+
 <div class="span10">
 <h1>All Events</h1>
 

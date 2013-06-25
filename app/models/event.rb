@@ -33,6 +33,7 @@ class Event < ActiveRecord::Base
   scope :last_week, where("date >= ? AND date <= ?", 1.week.ago.to_date, Date.today)
   scope :by_date, order('date')
   scope :by_date_desc, order('date DESC')
+  scope :religious, where("gospel_shared = ? OR bibles_distributed > ?", true, 0)
     
   
 
