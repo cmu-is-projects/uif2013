@@ -1,6 +1,8 @@
 class Location < ActiveRecord::Base
   attr_accessible :active, :city, :lat, :lon, :name, :street, :zip
 
+  before_save :create_map_link
+
   #Relationships
   has_many :events
   has_many :programs, :through => :events
@@ -17,11 +19,22 @@ class Location < ActiveRecord::Base
   scope :alphabetical, order('name')
   scope :active, where('active = ?', true)
   scope :inactive, where('active = ?', false)
+
   
   # Callbacks
   before_validation :get_location_coordinates
   
-  private
+  def create_map_link(zoom=15,width=800,height=800)
+      markers = ""; i = 1   
+      markers += "&markers=color:red%7Ccolor:red%7Clabel:#{i}%7C#{lat},#{lon}"  
+      map = "http://maps.google.com/maps/api/staticmap?center= #{lat},#{lon}&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap#{markers}&sensor=false"
+  end
+
+  def to_s
+    return "#{self.lat},#{self.lon}"
+  end
+
+private
   def get_location_coordinates
     str = self.street
     zip = self.zip
@@ -35,5 +48,6 @@ class Location < ActiveRecord::Base
     end
     coord
   end
+ 
 
 end

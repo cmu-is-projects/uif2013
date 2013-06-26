@@ -1,0 +1,33 @@
+<%- model_class = Student -%>
+
+<div class="scan-profile">
+
+	<div class="span4" id="scan-profile-avatar">
+		
+		<<% if !@student.avatar_file_name.blank? %>
+		    <div class="img-polaroid"><%= image_tag @student.avatar.url(:medium) %></div>
+		  <% else %>
+		    <% if @student.is_male %>
+		      <div class="img-polaroid"> <%= image_tag("male.jpg") %></div>&nbsp;&nbsp;
+		    <% else %>  
+		      <div class="img-polaroid"> <%= image_tag("female.jpg") %></div>&nbsp;&nbsp;
+		    <% end %>
+		<% end %>
+		
+	</div>
+
+	<div class="span8" id="scan-profile-information">
+		<h1><%= @student.proper_name %></h1>
+		<div class="scan-profile-student-information">
+			
+		</div>
+	</div>
+
+	<div id="scan-profile-bottom">
+		<div class="scan-profile-student-warning">
+		</div>
+		<div class="scan-profile-student-condition">
+		</div>
+	</div>
+
+</div>

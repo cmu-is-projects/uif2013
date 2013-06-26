@@ -1,0 +1,12 @@
+<%# model_class = Event -%>
+
+<% if @events.current.count() == 0 %>
+	<h1> <%= Time.now.strftime("%B %d") %> </h1>
+  	<h2> There Are No Events Today</h2>
+<% else %>
+	<h1>Event: <%= @event.program.name %> - <%= @event.date.strftime("%b %d, %Y") %></h1>
+ 		 <% @events.current.each do |event| %>
+   		 <%= link_to event.program.name, event_path(event) %>&nbsp;&nbsp;&nbsp;&nbsp; <%= event.start_time.strftime("%B %d, %Y") %>-<%= event.end_time.strftime("%B %d, %Y") %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "(Scan)", {:controller => "home", :action => "checkin", :event_id => event.id}%><br>
+  	<% end %> 
+<% end %>
+

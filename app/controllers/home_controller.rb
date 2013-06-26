@@ -34,8 +34,13 @@ class HomeController < ApplicationController
 
   def search
    @query = params[:query]
-   @students = Student.search(@query)
-   @total_hits = @students.size
+   @students = Student.fuzzy_match(@query)
+   @volunteers = Volunteer.fuzzy_match(@query)
+   @guardians = Guardian.fuzzy_match(@query)
+   @student_hits = @students.size
+   @volunteer_hits = @volunteers.size
+   @guardian_hits = @guardians.size
+   @total_hits = @students.size + @volunteers.size + @guardians.size
   end
 
 def checkin
@@ -79,7 +84,8 @@ def checkin
             puts student.proper_name if !student.nil?
           end
         end
-        render :json => { message: "#{@student.proper_name} was successfully scanned!", attendees: @student_attendances, absentees: @student_absences }
+        render :json => { message: "#{@student.proper_name} was successfully scanned!", student: @student, attendees: @attendances, absentees: @absences }
+        #render :json => { message: "#{@student.proper_name} was successfully scanned!", attendees: @student_attendances, absentees: @student_absences }
       else
         render :json => { error:'There was an error scanning.'}
       end    

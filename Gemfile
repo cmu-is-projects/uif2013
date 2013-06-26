@@ -50,7 +50,8 @@ group :assets do
 end
 
 group :test do
-	gem 'sqlite3', '1.3.7'
+	#gem 'sqlite3', '1.3.7'
+  gem 'pg', '0.14.1'
 	gem 'shoulda', '3.5.0'
 	gem 'shoulda-matchers', '2.1.0'
 	gem 'factory_girl_rails', '4.2.1'

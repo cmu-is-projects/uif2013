@@ -1,4 +1,6 @@
 <%- model_class = Location -%>
+<div class="column-fluid">
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
@@ -14,16 +16,30 @@
   <dd><%= @location.zip %></dd>
 </dl>
 
-<div class="form-actions">
-  <%= link_to raw("<i class='icon-backward'></i> Back to locations"),
-              locations_path, :class => 'btn'  %>
-  <%= link_to raw("<i class='icon-edit'></i> Edit this location"),
-              edit_location_path(@location), :class => 'btn' %>
-  <%= link_to raw("<i class='icon-remove'></i> Destroy this location"),
-              location_path(@location),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<div class="row-fluid">
+
+  <div class="span5">
+    <%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @location} %>
+    <div class="form-actions">
+      <%= link_to raw("<i class='icon-backward'></i> Back to locations"),
+                  locations_path, :class => 'btn'  %>
+      <%= link_to raw("<i class='icon-edit'></i> Edit this location"),
+                  edit_location_path(@location), :class => 'btn' %>
+      <%= link_to raw("<i class='icon-remove'></i> Destroy this location"),
+                  location_path(@location),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+    </div>
+  </div>
+
+  <div class="span7">
+    <div class="map">
+      <h2>  Click on the Image for <d><%= @location.name %></d>'s Google Map  </h2>     
+      <a href="https://maps.google.com/?q=<%=@location.to_s%>" target="_blank"><%= image_tag @location.create_map_link %></a>
+    </div>
+  </div>
+
 </div>
 
-<%= render :partial => "partials/add_notes_to_page", :locals => {:obj => @location} %>
+</div>
